@@ -26,6 +26,9 @@
     <Compile Include="event_driven.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="event_driven_solution.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="fcnd_udacity.py" />
   </ItemGroup>
   <ItemGroup>

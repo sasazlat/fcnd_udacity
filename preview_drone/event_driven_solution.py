@@ -4,13 +4,11 @@ import time
 class EventDrivenChatBot:
     
     def __init__(self):
-        # accepted_messages maps incoming messages to
-        # list of callback functions
         self.accepted_messages = {}
-
-        self.age_asked = False
         
-        # time of instantiation
+        # 1.  ADDED THIS "STATE" VARIABLE
+        self.has_been_asked_age = False
+        
         self.birth_time = datetime.now()
         
         # "registering" all callbacks
@@ -18,8 +16,11 @@ class EventDrivenChatBot:
                                self.respond_to_greeting)
         self.register_callback("bye", 
                                self.respond_to_departure)
-        self.register_callback("age?", self.handle_age)
-        #self.register_callback("age?", self.respond_to_age_request_detailed)
+        
+        # 3.  USING handle_age_request TO DISPATCH
+        #    RESPONSES TO "age?"
+        self.register_callback("age?",
+                               self.handle_age_request)
     
     def register_callback(self, message, callback):
         """
@@ -34,6 +35,14 @@ class EventDrivenChatBot:
         
     def respond_to_departure(self):
         print("Nice chatting with you!")
+    
+    # 2.  ADD DISPATCH POINT FOR PROCESSING "age?" MESSAGE
+    def handle_age_request(self):
+        if not self.has_been_asked_age:
+            self.has_been_asked_age = True
+            self.respond_to_age_request()
+        else:
+            self.respond_to_age_request_detailed()
             
     def respond_to_age_request(self):
         age = datetime.now() - self.birth_time
@@ -44,28 +53,18 @@ class EventDrivenChatBot:
         micros = age.microseconds
         print("Technically, I'm", age.seconds, "seconds and", 
               micros, "microseconds old")
-    
-    def handle_age(self):
-        if not self.age_asked:
-            self.age_asked = True
-            self.respond_to_age_request()
-        else:
-            self.respond_to_age_request_detailed()
-        pass
-    
+        
     def handle_message(self, message):
         if message not in self.accepted_messages:
             print("sorry, I don't understand", message)
         else:
             callbacks = self.accepted_messages[message]
             for callback in callbacks:
-                callback() 
+                callback()
                 
 bot = EventDrivenChatBot()
 bot.handle_message("hi")
-time.sleep(2.2)
+time.sleep(1.3)
 bot.handle_message("age?")
+print("---No chatbot, let me ask you that again...")
 bot.handle_message("age?")
-bot.handle_message("age?")
-bot.handle_message("age?")
-bot.handle_message("bye")
