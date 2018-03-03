@@ -4,7 +4,7 @@ import time
 class EventDrivenChatBot:
     
     def __init__(self):
-        # accepted_messages maps incoming messages to 
+        # accepted_messages maps incoming messages to
         # list of callback functions
         self.accepted_messages = {}
         
@@ -20,6 +20,7 @@ class EventDrivenChatBot:
                                self.respond_to_age_request)
         self.register_callback("age?",
                                self.respond_to_age_request_detailed)
+
     
     def register_callback(self, message, callback):
         """
@@ -56,5 +57,7 @@ class EventDrivenChatBot:
 bot = EventDrivenChatBot()
 bot.handle_message("hi")
 time.sleep(2.2)
+bot.handle_message("age?")
+bot.handle_message("age?")
 bot.handle_message("age?")
 bot.handle_message("bye")
