@@ -5,14 +5,14 @@
     <ProjectGuid>4a907668-2d72-4a0c-8594-94df6ac93d95</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>event_driven.py</StartupFile>
+    <StartupFile>ProjectBackyardFlyer\backyard_flyer.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>preview_drone</Name>
     <RootNamespace>fcnd_udacity</RootNamespace>
-    <InterpreterId>Global|VisualStudio|fcnd</InterpreterId>
+    <InterpreterId>Global|VisualStudio|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,13 +23,24 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ProjectBackyardFlyer\backyard_flyer.py" />
+    <Compile Include="ProjectBackyardFlyer\backyard_flyer_solution.py" />
     <Compile Include="event_driven.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="event_driven_solution.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="fcnd_udacity.py" />
+    <Compile Include="up_and_down.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|fcnd" />
+    <InterpreterReference Include="Global|VisualStudio|fcndenv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProjectBackyardFlyer\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
