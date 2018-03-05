@@ -16,7 +16,16 @@ drone.set_home_position(drone.global_position[0],
 drone.takeoff(3)
 drone.takeoff(32)
 
-drone.cmd_position(5,0,3,0)
+drone.cmd_position(5,0,5,0)
+
+square = [(10,0,5,0),
+          (10,10,5,0),
+          (0,10,5,0),
+          (0,0,5,0)]
+
+for corner in square:
+    drone.cmd_position(*corner)
+    time.sleep(3)
 
 drone.disarm()
 drone.arm()
