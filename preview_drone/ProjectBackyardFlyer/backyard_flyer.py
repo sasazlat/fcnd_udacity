@@ -45,7 +45,7 @@ class BackyardFlyer(Drone):
             if altitude > 0.95 * self.target_position[2]:
                 if len(self.all_waypoints) == 0:
                     self.calculate_box()
-                self.waypoint_transition()
+                    self.waypoint_transition()
                 self.flight_state == States.WAYPOINT
         elif self.flight_state == States.WAYPOINT:
             if np.linalg.norm(self.target_position[0:2] - self.local_position[0:2]) < 0.1:
@@ -65,8 +65,7 @@ class BackyardFlyer(Drone):
         #TODO: Implement this method
 
         if self.flight_state == States.LANDING:
-            if ((self.global_position[2] - self.global_home[2] < 0.1) and
-              abs(self.local_position[2]) < 0.01):
+            if ((self.global_position[2] - self.global_home[2] < 0.1) and abs(self.local_position[2]) < 0.01):
                 self.disarming_transition()
 
     def state_callback(self):
@@ -109,8 +108,8 @@ class BackyardFlyer(Drone):
         4. Transition to the ARMING state
         """
         print("arming transition")
-        drone.take_control()
-        dron.arm()
+        self.take_control()
+        self.arm()
 
         drone.set_home_position(self.global_position[0],
                                 self.global_position[1],
@@ -140,7 +139,9 @@ class BackyardFlyer(Drone):
         2. Transition to WAYPOINT state
         """
         print("waypoint transition")
-        
+
+        self.target_position = self.all_waypoints.pop(0)
+        self.cmd_position(self.target_position[0], self.target_position[1], self.target_position[2], 0.0)
         self.flight_state = States.WAYPOINT
 
     def landing_transition(self):
@@ -163,8 +164,7 @@ class BackyardFlyer(Drone):
         """
         print("disarm transition")
         self.disarm()
-        self.release_control()
-        self.flight_state = States.MANUAL
+        self.flight_state = States.DISARMING
 
     def manual_transition(self):
         """This method is provided
@@ -191,19 +191,14 @@ class BackyardFlyer(Drone):
         print("Creating log file")
         self.start_log("Logs", "NavLog.txt")
         print("starting connection")
-        self.connection.start()
+        #self.connection.start()
+        super().start()
         print("Closing log file")
         self.stop_log()
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--port', type=int, default=5760, help='Port number')
-    parser.add_argument('--host', type=str, default='127.0.0.1', help="host address, i.e. '127.0.0.1'")
-    args = parser.parse_args()
-
-    conn = MavlinkConnection('tcp:{0}:{1}'.format(args.host, args.port), threaded=False, PX4=False)
-    #conn = WebSocketConnection('ws://{0}:{1}'.format(args.host, args.port))
+    conn = MavlinkConnection('tcp:127.0.0.1:5760', threaded=False, PX4=False)
     drone = BackyardFlyer(conn)
     time.sleep(2)
     drone.start()

@@ -12,7 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>preview_drone</Name>
     <RootNamespace>fcnd_udacity</RootNamespace>
-    <InterpreterId>Global|VisualStudio|fcndenv</InterpreterId>
+    <InterpreterId>Global|VisualStudio|fcnd</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,10 +37,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|fcndenv" />
+    <Folder Include="ProjectBackyardFlyer\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ProjectBackyardFlyer\" />
+    <InterpreterReference Include="Global|VisualStudio|fcnd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
