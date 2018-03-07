@@ -41,14 +41,20 @@ class BackyardFlyer(Drone):
 
         This triggers when `MsgID.LOCAL_POSITION` is received and self.local_position contains new data
         """
-        pass
-
+        if self.flight_state == States.TAKEOFF:
+            # coordinate conversion
+            altitude = -1 * self.local_position[2]
+            # check if altitude is within 95% of target
+            if altitude > 0.95 * self.target_position[2]:
+                self.landing_transition()
+        
     def velocity_callback(self):
         """
         TODO: Implement this method
 
         This triggers when `MsgID.LOCAL_VELOCITY` is received and self.local_velocity contains new data
         """
+
         pass
 
     def state_callback(self):

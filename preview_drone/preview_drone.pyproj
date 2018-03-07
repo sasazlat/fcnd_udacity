@@ -5,7 +5,7 @@
     <ProjectGuid>4a907668-2d72-4a0c-8594-94df6ac93d95</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>ProjectBackyardFlyer\backyard_flyer.py</StartupFile>
+    <StartupFile>up_and_down.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
