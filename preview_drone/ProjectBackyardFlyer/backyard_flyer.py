@@ -43,18 +43,28 @@ class BackyardFlyer(Drone):
         if self.flight_state == States.TAKEOFF:
             altitude = -1 * self.local_position[2]
             if altitude > 0.95 * self.target_position[2]:
-                self.calculate_box()
+                if len(self.all_waypoints) == 0:
+                    self.calculate_box()
                 self.waypoint_transition()
+                self.flight_state == States.WAYPOINT
+        elif self.flight_state == States.WAYPOINT:
+            if np.linalg.norm(self.target_position[0:2] - self.local_position[0:2]) < 0.1:
+                if len(self.all_waypoints) > 0:
+                    self.waypoint_transition()
+                else:
+                    if np.linalg.norm(self.local_velocity[0:2]) < 1.0:
+                        self.landing_transition()
+                        self.flight_state = States.LANDING
 
-
-        pass
 
     def velocity_callback(self):
-        #TODO: Implement this method
         """
 
         This triggers when `MsgID.LOCAL_VELOCITY` is received and self.local_velocity contains new data
         """
+        #TODO: Implement this method
+
+
         pass
 
     def state_callback(self):
