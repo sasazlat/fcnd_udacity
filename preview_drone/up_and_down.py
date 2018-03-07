@@ -33,7 +33,7 @@ class UpAndDownFlyer(Drone):
     def local_position_callback(self):
         if self.flight_phase == Phases.TAKEOFF:
 
-            # coordinate conversion 
+            # coordinate conversion
             altitude = -1.0 * self.local_position[2]
 
             # check if altitude is within 95% of target
@@ -42,8 +42,7 @@ class UpAndDownFlyer(Drone):
 
     def velocity_callback(self):
         if self.flight_phase == Phases.LANDING:
-            if ((self.global_position[2] - self.global_home[2] < 0.1) and
-            abs(self.local_position[2]) < 0.01):
+            if ((self.global_position[2] - self.global_home[2] < 0.1) and abs(self.local_position[2]) < 0.01):
                 self.disarming_transition()
 
     def state_callback(self):
