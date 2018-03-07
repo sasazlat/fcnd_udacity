@@ -71,11 +71,11 @@ class BackyardFlyer(Drone):
         
         1. Return waypoints to fly a box
         """
-        box = [(10, 0, 5, 0),
-                (10, 10, 5, 0),
-                (0, 10, 5, 0),
-                (0, 0, 5, 0)]
-        self.all_waypoints.append(box)
+        self.all_waypoints = [[10, 0, 3, 0],
+                              [10, 10, 3, 0],
+                              [0, 10, 3, 0],
+                              [0, 0, 3, 0]]
+        
         
 
     def arming_transition(self):
@@ -106,7 +106,7 @@ class BackyardFlyer(Drone):
         3. Transition to the TAKEOFF state
         """
         print("takeoff transition")
-        target_altitude = 5.0
+        target_altitude = 3.0
         self.target_position[2] = target_altitude
         self.takeoff(target_altitude)
         self.flight_state = States.TAKEOFF
