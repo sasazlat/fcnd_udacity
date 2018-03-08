@@ -10,7 +10,7 @@
 
 # Import numpy and Enum
 import numpy as np
-from queue  import Queue
+import queue
 from enum import Enum
 
 
@@ -28,10 +28,10 @@ start = (0, 0)
 goal = (4, 4)
 # Define your grid-based state space of obstacles and free space
 grid = np.array([[0, 1, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0],
-    [0, 1, 0, 1, 0, 0],
-    [0, 0, 0, 1, 1, 0],
-    [0, 0, 0, 1, 0, 0],])
+                    [0, 1, 0, 0, 0, 0],
+                    [0, 1, 0, 1, 0, 0],
+                    [0, 0, 0, 1, 1, 0],
+                    [0, 0, 0, 1, 0, 0]])
 
 
 # In[4]:
@@ -111,7 +111,6 @@ def visualize_path(grid, path, start):
 # `TODOs`.
 
 # In[7]:
-
 def breadth_first(grid, start, goal):
     # Below:
         # "queue" is meant to contain your partial paths
@@ -119,36 +118,38 @@ def breadth_first(grid, start, goal):
     # TODO: Replace the None values for "queue" and "visited" with data
     # structure types
     path = []
-    queue = Queue() # TODO: Choose a data structure type for your partial paths
-    visited = None # TODO: Choose a data structure type for your visited list
+    q = queue.Queue() # TODO: Choose a data structure type for your partial paths
+    q.put(start)
+    visited = list() # TODO: Choose a data structure type for your visited list
 
     branch = {}
     found = False
     
     # Run loop while queue is not empty
-    while not True: # e.g, replace True with queue.empty() if using a Queue:
+    while not q.empty(): # e.g, replace True with queue.empty() if using a Queue:
         # TODO: Replace "None" to remove the first element from the queue
-        current_node = None
+        current_node = q.get()
         
         # TODO: Replace "False" to check if the current vertex corresponds to
         # the goal state
-        if False: 
+        if current_node == goal: 
             print('Found a path.')
             found = True
             break
         else:
             # Get the new vertexes connected to the current vertex
-            for a in valid_actions(grid, current_node):
+            actions = valid_actions(grid, current_node)
+            for a in actions:
                 # delta of performing the action
                 da = a.value
                 next_node = (current_node[0] + da[0], current_node[1] + da[1])
-                
+                q.put(next_node)
                 # TODO: Check if the new vertex has not been visited before.
                 # If the node has not been visited you will need to
                 # 1.  Mark it as visited
                 # 2.  Add it to the queue
-                if False:
-                
+                if current_node not in visited:
+                    visited.append(current_node)             
                     branch[next_node] = (current_node, a)
              
     path = []
@@ -169,7 +170,6 @@ def breadth_first(grid, start, goal):
 # Run `breadth_first()` and reference the grid to see if the path makes sense.
 
 # In[8]:
-
 path = breadth_first(grid, start, goal)
 print(path)
 
