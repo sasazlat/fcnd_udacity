@@ -2,17 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>4a907668-2d72-4a0c-8594-94df6ac93d95</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>ProjectBackyardFlyer\backyard_flyer.py</StartupFile>
+    <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>preview_drone</Name>
-    <RootNamespace>fcnd_udacity</RootNamespace>
-    <InterpreterId>Global|VisualStudio|fcndenv</InterpreterId>
+    <Name>planning_as_search</Name>
+    <RootNamespace>planning_as_search</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,24 +22,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ProjectBackyardFlyer\backyard_flyer.py" />
-    <Compile Include="ProjectBackyardFlyer\backyard_flyer_solution.py" />
-    <Compile Include="event_driven.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="event_driven_solution.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="fcnd_udacity.py" />
-    <Compile Include="up_and_down.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="BFS\BFS-Solution.py" />
+    <Compile Include="BFS\BFS.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ProjectBackyardFlyer\" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|fcndenv" />
+    <Folder Include="BFS\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

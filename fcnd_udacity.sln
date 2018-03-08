@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "preview_drone", "preview_drone\preview_drone.pyproj", "{4A907668-2D72-4A0C-8594-94DF6AC93D95}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "planning_as_search", "planning_as_search\planning_as_search.pyproj", "{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4A907668-2D72-4A0C-8594-94DF6AC93D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A907668-2D72-4A0C-8594-94DF6AC93D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
