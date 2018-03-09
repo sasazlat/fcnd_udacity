@@ -60,6 +60,7 @@ def valid_actions(grid, current_node):
     Returns a list of valid actions given a grid and current node.
     """
     valid = [Action.UP, Action.LEFT, Action.RIGHT, Action.DOWN]
+    print (grid.shape)
     n, m = grid.shape[0] - 1, grid.shape[1] - 1
     x, y = current_node
     
@@ -120,8 +121,8 @@ def breadth_first(grid, start, goal):
     path = []
     q = queue.Queue() # TODO: Choose a data structure type for your partial paths
     q.put(start)
-    visited = list() # TODO: Choose a data structure type for your visited list
-
+    visited = set() # TODO: Choose a data structure type for your visited list
+    
     branch = {}
     found = False
     
@@ -129,27 +130,30 @@ def breadth_first(grid, start, goal):
     while not q.empty(): # e.g, replace True with queue.empty() if using a Queue:
         # TODO: Replace "None" to remove the first element from the queue
         current_node = q.get()
-        
+        visited.add(current_node)
         # TODO: Replace "False" to check if the current vertex corresponds to
         # the goal state
         if current_node == goal: 
             print('Found a path.')
             found = True
             break
+        #if current_node in visited:
+        #    continue
         else:
             # Get the new vertexes connected to the current vertex
             actions = valid_actions(grid, current_node)
             for a in actions:
                 # delta of performing the action
+                print (a.name)
                 da = a.value
                 next_node = (current_node[0] + da[0], current_node[1] + da[1])
-                q.put(next_node)
                 # TODO: Check if the new vertex has not been visited before.
                 # If the node has not been visited you will need to
                 # 1.  Mark it as visited
                 # 2.  Add it to the queue
-                if current_node not in visited:
-                    visited.append(current_node)             
+                if next_node not in visited:
+                    visited.add(next_node)             
+                    q.put(next_node)
                     branch[next_node] = (current_node, a)
              
     path = []
