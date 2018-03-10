@@ -25,7 +25,7 @@ from enum import Enum
 
 # Define a start and goal location
 start = (0, 0)
-goal = (0, 2)
+goal = (4, 4)
 # Define your grid-based state space of obstacles and free space
 grid = np.array([[0, 1, 0, 0, 0, 0],
                     [0, 1, 0, 0, 0, 0],
@@ -112,25 +112,26 @@ def visualize_path(grid, path, start):
 # `TODOs`.
 
 # In[7]:
-def breadth_first(grid, start, goal):
+def depth_first(grid, start, goal):
     # Below:
         # "queue" is meant to contain your partial paths
         # "visited" is meant to contain your visited cells
     # TODO: Replace the None values for "queue" and "visited" with data
     # structure types
     path = []
-    q = queue.Queue() # TODO: Choose a data structure type for your partial paths
-    q.put(start)
+    stack = [start] # TODO: Choose a data structure type for your partial paths
+    #stack.put(start)
     visited = set() # TODO: Choose a data structure type for your visited list
     
     branch = {}
     found = False
     
     # Run loop while queue is not empty
-    while not q.empty(): # e.g, replace True with queue.empty() if using a Queue:
+    while not stack: # e.g, replace True with queue.empty() if using a Queue:
         # TODO: Replace "None" to remove the first element from the queue
-        current_node = q.get()
-        visited.add(current_node)
+        current_node = stack.pop()
+        if current_node not in visited:
+            visited.add(current_node)
         # TODO: Replace "False" to check if the current vertex corresponds to
         # the goal state
         if current_node == goal: 
@@ -153,7 +154,7 @@ def breadth_first(grid, start, goal):
                 # 2.  Add it to the queue
                 if next_node not in visited:
                     visited.add(next_node)             
-                    q.put(next_node)
+                    stack.put(next_node)
                     branch[next_node] = (current_node, a)
              
     path = []
@@ -174,7 +175,7 @@ def breadth_first(grid, start, goal):
 # Run `breadth_first()` and reference the grid to see if the path makes sense.
 
 # In[8]:
-path = breadth_first(grid, start, goal)
+path = depth_first(grid, start, goal)
 print(path)
 
 
@@ -186,3 +187,4 @@ visualize_path(grid, path, start)
 
 
 # Check out our solution [here!](/notebooks/BFS-Solution.ipynb)
+
