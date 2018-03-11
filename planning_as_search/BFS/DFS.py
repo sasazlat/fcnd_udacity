@@ -25,7 +25,7 @@ from enum import Enum
 
 # Define a start and goal location
 start = (0, 0)
-goal = (4, 4)
+goal = (0, 2)
 # Define your grid-based state space of obstacles and free space
 grid = np.array([[0, 1, 0, 0, 0, 0],
                     [0, 1, 0, 0, 0, 0],
@@ -82,15 +82,17 @@ def valid_actions(grid, current_node):
 def create_adjacenty_list(grid):
     result = {}
     n,m = grid.shape
-    for y in range(n):
-        for x in range(m):
-            k = (y, x)
+    for y in range(m):
+        for x in range(n):
+            k = (x, y)
             valid = valid_actions(grid, k)
+            result[k] = set()
             for v in valid:
-                result[k].append(v)
+                xun = (k[0] + (v.value)[0], k[1] + (v.value)[1])
+                result[k].add(xun)
     return result
 
-create_adjacenty_list(grid)
+gridsa = create_adjacenty_list(grid)
 
 
 # Define a function to visualize the path
@@ -130,17 +132,24 @@ def visualize_path(grid, path, start):
 
 
 
-def depth_first(grid, start, goal):
+def depth_first(graph, start, goal):
 
-    pass
-
+    visited, stack = set(), [start]
+    while stack:
+        vertex = stack.pop()
+        if vertex == goal:
+            break
+        if vertex not in visited:
+            visited.add(vertex)
+            stack.extend(graph[vertex] - visited)
+    return visited
 
 # ### Executing the search
 #
 # Run `breadth_first()` and reference the grid to see if the path makes sense.
 
 # In[8]:
-path = depth_first(grid, start, goal)
+path = depth_first(gridsa, start, goal)
 print(path)
 
 

@@ -4,15 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BFS\BFS.py</StartupFile>
+    <StartupFile>BFS\DFS.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>planning_as_search</Name>
     <RootNamespace>planning_as_search</RootNamespace>
-    <InterpreterId>
-    </InterpreterId>
+    <InterpreterId>Global|VisualStudio|fcnd</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +37,9 @@
   <ItemGroup>
     <Folder Include="BFS\" />
     <Folder Include="UCS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|VisualStudio|fcnd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
