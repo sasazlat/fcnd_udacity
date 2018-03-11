@@ -60,7 +60,7 @@ def valid_actions(grid, current_node):
     Returns a list of valid actions given a grid and current node.
     """
     valid = [Action.UP, Action.LEFT, Action.RIGHT, Action.DOWN]
-    print (grid.shape)
+    #print (grid.shape)
     n, m = grid.shape[0] - 1, grid.shape[1] - 1
     x, y = current_node
     
@@ -144,7 +144,7 @@ def breadth_first(grid, start, goal):
             actions = valid_actions(grid, current_node)
             for a in actions:
                 # delta of performing the action
-                print (a.name)
+                #print (a.name)
                 da = a.value
                 next_node = (current_node[0] + da[0], current_node[1] + da[1])
                 # TODO: Check if the new vertex has not been visited before.

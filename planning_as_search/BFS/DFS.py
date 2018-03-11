@@ -33,7 +33,6 @@ grid = np.array([[0, 1, 0, 0, 0, 0],
                     [0, 0, 0, 1, 1, 0],
                     [0, 0, 0, 1, 0, 0]])
 
-
 # In[4]:
 
 
@@ -52,15 +51,16 @@ class Action(Enum):
         elif self == self.UP:
             return '^'
         elif self == self.DOWN:
-            return 'v'
-            
+            return 'v'      
+
+
 # Define a function that returns a list of valid actions from the current node
 def valid_actions(grid, current_node):
     """
     Returns a list of valid actions given a grid and current node.
     """
     valid = [Action.UP, Action.LEFT, Action.RIGHT, Action.DOWN]
-    print (grid.shape)
+    #print(grid.shape)
     n, m = grid.shape[0] - 1, grid.shape[1] - 1
     x, y = current_node
     
@@ -77,6 +77,21 @@ def valid_actions(grid, current_node):
         valid.remove(Action.RIGHT)
         
     return valid
+
+
+def create_adjacenty_list(grid):
+    result = {}
+    n,m = grid.shape
+    for y in range(n):
+        for x in range(m):
+            k = (y, x)
+            valid = valid_actions(grid, k)
+            for v in valid:
+                result[k].append(v)
+    return result
+
+create_adjacenty_list(grid)
+
 
 # Define a function to visualize the path
 def visualize_path(grid, path, start):
@@ -112,62 +127,12 @@ def visualize_path(grid, path, start):
 # `TODOs`.
 
 # In[7]:
+
+
+
 def depth_first(grid, start, goal):
-    # Below:
-        # "queue" is meant to contain your partial paths
-        # "visited" is meant to contain your visited cells
-    # TODO: Replace the None values for "queue" and "visited" with data
-    # structure types
-    path = []
-    stack = [start] # TODO: Choose a data structure type for your partial paths
-    #stack.put(start)
-    visited = set() # TODO: Choose a data structure type for your visited list
-    
-    branch = {}
-    found = False
-    
-    # Run loop while queue is not empty
-    while not stack: # e.g, replace True with queue.empty() if using a Queue:
-        # TODO: Replace "None" to remove the first element from the queue
-        current_node = stack.pop()
-        if current_node not in visited:
-            visited.add(current_node)
-        # TODO: Replace "False" to check if the current vertex corresponds to
-        # the goal state
-        if current_node == goal: 
-            print('Found a path.')
-            found = True
-            break
-        #if current_node in visited:
-        #    continue
-        else:
-            # Get the new vertexes connected to the current vertex
-            actions = valid_actions(grid, current_node)
-            for a in actions:
-                # delta of performing the action
-                print (a.name)
-                da = a.value
-                next_node = (current_node[0] + da[0], current_node[1] + da[1])
-                # TODO: Check if the new vertex has not been visited before.
-                # If the node has not been visited you will need to
-                # 1.  Mark it as visited
-                # 2.  Add it to the queue
-                if next_node not in visited:
-                    visited.add(next_node)             
-                    stack.put(next_node)
-                    branch[next_node] = (current_node, a)
-             
-    path = []
-    if found:
-        # retrace steps
-        path = []
-        n = goal
-        while branch[n][0] != start:
-            path.append(branch[n][1])
-            n = branch[n][0]
-        path.append(branch[n][1])
-            
-    return path[::-1]
+
+    pass
 
 
 # ### Executing the search
@@ -183,7 +148,7 @@ print(path)
 
 
 # S -> start, G -> goal, O -> obstacle
-visualize_path(grid, path, start)
+#visualize_path(grid, path, start)
 
 
 # Check out our solution [here!](/notebooks/BFS-Solution.ipynb)
