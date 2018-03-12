@@ -31,7 +31,7 @@ grid = np.array([   [0, 1, 0, 0, 0, 0],
                     [0, 1, 0, 0, 0, 0],
                     [0, 1, 0, 1, 0, 0],
                     [0, 0, 0, 1, 1, 0],
-                    [0, 0, 0, 0, 0, 0]])
+                    [0, 0, 0, 1, 0, 0]])
 
 
 # In[4]:
@@ -155,8 +155,8 @@ def bfs(grid, start, goal):
                     visited.add(next_node)             
                     q.put(next_node)
                     branch[next_node] = (current_node, a)
+
              
-    path = []
     if found:
         # retrace steps
         path = []
@@ -211,6 +211,7 @@ def dfs(grid, start, goal):
                     visited.add(next_node)             
                     stack.append(next_node)
                     branch[next_node] = (current_node, a)
+
              
     path = []
     if found:
