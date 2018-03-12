@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ALL_S\all_searcehes.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BFS\BFS-Solution.py" />
     <Compile Include="BFS\BFS.py" />
     <Compile Include="BFS\DFS.py">
@@ -40,6 +43,7 @@
   <ItemGroup>
     <Folder Include="BFS\" />
     <Folder Include="DFS\" />
+    <Folder Include="ALL_S\" />
     <Folder Include="UCS\" />
   </ItemGroup>
   <ItemGroup>

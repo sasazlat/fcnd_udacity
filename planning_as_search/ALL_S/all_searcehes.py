@@ -9,7 +9,7 @@
 # In[ ]:
 import numpy as np
 from enum import Enum
-from queue import PriorityQueue
+from queue import PriorityQueue, Queue
 
 
 # https://wiki.python.org/moin/TimeComplexity gives a solid overview of Python
@@ -28,9 +28,9 @@ class Action(Enum):
     is the cost of performing the action.
     """
     LEFT = (0, -1, 1)
-    RIGHT = (0, 1, 1)
-    UP = (-1, 0, 1)
-    DOWN = (1, 0, 1)
+    RIGHT = (0, 1, 2)
+    UP = (-1, 0, 3)
+    DOWN = (1, 0, 4)
     
     def __str__(self):
         if self == self.LEFT:
@@ -151,6 +151,119 @@ def uniform_cost(grid, start, goal):
             
     return path[::-1], path_cost
 
+def bfs(grid, start, goal):
+    # Below:
+        # "queue" is meant to contain your partial paths
+        # "visited" is meant to contain your visited cells
+    # TODO: Replace the None values for "queue" and "visited" with data
+    # structure types
+    path = []
+    q = queue.Queue() # TODO: Choose a data structure type for your partial paths
+    q.put(start)
+    visited = set() # TODO: Choose a data structure type for your visited list
+    
+    branch = {}
+    found = False
+    
+    # Run loop while queue is not empty
+    while not q.empty(): # e.g, replace True with queue.empty() if using a Queue:
+        # TODO: Replace "None" to remove the first element from the queue
+        current_node = q.get()
+        visited.add(current_node)
+        # TODO: Replace "False" to check if the current vertex corresponds to
+        # the goal state
+        if current_node == goal: 
+            print('Found a path.')
+            found = True
+            break
+        #if current_node in visited:
+        #    continue
+        else:
+            # Get the new vertexes connected to the current vertex
+            actions = valid_actions(grid, current_node)
+            for a in actions:
+                # delta of performing the action
+                #print (a.name)
+                da = a.value
+                next_node = (current_node[0] + da[0], current_node[1] + da[1])
+                # TODO: Check if the new vertex has not been visited before.
+                # If the node has not been visited you will need to
+                # 1.  Mark it as visited
+                # 2.  Add it to the queue
+                if next_node not in visited:
+                    visited.add(next_node)             
+                    q.put(next_node)
+                    branch[next_node] = (current_node, a)
+
+             
+    if found:
+        # retrace steps
+        path = []
+        n = goal
+        while branch[n][0] != start:
+            path.append(branch[n][1])
+            n = branch[n][0]
+        path.append(branch[n][1])
+            
+    return path[::-1]
+
+def dfs(grid, start, goal):
+    # Below:
+        # "queue" is meant to contain your partial paths
+        # "visited" is meant to contain your visited cells
+    # TODO: Replace the None values for "queue" and "visited" with data
+    # structure types
+    path = []
+    stack = [] # TODO: Choose a data structure type for your partial paths
+    stack.append(start)
+    visited = set(start) # TODO: Choose a data structure type for your visited list
+    
+    branch = {}
+    found = False
+    
+    # Run loop while queue is not empty
+    while stack: # e.g, replace True with queue.empty() if using a Queue:
+        # TODO: Replace "None" to remove the first element from the queue
+        current_node = stack.pop()
+        visited.add(current_node)
+        # TODO: Replace "False" to check if the current vertex corresponds to
+        # the goal state
+        if current_node == goal: 
+            print('Found a path.')
+            found = True
+            break
+        #if current_node in visited:
+        #    continue
+        else:
+            # Get the new vertexes connected to the current vertex
+            actions = valid_actions(grid, current_node)
+            for a in actions:
+                # delta of performing the action
+                #print (a.name)
+                da = a.value
+                next_node = (current_node[0] + da[0], current_node[1] + da[1])
+                # TODO: Check if the new vertex has not been visited before.
+                # If the node has not been visited you will need to
+                # 1.  Mark it as visited
+                # 2.  Add it to the queue
+                if next_node not in visited:
+                    visited.add(next_node)             
+                    stack.append(next_node)
+                    branch[next_node] = (current_node, a)
+
+             
+    path = []
+    if found:
+        # retrace steps
+        path = []
+        n = goal
+        while branch[n][0] != start:
+            path.append(branch[n][1])
+            n = branch[n][0]
+        path.append(branch[n][1])
+            
+    return path[::-1]
+
 
 # ### Executing the search
 #
@@ -158,7 +271,7 @@ def uniform_cost(grid, start, goal):
 
 # In[ ]:
 start = (0, 0)
-goal = (4, 4)
+goal = (0, 4)
 
 grid = np.array([[0, 1, 0, 0, 0, 0],
     [0, 1, 0, 1, 0, 0],
@@ -171,12 +284,22 @@ grid = np.array([[0, 1, 0, 0, 0, 0],
 path, path_cost = uniform_cost(grid, start, goal)
 print(path_cost, path)
 
+path_bfs = bfs(grid, start, goal)
+print(path_bfs)
+
+path_dfs = dfs(grid, start, goal)
+print(path_dfs)
+
 
 # In[ ]:
 
 
 # S -> start, G -> goal, O -> obstacle
 visualize_path(grid, path, start)
+
+visualize_path(grid, path_bfs, start)
+
+visualize_path(grid, path_dfs, start)
 
 
 # [Solution](/notebooks/Cost-Solution.ipynb)
