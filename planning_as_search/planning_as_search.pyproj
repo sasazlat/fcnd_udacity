@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BFS\DFS.py</StartupFile>
+    <StartupFile>BFS\BFS-Solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
