@@ -121,9 +121,9 @@ def uniform_cost(grid, start, goal):
             for action in valid_actions(grid, current_node):
                 # TODO: determine the next_node using the action delta
                 da = action.value
-                next_node = (current_node[0] + da.delta[0], current_node[1] + d.delta[1], current_node[2] + da.cost)
+                next_node = (current_node[0] + da[0], current_node[1])
                 # TODO: compute the new cost
-                new_cost = next_node[2]
+                new_cost = da[2]
                 
                 # TODO: Check if the new vertex has not been visited before.
                 # If the node has not been visited you will need to

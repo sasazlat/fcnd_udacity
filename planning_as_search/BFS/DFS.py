@@ -12,6 +12,7 @@
 import numpy as np
 import queue
 from enum import Enum
+import BFS
 
 
 # https://wiki.python.org/moin/TimeComplexity gives a solid overview of Python
@@ -25,7 +26,7 @@ from enum import Enum
 
 # Define a start and goal location
 start = (0, 0)
-goal = (0, 2)
+goal = (4, 4)
 # Define your grid-based state space of obstacles and free space
 grid = np.array([[0, 1, 0, 0, 0, 0],
                     [0, 1, 0, 0, 0, 0],
@@ -144,13 +145,36 @@ def depth_first(graph, start, goal):
             stack.extend(graph[vertex] - visited)
     return visited
 
+def dfs_paths(graph, start, goal):
+    stack = [(start, [start])]
+    while stack:
+        (vertex, path) = stack.pop()
+        for next in graph[vertex] - set(path):
+            if next == goal:
+                yield path + [next]
+            else:
+                stack.append((next, path + [next]))
+
+path = list(dfs_paths(gridsa, start, goal))
+shorthest_path = len(path[0])
+idx = 0
+for p in path:
+    lenp = len(p)
+    if lenp < shorthest_path:
+        shorthest_path = lenp
+        idx = path.index(p)
+print (path[idx])
+
 # ### Executing the search
 #
 # Run `breadth_first()` and reference the grid to see if the path makes sense.
 
 # In[8]:
-path = depth_first(gridsa, start, goal)
-print(path)
+path_dfs = depth_first(gridsa, start, goal)
+print(path_dfs)
+
+path_bfs = BFS.breadth_first(grid, start, goal)
+print(path_bfs)
 
 
 # In[9]:
