@@ -25,6 +25,8 @@
     <Compile Include="ALL_S\all_searcehes.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="A_STAR\A_Star_Solution.py" />
+    <Compile Include="A_STAR\A_Star.py" />
     <Compile Include="BFS\BFS-Solution.py" />
     <Compile Include="BFS\BFS.py" />
     <Compile Include="BFS\DFS.py">
@@ -44,6 +46,7 @@
     <Folder Include="BFS\" />
     <Folder Include="DFS\" />
     <Folder Include="ALL_S\" />
+    <Folder Include="A_STAR\" />
     <Folder Include="UCS\" />
   </ItemGroup>
   <ItemGroup>
