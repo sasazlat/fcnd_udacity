@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BFS\DFS.py</StartupFile>
+    <StartupFile>DFS\dfs.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,6 +27,9 @@
     <Compile Include="BFS\DFS.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DFS\dfs.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UCS\UCS.py">
       <SubType>Code</SubType>
     </Compile>
@@ -36,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BFS\" />
+    <Folder Include="DFS\" />
     <Folder Include="UCS\" />
   </ItemGroup>
   <ItemGroup>
