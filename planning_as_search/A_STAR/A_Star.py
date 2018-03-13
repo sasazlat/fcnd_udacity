@@ -5,14 +5,12 @@
 
 # In[ ]:
 
-
 from queue import PriorityQueue
 import numpy as np
 from enum import Enum
 
 
 # In[ ]:
-
 
 class Action(Enum):
     """
@@ -57,13 +55,13 @@ def valid_actions(grid, current_node):
     # check if the node is off the grid or
     # it's an obstacle
     
-    if x - 1 < 0 or grid[x-1, y] == 1:
+    if x - 1 < 0 or grid[x - 1, y] == 1:
         valid.remove(Action.UP)
-    if x + 1 > n or grid[x+1, y] == 1:
+    if x + 1 > n or grid[x + 1, y] == 1:
         valid.remove(Action.DOWN)
-    if y - 1 < 0 or grid[x, y-1] == 1:
+    if y - 1 < 0 or grid[x, y - 1] == 1:
         valid.remove(Action.LEFT)
-    if y + 1 > m or grid[x, y+1] == 1:
+    if y + 1 > m or grid[x, y + 1] == 1:
         valid.remove(Action.RIGHT)
         
     return valid
@@ -85,39 +83,52 @@ def visualize_path(grid, path, start):
 
 
 # ## Heuristics
-# The heuristic function determines the $h()$ value for each cell based on the goal cell and the method chosen to determine it. The heuristic value can be the Euclidean distance between these cells $h= \left((x_i-x_{goal})^2+(y_i-y_{goal})^2\right)^{1/2}$ or the "Manhattan distance", which is the minimum number of moves required to reach the goal from the assigned cell $h = ||x_i-x_{goal}|| + ||y_i-y_{goal}||$. For this exercise you could use either, or something else which is *admissible* and *consistent*.
-# 
+# The heuristic function determines the $h()$ value for each cell based on the
+# goal cell and the method chosen to determine it.  The heuristic value can be
+# the Euclidean distance between these cells $h=
+# \left((x_i-x_{goal})^2+(y_i-y_{goal})^2\right)^{1/2}$ or the "Manhattan
+# distance", which is the minimum number of moves required to reach the goal
+# from the assigned cell $h = ||x_i-x_{goal}|| + ||y_i-y_{goal}||$.  For this
+# exercise you could use either, or something else which is *admissible* and
+# *consistent*.
+#
 # The input variables include
-# * **```position```** the coordinates of the cell for which you would like to determine the heuristic value.
+# * **```position```** the coordinates of the cell for which you would like to
+# determine the heuristic value.
 # * **```goal_position```** the coordinates of the goal cell
 
 # In[ ]:
 
 
-# TODO: implement a heuristic function. This may be one of the
+# TODO: implement a heuristic function.  This may be one of the
 # functions described above or feel free to think of something
 # else.
 def heuristic(position, goal_position):
-    h = 0
+    import math
+    xp, yp = position
+    xgp, ygp = goal_position
+    h = math.sqrt((xp-xgp)**2 + (yp-ygp)**2)
     return h
 
 
 # ## A* search
-# 
-# A* search is an extension of the cost search you implemented. A heuristic function is used in addition to the cost penalty. Thus if the setup is:
-# 
+#
+# A* search is an extension of the cost search you implemented.  A heuristic
+# function is used in addition to the cost penalty.  Thus if the setup is:
+#
 # * $c$ is the current cost
 # * $g$ is the cost function
 # * $h$ is the heuristic function
-# 
+#
 # Then the new cost is $c_{new} = c + g() + h()$.
-# 
-# The difference between $g$ and $h$ is that $g$ models the cost of performing actions, irrespective of the environment, while $h$ models the cost based on the environment, i.e., the distance to the goal.
+#
+# The difference between $g$ and $h$ is that $g$ models the cost of performing
+# actions, irrespective of the environment, while $h$ models the cost based on
+# the environment, i.e., the distance to the goal.
 
 # You know what comes next, turn the `TODOs` into `DONEs` :)
 
 # In[ ]:
-
 
 def a_star(grid, h, start, goal):
 
@@ -145,7 +156,7 @@ def a_star(grid, h, start, goal):
                 cost = action.cost
                 next_node = (current_node[0] + da[0], current_node[1] + da[1])
                 # TODO: calculate new cost, c + g() + h()
-                new_cost = None
+                new_cost = current_cost + cost + heuristic(next_node, goal)
                 
                 if next_node not in visited:                
                     visited.add(next_node)               
@@ -171,21 +182,17 @@ def a_star(grid, h, start, goal):
 
 # In[ ]:
 
-
 start = (0, 0)
 goal = (4, 4)
 
-grid = np.array([
-    [0, 1, 0, 0, 0, 0],
+grid = np.array([[0, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 1, 0, 0, 0, 0],
     [0, 0, 0, 1, 1, 0],
-    [0, 0, 0, 1, 0, 0],
-])
+    [0, 0, 0, 1, 0, 0],])
 
 
 # In[ ]:
-
 
 path, cost = a_star(grid, heuristic, start, goal)
 print(path, cost)
