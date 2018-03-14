@@ -20,7 +20,6 @@ import numpy
 # below!
 
 # In[2]:
-
 def global_to_local(global_position, global_home):
     
     # TODO: Get easting and northing of global_home
@@ -40,7 +39,6 @@ def global_to_local(global_position, global_home):
 # home position to a global position (_long_, _lat_, _up_).
 
 # In[3]:
-
 def local_to_global(local_position, global_home):
     
     # TODO: get easting, northing, zone letter and number of global_home
@@ -63,7 +61,6 @@ def local_to_global(local_position, global_home):
 # expressed in NED coordinates relative to the first one.
 
 # In[6]:
-
 numpy.set_printoptions(precision=2)
 
 geodetic_current_coordinates = [-122.079465, 37.393037, 30]
@@ -80,7 +77,6 @@ print(local_coordinates_NED)
 # coordinates.
 
 # In[5]:
-
 numpy.set_printoptions(precision=6)
 NED_coordinates = [25.21, 128.07, -30.]
 
