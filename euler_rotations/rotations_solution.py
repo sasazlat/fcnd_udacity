@@ -16,7 +16,8 @@
 # As you'll see the same set of rotation transformations, applied in a
 # different order can produce a very different final result!
 
-# In[ ]:
+# In[2]:
+
 import matplotlib.pyplot as plt 
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -28,7 +29,8 @@ plt.rcParams["figure.figsize"] = [12, 12]
 np.set_printoptions(precision=3, suppress=True)
 
 
-# In[ ]:
+# In[3]:
+
 class Rotation(Enum):
     ROLL = 0
     PITCH = 1
@@ -49,36 +51,36 @@ class EulerRotation:
             
         """
         self._rotations = rotations
-        self._rotation_map = {Rotation.ROLL : self.roll,
+        self._rotation_map = {Rotation.ROLL : self.roll, 
                               Rotation.PITCH : self.pitch, 
                               Rotation.YAW : self.yaw}
 
     def roll(self, phi):
         """Returns a rotation matrix along the roll axis"""
-        return np.array([[1.,0,0],
+        return np.array([[1., 0, 0],
                          [0, np.cos(phi), -np.sin(phi)],
                          [0, np.sin(phi), np.cos(phi)]])
-    
+
     def pitch(self, theta):
         """Returns the rotation matrix along the pitch axis"""
         return np.array([[np.cos(theta), 0, np.sin(theta)],
-                                      [0, 1, 0],
+                         [0., 1, 0],
                          [-np.sin(theta), 0, np.cos(theta)]])
 
     def yaw(self, psi):
         """Returns the rotation matrix along the yaw axis"""
         return np.array([[np.cos(psi), -np.sin(psi), 0],
                          [np.sin(psi), np.cos(psi), 0],
-                         [0, 0, 1]])
+                         [0., 0, 1]])
 
     def rotate(self):
         """Applies the rotations in sequential order"""
         t = np.eye(3)
         for r in self._rotations:
-            rotation_kind = r[0]
+            kind = r[0]
+            # convert from degrees to radians
             angle = np.deg2rad(r[1])
-            rot = self._rotation_map[rotation_kind]
-            t = np.dot(t, rot(angle))
+            t = np.dot(t, self._rotation_map[kind](angle))    
         return t
 
 
@@ -86,7 +88,7 @@ class EulerRotation:
 # mapping of performing the rotations in sequential order.  Multiplying a
 # vector by `R` will perform the rotations on that vector.
 
-# In[ ]:
+# In[5]:
 
 
 # Test your code by passing in some rotation values
@@ -112,21 +114,24 @@ print(R)
 # Now calculate three different rotations matrices.  They should stem from the
 # same set of Euler rotations, just in differing order.
 
-# In[ ]:
+# In[6]:
 
 
 # TODO: calculate 3 rotation matrices.
-R1 = None
-R2 = None
-R3 = None
+rot1 = [rotations[0], rotations[2], rotations[1]]
+rot2 = [rotations[1], rotations[2], rotations[0]]
+rot3 = [rotations[2], rotations[1], rotations[0]]
+R1 = EulerRotation(rot1).rotate()
+R2 = EulerRotation(rot2).rotate()
+R3 = EulerRotation(rot3).rotate()
 
 
 # ### Seeing is Believing
 
-# It's clear the three rotation matrices are different, but, in order to get an
-# deeper understanding let's plot the impact of the rotations.
+# It's clear the three rotation matrices are different, but in order to
+# visualize it let's plot the impact of the rotations.
 
-# In[ ]:
+# In[7]:
 
 
 # unit vector along x-axis
@@ -136,19 +141,20 @@ v = np.array([1, 0, 0])
 # Apply the rotations to `v`.  Feel free to change the values of this input
 # vector.
 
-# In[ ]:
+# In[8]:
 
 
 # TODO: calculate the new rotated versions of `v`.
-rv1 = None
-rv2 = None
-rv3 = None
 # rv = np.dot(R, v)
+rv1 = np.dot(R1, v)
+rv2 = np.dot(R2, v)
+rv3 = np.dot(R3, v)
 
 
 # Plotting time ...
 
-# In[ ]:
+# In[14]:
+
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 
@@ -156,7 +162,6 @@ ax = fig.gca(projection='3d')
 ax.quiver(0, 0, 0, 1.5, 0, 0, color='black', arrow_length_ratio=0.15)
 ax.quiver(0, 0, 0, 0, 1.5, 0, color='black', arrow_length_ratio=0.15)
 ax.quiver(0, 0, 0, 0, 0, 1.5, color='black', arrow_length_ratio=0.15)
-
 
 # Original Vector (shown in blue)
 ax.quiver(0, 0, 0, v[0], v[1], v[2], color='blue', arrow_length_ratio=0.15)
@@ -179,5 +184,3 @@ plt.show()
 
 # ### Gimbal Lock
 # To demonstrate gimbal lock try starting a series of rotations with a pitch of +/- 90 degrees, then see what happens when you try to yaw. Try the yaw first and see what happens!
-
-# [solution](/notebooks/Rotations-Solution.ipynb)
