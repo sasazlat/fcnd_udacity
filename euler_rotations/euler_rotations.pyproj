@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>29b58b40-9cef-46bf-a031-016d28c76545</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>rotations.py</StartupFile>
+    <StartupFile>quaternions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,6 +23,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="quaternions_solution.py" />
+    <Compile Include="quaternions.py" />
     <Compile Include="rotations_solution.py" />
     <Compile Include="rotations.py" />
   </ItemGroup>
