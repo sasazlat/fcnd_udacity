@@ -116,9 +116,12 @@ print(R)
 
 
 # TODO: calculate 3 rotation matrices.
-R1 = None
-R2 = None
-R3 = None
+rot1 = [rotations[0], rotations[2], rotations[1]]
+rot2 = [rotations[1], rotations[2], rotations[0]]
+rot3 = [rotations[2], rotations[1], rotations[0]]
+R1 = EulerRotation(rot1).rotate()
+R2 = EulerRotation(rot2).rotate()
+R3 = EulerRotation(rot3).rotate()
 
 
 # ### Seeing is Believing
@@ -140,9 +143,9 @@ v = np.array([1, 0, 0])
 
 
 # TODO: calculate the new rotated versions of `v`.
-rv1 = None
-rv2 = None
-rv3 = None
+rv1 = np.dot(R1, v)
+rv2 = np.dot(R2, v)
+rv3 = np.dot(R3, v)
 # rv = np.dot(R, v)
 
 

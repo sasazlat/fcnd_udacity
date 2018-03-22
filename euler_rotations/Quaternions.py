@@ -21,7 +21,6 @@
 # you aren't sure how to complete this exercise!
 
 # In[ ]:
-
 import numpy as np
 
 def euler_to_quaternion(angles):
@@ -33,8 +32,19 @@ def euler_to_quaternion(angles):
     # and return a numpy array of
     # 4 elements representing a quaternion [a, b, c, d]
 
+    cr = np.cos(roll / 2.0)
+    sr = np.sin(roll / 2.0)
+    cp = np.cos(pitch / 2.0)
+    sp = np.sin(pitch / 2.0)
+    cy = np.cos(yaw / 2.0)
+    sy = np.sin(yaw / 2.0)
 
+    a = cr * cp * cy + sr * sp * sy
+    b = sr * cp * cy - cr * sp * sy
+    c = cr * sp * cy + sr * cp * sy
+    d = cr * cp * sy - sr * sp * cy
 
+    return np.array([a, b, c, d])
 
 def quaternion_to_euler(quaternion):
     a = quaternion[0]
@@ -45,18 +55,24 @@ def quaternion_to_euler(quaternion):
     # TODO: complete the conversion
     # and return a numpy array of
     # 3 element representing the euler angles [roll, pitch, yaw]
+    roll = np.arctan2(2.0 * (a * b + c * d), 1.0 - 2.0 * (b ** 2 + c ** 2))
+    pitch = np.arcsin(2.0 * (a * c - d * b))
+    yaw = np.arctan2(2.0 * (a * d + b * c), 1.0 - 2.0 * (c ** 2 + d ** 2))
+    
+    return np.array([roll, pitch, yaw])
 
 
 # Test the conversion.
 
 # In[ ]:
-
 euler = np.array([np.deg2rad(90), np.deg2rad(30), np.deg2rad(0)])
 
 q = euler_to_quaternion(euler) # should be [ 0.683 0.683 0.183 -0.183]
 print(q)
+eulere = quaternion_to_euler(q)
+print (eulere)
 
-assert np.array_equal(euler, quaternion_to_euler(q))
+assert np.array_equal(euler,eulere)
 
 
 # Here's our [solution](/notebooks/Quaternions-Solution.ipynb)!

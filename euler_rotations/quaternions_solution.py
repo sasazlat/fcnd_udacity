@@ -56,6 +56,8 @@ euler = np.array([np.deg2rad(90), np.deg2rad(30), np.deg2rad(0)])
 q = euler_to_quaternion(euler) 
 print(q)
 
+assert np.array_equal(euler, quaternion_to_euler(q))
+
 # should be [ 1.570  0.523  0.]
 e = quaternion_to_euler(q)
 print(e)
