@@ -23,10 +23,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="configuration_space\configuration_space_solution.py" />
+    <Compile Include="configuration_space\configuration_space.py" />
     <Compile Include="quaternions_solution.py" />
     <Compile Include="quaternions.py" />
     <Compile Include="rotations_solution.py" />
     <Compile Include="rotations.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="configuration_space\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="configuration_space\colliders.csv" />
+    <Content Include="configuration_space\grid_map.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
