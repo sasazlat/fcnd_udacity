@@ -39,7 +39,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[2]:
@@ -51,7 +51,7 @@ plt.rcParams["figure.figsize"] = [12, 12]
 
 # In[3]:
 
-filename = 'colliders.csv'
+filename = 'configuration_space/colliders.csv'
 # Read in the data skipping the first two lines.
 # Note: the first line contains the latitude and longitude of map center
 # Where is this??
@@ -102,10 +102,12 @@ def create_grid(data, drone_altitude, safety_distance):
     for i in range(data.shape[0]):
         north, east, alt, d_north, d_east, d_alt = data[i, :]
         if alt + d_alt + safety_distance > drone_altitude:
-            obstacle = [int(np.clip(north - d_north - safety_distance - north_min, 0, north_size - 1)),
+            obstacle = [
+                int(np.clip(north - d_north - safety_distance - north_min, 0, north_size - 1)),
                 int(np.clip(north + d_north + safety_distance - north_min, 0, north_size - 1)),
                 int(np.clip(east - d_east - safety_distance - east_min, 0, east_size - 1)),
-                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size - 1)),]
+                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size - 1)),
+                ]
             grid[obstacle[0]:obstacle[1] + 1, obstacle[2]:obstacle[3] + 1] = 1
 
     return grid
