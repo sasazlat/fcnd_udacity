@@ -36,6 +36,7 @@
     <Folder Include="configuration_space\" />
     <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\euler_rotations\quaternions\" />
     <Folder Include="collinearity\" />
+    <Folder Include="quaternions\" />
     <Folder Include="rotations\" />
   </ItemGroup>
   <ItemGroup>
