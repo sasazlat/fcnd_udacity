@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b357beb0-2604-486d-857a-3bc7238dc6f7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>collinearity\collinearity.py</StartupFile>
+    <StartupFile>bresenham\bresenham.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,7 +27,6 @@
     <Compile Include="collinearity\collinearity_solution.py" />
     <Compile Include="configuration_space\configuration_space.py" />
     <Compile Include="configuration_space\configuration_space_solution.py" />
-    <Compile Include="euler_rotations.py" />
     <Compile Include="quaternions\quaternions.py" />
     <Compile Include="quaternions\quaternions_solution.py" />
     <Compile Include="rotations\rotations.py" />
