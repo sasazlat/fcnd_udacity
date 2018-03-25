@@ -65,6 +65,19 @@ def bres(p1, p2):
     cells = []
     
     # TODO: Determine valid grid cells
+    m = (y2-y1)/(x2-x1)
+    i = 0
+    x = x1
+    y = m*x + y1
+    while y<y2:
+        if y1 + m + i > y + 0.5:
+            x += 1
+            y += 1
+            i += 1
+        else:
+            x += 1
+    
+        cells.append((x, y1+i))
         
     return np.array(cells)
 

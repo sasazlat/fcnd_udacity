@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>euler_rotations</Name>
     <RootNamespace>euler_rotations</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,9 @@
   <ItemGroup>
     <Content Include="configuration_space\colliders.csv" />
     <Content Include="configuration_space\grid_map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
