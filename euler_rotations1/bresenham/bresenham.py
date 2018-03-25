@@ -7,7 +7,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-#get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('matplotlib', 'inline')
 plt.rcParams['figure.figsize'] = 12, 12
 
 
@@ -54,9 +54,9 @@ plt.rcParams['figure.figsize'] = 12, 12
 # the Python package shown below).
 #
 
-# In[7]:
+# In[4]:
 
-def bres(p1, p2):
+def bres(p1, p2): 
     """
     Note this solution requires `x1` < `x2` and `y1` < `y2`.
     """
@@ -64,48 +64,17 @@ def bres(p1, p2):
     x2, y2 = p2
     cells = []
     
-    # Here's a quick explanation in math terms of our approach
-    # First, set dx = x2 - x1 and dy = y2 - y1
-    dx, dy = x2 - x1, y2 - y1
-    # Then define a new quantity: d = x dy - y dx.
-    # and set d = 0 initially
-    d = 0
-    # The condition we care about is whether
-    # (x + 1) * m < y + 1 or moving things around a bit:
-    # (x + 1) dy / dx < y + 1
-    # which implies: x dy - y dx < dx - dy
-    # or in other words: d < dx - dy is our new condition
-    
-    # Initialize i, j indices
-    i = x1
-    j = y1
-    
-    while i < x2 and j < y2:
-        cells.append([i, j])
-        if d < dx - dy:
-            d += dy
-            i += 1
-        elif d == dx - dy:
-            # uncomment these two lines for conservative approach
-            #cells.append([i+1, j])
-            #cells.append([i, j+1])
-            d += dy
-            i += 1  
-            d -= dx
-            j += 1
-        else:
-            d -= dx
-            j += 1
-
+    # TODO: Determine valid grid cells
+        
     return np.array(cells)
 
 
 # Plotting the line with the cells which it crosses.
 
-# In[10]:
+# In[5]:
 
 p1 = (0, 0)
-p2 = (5, 5)
+p2 = (7, 5)
 
 cells = bres(p1, p2)
 # print(cells)
@@ -126,19 +95,24 @@ plt.title("Integer based Bresenham algorithm")
 plt.show()
 
 
-# ### Python Bresenham Package
-# For comparison let's have a look at the Python Bresenham package!
-#
-# First we need to install it:
+# Check out our solution [here](/notebooks/Bresenham-Solution.ipynb).
 
-# In[ ]:
+# ### Python Bresenham Package
+# For comparison let's have a look at the Python Bresenham package!  As
+# mentioned above, if you've added a safety margin around obstacles you are
+# probably fine using this package or one like it that misses some cells in
+# collision with the line.
+#
+# First we need to import it:
+
+# In[6]:
 
 from bresenham import bresenham
 
 
 # Next we can run the same experiment as above and plot it up.
 
-# In[ ]:
+# In[7]:
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
