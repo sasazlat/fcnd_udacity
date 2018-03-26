@@ -2,16 +2,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>b357beb0-2604-486d-857a-3bc7238dc6f7</ProjectGuid>
+    <ProjectGuid>29b58b40-9cef-46bf-a031-016d28c76545</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bresenham\bresenham.py</StartupFile>
+    <StartupFile>collinearity\collinearity.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>euler_rotations</Name>
     <RootNamespace>euler_rotations</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,30 +23,28 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bresenham\bresenham.py" />
     <Compile Include="bresenham\bresenham_solution.py" />
-    <Compile Include="collinearity\collinearity.py" />
+    <Compile Include="bresenham\bresenham.py" />
     <Compile Include="collinearity\collinearity_solution.py" />
-    <Compile Include="configuration_space\configuration_space.py" />
+    <Compile Include="collinearity\collinearity.py" />
     <Compile Include="configuration_space\configuration_space_solution.py" />
-    <Compile Include="quaternions\quaternions.py" />
+    <Compile Include="configuration_space\configuration_space.py" />
     <Compile Include="quaternions\quaternions_solution.py" />
-    <Compile Include="rotations\rotations.py" />
+    <Compile Include="quaternions\quaternions.py" />
     <Compile Include="rotations\rotations_solution.py" />
+    <Compile Include="rotations\rotations.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bresenham\" />
-    <Folder Include="collinearity\" />
     <Folder Include="configuration_space\" />
+    <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\euler_rotations\quaternions\" />
+    <Folder Include="collinearity\" />
+    <Folder Include="bresenham\" />
     <Folder Include="quaternions\" />
     <Folder Include="rotations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="configuration_space\colliders.csv" />
     <Content Include="configuration_space\grid_map.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

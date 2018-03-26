@@ -9,7 +9,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "planning_as_search", "plann
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "flying_car_representation", "flying_car_representation\flying_car_representation.pyproj", "{BB1AF7E5-76A1-4B83-91CE-4C58FFCA1327}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "euler_rotations", "euler_rotations\euler_rotations.pyproj", "{B357BEB0-2604-486D-857A-3BC7238DC6F7}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "euler_rotations", "euler_rotations\euler_rotations.pyproj", "{29B58B40-9CEF-46BF-A031-016D28C76545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,8 +23,8 @@ Global
 		{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB1AF7E5-76A1-4B83-91CE-4C58FFCA1327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB1AF7E5-76A1-4B83-91CE-4C58FFCA1327}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B357BEB0-2604-486D-857A-3BC7238DC6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B357BEB0-2604-486D-857A-3BC7238DC6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B58B40-9CEF-46BF-A031-016D28C76545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B58B40-9CEF-46BF-A031-016D28C76545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
