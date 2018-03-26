@@ -11,6 +11,8 @@
     <OutputPath>.</OutputPath>
     <Name>euler_rotations</Name>
     <RootNamespace>euler_rotations</RootNamespace>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
