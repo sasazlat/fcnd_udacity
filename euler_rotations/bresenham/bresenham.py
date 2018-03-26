@@ -1,10 +1,8 @@
-
 # coding: utf-8
 
 # ## Bresenham
 
 # In[3]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 #get_ipython().run_line_magic('matplotlib', 'inline')
@@ -55,7 +53,6 @@ plt.rcParams['figure.figsize'] = 12, 12
 #
 
 # In[4]:
-
 def bres(p1, p2): 
     """
     Note this solution requires `x1` < `x2` and `y1` < `y2`.
@@ -65,29 +62,35 @@ def bres(p1, p2):
     cells = []
     
     # TODO: Determine valid grid cells
-    m = (y2-y1)/(x2-x1)
-    i = 0
-    x = x1
-    y = m*x + y1
-    while y<y2:
-        if y1 + m + i > y + 0.5:
-            x += 1
-            y += 1
+    dx = x2 - x1
+    dy = y2 - y1
+    D = dy - dx
+    i = x1
+    j = y1
+    while i < x2 and j < y2 :
+        cells.append([i,j])
+        if D < 0:
             i += 1
+            D += dy
+        elif D == 0:
+            # uncomment these two lines for conservative approach
+            #cells.append([i+1, j])
+            #cells.append([i, j+1])
+            D += dy
+            i += 1  
+            D -= dx
+            j += 1
         else:
-            x += 1
-    
-        cells.append((x, y1+i))
-        
+            D -= dx
+            j += 1  
     return np.array(cells)
 
 
 # Plotting the line with the cells which it crosses.
 
 # In[5]:
-
 p1 = (0, 0)
-p2 = (7, 5)
+p2 = (7, 7)
 
 cells = bres(p1, p2)
 # print(cells)
@@ -119,7 +122,6 @@ plt.show()
 # First we need to import it:
 
 # In[6]:
-
 from bresenham import bresenham
 
 
@@ -129,7 +131,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (0, 0, 7, 5)
+line = (0, 0, 4, 7)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)
