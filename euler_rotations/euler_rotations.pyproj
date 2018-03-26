@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>29b58b40-9cef-46bf-a031-016d28c76545</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>configuration_space\configuration_space.py</StartupFile>
+    <StartupFile>quaternions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,15 +23,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="collinearity\collinearity_solution.py" />
+    <Compile Include="collinearity\collinearity.py" />
     <Compile Include="configuration_space\configuration_space_solution.py" />
     <Compile Include="configuration_space\configuration_space.py" />
-    <Compile Include="quaternions_solution.py" />
-    <Compile Include="quaternions.py" />
-    <Compile Include="rotations_solution.py" />
-    <Compile Include="rotations.py" />
+    <Compile Include="quaternions\quaternions_solution.py" />
+    <Compile Include="quaternions\quaternions.py" />
+    <Compile Include="rotations\rotations_solution.py" />
+    <Compile Include="rotations\rotations.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="configuration_space\" />
+    <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\euler_rotations\quaternions\" />
+    <Folder Include="collinearity\" />
+    <Folder Include="rotations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="configuration_space\colliders.csv" />
