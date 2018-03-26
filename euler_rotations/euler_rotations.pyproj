@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>29b58b40-9cef-46bf-a031-016d28c76545</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>configuration_space\configuration_space.py</StartupFile>
+    <StartupFile>quaternions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
