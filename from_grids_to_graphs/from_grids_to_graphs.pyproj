@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f63e63ef-76a2-4279-9148-ae9a7bc0ca28</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>a_star_city\A-Star-City.py</StartupFile>
+    <StartupFile>a_star_city\a_star_city.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,10 +25,12 @@
     <Folder Include="a_star_city\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="a_star_city\A-Star-City-Solution.py" />
-    <Compile Include="a_star_city\A-Star-City.py" />
+    <Compile Include="a_star_city\a_star_city_solution.py" />
+    <Compile Include="a_star_city\a_star_city.py" />
     <Compile Include="a_star_city\grid.py" />
     <Compile Include="a_star_city\planning.py" />
+    <Compile Include="bresenham.py" />
+    <Compile Include="bresenham_solution.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="a_star_city\colliders.csv" />
