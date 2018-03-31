@@ -115,16 +115,14 @@ plt.imshow(grid, cmap='Greys', origin='lower')
 plt.plot(start_ne[1], start_ne[0], 'x')
 plt.plot(goal_ne[1], goal_ne[0], 'x')
 
-pp_n = []
-pp_v = []
-for p in path:
-    n = p.name
-    m = p.value
-    pp_n.append(n)
-    pp_v.append(m)
-#pp = np.array(ppp)
-#pp = path
-plt.plot(pp_n, pp_v, 'g')
+curr_pos = start_ne
+actual_path = []
+for action in path:
+    curr_pos = (curr_pos[0] + action.delta[0], curr_pos[1] + action.delta[1])
+    actual_path.append(curr_pos)
+
+pp = np.array(actual_path)
+plt.plot(pp[:, 1], pp[:, 0], 'g')
 
 plt.xlabel('EAST')
 plt.ylabel('NORTH')

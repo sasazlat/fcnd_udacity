@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="a_star_city\" />
+    <Folder Include="medial_axis\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="a_star_city\a_star_city_solution.py" />
@@ -31,9 +32,14 @@
     <Compile Include="a_star_city\planning.py" />
     <Compile Include="bresenham.py" />
     <Compile Include="bresenham_solution.py" />
+    <Compile Include="medial_axis\grid.py" />
+    <Compile Include="medial_axis\Medial-Axis-Solution.py" />
+    <Compile Include="medial_axis\Medial-Axis.py" />
+    <Compile Include="medial_axis\planning.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="a_star_city\colliders.csv" />
+    <Content Include="medial_axis\colliders.csv" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
