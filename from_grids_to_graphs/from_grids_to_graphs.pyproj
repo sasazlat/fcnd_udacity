@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f63e63ef-76a2-4279-9148-ae9a7bc0ca28</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>a_star_city\a_star_city.py</StartupFile>
+    <StartupFile>Graph_Search\Graph-Search-Solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,8 @@
   <ItemGroup>
     <Folder Include="a_star_city\" />
     <Folder Include="medial_axis\" />
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\from_grids_to_graphs\Graph_Search\" />
+    <Folder Include="voronoi\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="a_star_city\a_star_city_solution.py" />
@@ -32,14 +34,21 @@
     <Compile Include="a_star_city\planning.py" />
     <Compile Include="bresenham.py" />
     <Compile Include="bresenham_solution.py" />
+    <Compile Include="Graph_Search\Graph-Search-Solution.py" />
+    <Compile Include="Graph_Search\Graph-Search.py" />
+    <Compile Include="Graph_Search\grid.py" />
     <Compile Include="medial_axis\grid.py" />
     <Compile Include="medial_axis\Medial-Axis-Solution.py" />
     <Compile Include="medial_axis\Medial-Axis.py" />
     <Compile Include="medial_axis\planning.py" />
+    <Compile Include="voronoi\Voronoi-Solution.py" />
+    <Compile Include="voronoi\Voronoi.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="a_star_city\colliders.csv" />
+    <Content Include="Graph_Search\colliders.csv" />
     <Content Include="medial_axis\colliders.csv" />
+    <Content Include="voronoi\colliders.csv" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
