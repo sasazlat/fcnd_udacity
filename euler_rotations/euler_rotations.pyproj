@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{b357beb0-2604-486d-857a-3bc7238dc6f7}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bresenham\bresenham.py</StartupFile>
+    <StartupFile>bresenham_solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,25 +23,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="collinearity\collinearity_solution.py" />
-    <Compile Include="collinearity\collinearity.py" />
-    <Compile Include="configuration_space\configuration_space_solution.py" />
-    <Compile Include="configuration_space\configuration_space.py" />
-    <Compile Include="quaternions\quaternions_solution.py" />
-    <Compile Include="quaternions\quaternions.py" />
-    <Compile Include="rotations\rotations_solution.py" />
-    <Compile Include="rotations\rotations.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="configuration_space\" />
-    <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\euler_rotations\quaternions\" />
-    <Folder Include="collinearity\" />
-    <Folder Include="quaternions\" />
-    <Folder Include="rotations\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="configuration_space\colliders.csv" />
-    <Content Include="configuration_space\grid_map.png" />
+    <Compile Include="bresenham.py" />
+    <Compile Include="bresenham_solution.py" />
+    <Compile Include="configuration_space.py" />
+    <Compile Include="configuration_space_solution.py" />
+    <Compile Include="quaternions_solution.py" />
+    <Compile Include="quaternions.py" />
+    <Compile Include="rotations_solution.py" />
+    <Compile Include="rotations.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
