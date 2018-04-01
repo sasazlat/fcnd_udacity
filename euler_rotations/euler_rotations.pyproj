@@ -23,8 +23,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bresenham\bresenham_solution.py" />
-    <Compile Include="bresenham\bresenham.py" />
     <Compile Include="collinearity\collinearity_solution.py" />
     <Compile Include="collinearity\collinearity.py" />
     <Compile Include="configuration_space\configuration_space_solution.py" />
@@ -38,8 +36,6 @@
     <Folder Include="configuration_space\" />
     <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\euler_rotations\quaternions\" />
     <Folder Include="collinearity\" />
-    <Folder Include="bresenham\" />
-    <Folder Include="quaternions\" />
     <Folder Include="rotations\" />
   </ItemGroup>
   <ItemGroup>
