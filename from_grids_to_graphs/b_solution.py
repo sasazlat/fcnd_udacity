@@ -142,7 +142,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (0, 0, 7, 7)
+line = (0, 0, 7, 5)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)

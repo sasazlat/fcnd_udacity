@@ -46,7 +46,7 @@ plt.rcParams['figure.figsize'] = 12, 12
 
 
 # This is the same obstacle data from the previous lesson.
-filename = 'a_star_city/colliders.csv'
+filename = 'a_star_city\colliders.csv'
 data = np.loadtxt(filename, delimiter=',', dtype='Float64', skiprows=2)
 print(data)
 

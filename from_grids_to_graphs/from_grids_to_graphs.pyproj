@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f63e63ef-76a2-4279-9148-ae9a7bc0ca28</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Graph_Search\Graph-Search-Solution.py</StartupFile>
+    <StartupFile>Graph_Search\Graph-Search.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="a_star_city\" />
+    <Folder Include="Graph_Search\" />
     <Folder Include="medial_axis\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\from_grids_to_graphs\Graph_Search\" />
     <Folder Include="voronoi\" />
@@ -32,8 +33,8 @@
     <Compile Include="a_star_city\a_star_city.py" />
     <Compile Include="a_star_city\grid.py" />
     <Compile Include="a_star_city\planning.py" />
-    <Compile Include="bresenham.py" />
-    <Compile Include="bresenham_solution.py" />
+    <Compile Include="b.py" />
+    <Compile Include="b_solution.py" />
     <Compile Include="Graph_Search\Graph-Search-Solution.py" />
     <Compile Include="Graph_Search\Graph-Search.py" />
     <Compile Include="Graph_Search\grid.py" />

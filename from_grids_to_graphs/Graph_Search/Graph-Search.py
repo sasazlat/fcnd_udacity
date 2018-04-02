@@ -2,21 +2,24 @@
 # coding: utf-8
 
 # ## Finding Your Way In The City (Graph Edition)
-# In this notebook your attention will shift from grids to graphs. At least for search ... 
-# 
-# Using Voronoi graphs and the medial axis transform we can find paths which maximize safety from obstacles. In addition, graph representation allows further optimizations and more succinct queries.
+# In this notebook your attention will shift from grids to graphs.  At least
+# for search ...
+#
+# Using Voronoi graphs and the medial axis transform we can find paths which
+# maximize safety from obstacles.  In addition, graph representation allows
+# further optimizations and more succinct queries.
 
 # In[ ]:
 
 
 # OK this might look a little ugly but...
 # need to import the latest version of networkx
-# This occassionally fails, so if the next cell 
+# This occassionally fails, so if the next cell
 # doesn't show that you're using networkx 2.1
 # please "restart and clear output" from "Kernel" menu
 # above and try again.
 import sys
-get_ipython().system('{sys.executable} -m pip install -I networkx==2.1')
+#get_ipython().system('{sys.executable} -m pip install -I networkx==2.1')
 import pkg_resources
 pkg_resources.require("networkx==2.1")
 import networkx as nx
@@ -24,22 +27,19 @@ import networkx as nx
 
 # In[ ]:
 
-
 nx.__version__
 
 
 # In[1]:
 
-
 import numpy as np
 import matplotlib.pyplot as plt
 from grid import create_grid_and_edges
 import numpy.linalg as LA
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[ ]:
-
 
 plt.rcParams['figure.figsize'] = 12, 12
 
@@ -48,7 +48,7 @@ plt.rcParams['figure.figsize'] = 12, 12
 
 
 # This is the same obstacle data from the previous lesson.
-filename = 'colliders.csv'
+filename = 'Graph_Search/colliders.csv'
 data = np.loadtxt(filename, delimiter=',', dtype='Float64', skiprows=2)
 print(data)
 
@@ -56,7 +56,6 @@ print(data)
 # Starting and goal positions in *(north, east)*.
 
 # In[ ]:
-
 
 start_ne = (25,  100)
 goal_ne = (750., 370.)
@@ -101,28 +100,31 @@ plt.ylabel('NORTH')
 plt.show()
 
 
-# We now have a graph, well at least visually. The next step is to use the [`networkx`](https://networkx.github.io) to create the graph. **NetworkX** is a popular library handling anything and everything related to graph data structures and algorithms.
-# 
+# We now have a graph, well at least visually.  The next step is to use the
+# [`networkx`](https://networkx.github.io) to create the graph.  **NetworkX**
+# is a popular library handling anything and everything related to graph data
+# structures and algorithms.
+#
 # **NOTE:** In the initial import above it was imported with the `nx` alias.
-# 
+#
 # You're encouraged to read the documentation but here's a super quick tour:
-# 
-# 1. Create a graph:
-# 
+#
+# 1.  Create a graph:
+#
 # ```
 # G = nx.Graph()
 # ```
-# 
-# 2. Add an edge:
-# 
+#
+# 2.  Add an edge:
+#
 # ```
 # p1 = (10, 2.2)
 # p2 = (50, 40)
 # G = nx.add_edge(p1, p2)
 # ```
-# 
+#
 # 3 Add an edge with a weight:
-# 
+#
 # ```
 # p1 = (10, 2.2)
 # p2 = (50, 40)
@@ -137,10 +139,11 @@ plt.show()
 # set to the Euclidean distance between the points
 
 
-# You need a method to search the graph, and you'll adapt A* in order to do this. The notable differences being the actions are now the outgoing edges and the cost of an action is that weight of that edge.
+# You need a method to search the graph, and you'll adapt A* in order to do
+# this.  The notable differences being the actions are now the outgoing edges
+# and the cost of an action is that weight of that edge.
 
 # In[ ]:
-
 
 from queue import PriorityQueue
 
@@ -149,7 +152,7 @@ def heuristic(n1, n2):
     return 0
 
 ###### THIS IS YOUR OLD GRID-BASED A* IMPLEMENTATION #######
-###### With a few minor modifications it can work with graphs! ####
+###### With a few minor modifications it can work with graphs!  ####
 #TODO: modify A* to work with a graph
 def a_star(graph, heuristic, start, goal):
     
