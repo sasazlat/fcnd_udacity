@@ -38,7 +38,7 @@ nx.__version__
 
 import numpy as np
 import matplotlib.pyplot as plt
-from grid import create_grid_and_edges
+from Graph_Search.grid import create_grid_and_edges
 import numpy.linalg as LA
 #get_ipython().run_line_magic('matplotlib', 'inline')
 

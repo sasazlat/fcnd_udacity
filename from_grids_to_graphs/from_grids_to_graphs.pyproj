@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>from_grids_to_graphs</Name>
     <RootNamespace>from_grids_to_graphs</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
+    <InterpreterId>Global|VisualStudio|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +25,7 @@
     <Folder Include="a_star_city\" />
     <Folder Include="Graph_Search\" />
     <Folder Include="medial_axis\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\from_grids_to_graphs\Graph_Search\" />
+    <Folder Include="Graph_Search\" />
     <Folder Include="voronoi\" />
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +52,7 @@
     <Content Include="voronoi\colliders.csv" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
+    <InterpreterReference Include="Global|VisualStudio|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -45,7 +45,7 @@ class BackyardFlyer(Drone):
                 self.all_waypoints = self.calculate_box()
                 self.waypoint_transition()
         elif self.flight_state == States.WAYPOINT:
-            if np.linalg.norm(self.target_position[0:2] - self.local_position[0:2]) < 1.0:
+            if np.linalg.norm(self.target_position[0:2] - self.local_position[0:2]) < 0.1:
                 if len(self.all_waypoints) > 0:
                     self.waypoint_transition()
                 else:

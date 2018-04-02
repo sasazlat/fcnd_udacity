@@ -5,18 +5,16 @@
 #
 
 # In[1]:
-
 import numpy as np
 import matplotlib.pyplot as plt
-from grid import create_grid
+from medial_axis.grid import create_grid
 from skimage.morphology import medial_axis
 from skimage.util import invert
-from planning import a_star
+from medial_axis.planning import a_star
 #get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[2]:
-
 plt.rcParams['figure.figsize'] = 12, 12
 
 
@@ -32,7 +30,6 @@ print(data)
 # Starting and goal positions in *(north, east)*.
 
 # In[4]:
-
 start_ne = (25,  100)
 goal_ne = (650, 500)
 
@@ -46,7 +43,6 @@ safety_distance = 2
 
 
 # In[6]:
-
 grid = create_grid(data, drone_altitude, safety_distance)
 skeleton = medial_axis(invert(grid))
 
@@ -70,12 +66,11 @@ plt.show()
 
 
 # In[8]:
-
 def find_start_goal(skel, start, goal):
     skel_cells = np.transpose(skel.nonzero())
-    start_min_dist = np.linalg.norm(np.array(start) - np.array(skel_cells),                                    axis=1).argmin()
+    start_min_dist = np.linalg.norm(np.array(start) - np.array(skel_cells), axis=1).argmin()
     near_start = skel_cells[start_min_dist]
-    goal_min_dist = np.linalg.norm(np.array(goal) - np.array(skel_cells),                                    axis=1).argmin()
+    goal_min_dist = np.linalg.norm(np.array(goal) - np.array(skel_cells), axis=1).argmin()
     near_goal = skel_cells[goal_min_dist]
     
     return near_start, near_goal
@@ -87,7 +82,6 @@ print(skel_start, skel_goal)
 
 
 # In[9]:
-
 def heuristic_func(position, goal_position):
     return np.sqrt((position[0] - goal_position[0]) ** 2 + (position[1] - goal_position[1]) ** 2)
 
@@ -109,7 +103,6 @@ print("Path length = {0}, path cost = {1}".format(len(path2), cost2))
 
 
 # In[14]:
-
 plt.imshow(grid, cmap='Greys', origin='lower')
 plt.imshow(skeleton, cmap='Greys', origin='lower', alpha=0.7)
 # For the purposes of the visual the east coordinate lay along
