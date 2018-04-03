@@ -70,9 +70,19 @@ plt.show()
 
 
 # In[8]:
-
+# TODO: Your start and goal location defined above
+# will not necessarily be on the skeleton so you
+# must first identify the nearest cell on the
+# skeleton to start and goal
 def find_start_goal(skel, start, goal):
-    skel_cells = np.transpose(skel.nonzero())
+    # TODO: find start and goal on skeleton
+    # Some useful functions might be:
+        # np.nonzero()
+        # np.transpose()
+        # np.linalg.norm()
+        # np.argmin()
+    non_zero = skel.nonzero()
+    skel_cells = np.transpose(non_zero)
     start_min_dist = np.linalg.norm(np.array(start) - np.array(skel_cells),                                    axis=1).argmin()
     near_start = skel_cells[start_min_dist]
     goal_min_dist = np.linalg.norm(np.array(goal) - np.array(skel_cells),                                    axis=1).argmin()
