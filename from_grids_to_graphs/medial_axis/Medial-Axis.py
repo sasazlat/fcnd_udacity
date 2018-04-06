@@ -12,7 +12,7 @@ from grid import create_grid
 from skimage.morphology import medial_axis
 from skimage.util import invert
 from planning import a_star
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[2]:
@@ -24,7 +24,7 @@ plt.rcParams['figure.figsize'] = 12, 12
 
 
 # This is the same obstacle data from the previous lesson.
-filename = 'colliders.csv'
+filename = 'medial_axis/colliders.csv'
 data = np.loadtxt(filename, delimiter=',', dtype='Float64', skiprows=2)
 print(data)
 
@@ -83,6 +83,8 @@ def find_start_goal(skel, start, goal):
         # np.transpose()
         # np.linalg.norm()
         # np.argmin()
+    non_zero = skel.nonzero()
+    skel_cells = np.transpose(non_zero)
     near_start = None
     near_goal = None
     return near_start, near_goal
