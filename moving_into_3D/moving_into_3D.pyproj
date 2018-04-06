@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644bff0-8fb0-4bee-9a45-86133b0023f4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>moving_into_3D.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +22,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="moving_into_3D.py" />
+    <Folder Include="voxel_map\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="voxel_map\Voxel-Map-Solution.py" />
+    <Compile Include="voxel_map\Voxel-Map.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="voxel_map\colliders.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
