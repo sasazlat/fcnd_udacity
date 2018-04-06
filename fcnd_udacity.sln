@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "euler_rotations", "euler_ro
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "from_grids_to_graphs", "from_grids_to_graphs\from_grids_to_graphs.pyproj", "{F63E63EF-76A2-4279-9148-AE9A7BC0CA28}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "moving_into_3D", "moving_into_3D\moving_into_3D.pyproj", "{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,8 @@ Global
 		{B357BEB0-2604-486D-857A-3BC7238DC6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F63E63EF-76A2-4279-9148-AE9A7BC0CA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F63E63EF-76A2-4279-9148-AE9A7BC0CA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
