@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\moving_into_3D\random_sampling\" />
+    <Folder Include="random_sampling\" />
     <Folder Include="voxel_map\" />
   </ItemGroup>
   <ItemGroup>
