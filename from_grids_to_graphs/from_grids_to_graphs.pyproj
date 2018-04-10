@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>from_grids_to_graphs</Name>
     <RootNamespace>from_grids_to_graphs</RootNamespace>
-    <InterpreterId>Global|VisualStudio|fcndenv</InterpreterId>
+    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,7 +52,7 @@
     <Content Include="voronoi\colliders.csv" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|fcndenv" />
+    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

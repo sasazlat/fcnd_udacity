@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>moving_into_3D</Name>
     <RootNamespace>moving_into_3D</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,20 +22,36 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="D:\sasazlat\Documents\VisualStudio2017\Projects\fcnd_udacity\moving_into_3D\random_sampling\" />
+    <!--<Folder Include="moving_into_3D\random_sampling\" />-->
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\moving_into_3D\probabilistic_roadmap\" />
+    <Folder Include="receding_horizon\" />
     <Folder Include="random_sampling\" />
     <Folder Include="voxel_map\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="probabilistic_roadmap\grid.py" />
+    <Compile Include="probabilistic_roadmap\sampling.py" />
     <Compile Include="random_sampling\grid.py" />
     <Compile Include="random_sampling\Random-Sampling-Solution.py" />
     <Compile Include="random_sampling\Random-Sampling.py" />
+    <Compile Include="receding_horizon\grid.py" />
+    <Compile Include="receding_horizon\planning.py" />
+    <Compile Include="probabilistic_roadmap\Probabilistic-Roadmap-Solution.py" />
+    <Compile Include="probabilistic_roadmap\Probabilistic-Roadmap.py" />
+    <Compile Include="receding_horizon\Receding-Horizon.py" />
+    <Compile Include="receding_horizon\sampling.py" />
+    <Compile Include="receding_horizon\voxmap.py" />
     <Compile Include="voxel_map\Voxel-Map-Solution.py" />
     <Compile Include="voxel_map\Voxel-Map.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="probabilistic_roadmap\colliders.csv" />
     <Content Include="random_sampling\colliders.csv" />
+    <Content Include="receding_horizon\colliders.csv" />
     <Content Include="voxel_map\colliders.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

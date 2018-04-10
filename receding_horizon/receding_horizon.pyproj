@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{b357beb0-2604-486d-857a-3bc7238dc6f7}</ProjectGuid>
+    <ProjectGuid>edd69cb4-c6c1-4eac-b627-c87a20ea8d49</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bresenham_solution.py</StartupFile>
+    <StartupFile>receding_horizon.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>euler_rotations</Name>
-    <RootNamespace>euler_rotations</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
+    <Name>receding_horizon</Name>
+    <RootNamespace>receding_horizon</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,17 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bresenham.py" />
-    <Compile Include="bresenham_solution.py" />
-    <Compile Include="configuration_space.py" />
-    <Compile Include="configuration_space_solution.py" />
-    <Compile Include="quaternions_solution.py" />
-    <Compile Include="quaternions.py" />
-    <Compile Include="rotations_solution.py" />
-    <Compile Include="rotations.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
+    <Compile Include="receding_horizon.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
