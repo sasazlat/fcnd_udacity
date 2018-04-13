@@ -17,6 +17,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "moving_into_3D", "moving_in
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "real_world_planning_problem", "real_world_planning_problem\real_world_planning_problem.pyproj", "{89ADF156-23F0-478D-B9CB-27FF3753F143}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Project_3D_motion_planning", "Project_3D_motion_planning\PROJECT_3D_motion_planning.pyproj", "{77075FDC-7B29-4FB2-8160-8B59CE79D265}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,8 @@ Global
 		{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89ADF156-23F0-478D-B9CB-27FF3753F143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89ADF156-23F0-478D-B9CB-27FF3753F143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77075FDC-7B29-4FB2-8160-8B59CE79D265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77075FDC-7B29-4FB2-8160-8B59CE79D265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
