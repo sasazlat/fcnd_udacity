@@ -27,7 +27,6 @@
 # useful here.
 
 # In[4]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -44,7 +43,6 @@ from sampling import Sampler
 
 
 # In[5]:
-
 plt.rcParams['figure.figsize'] = 14, 14
 
 
@@ -60,14 +58,12 @@ print(data)
 
 
 # In[8]:
-
 flight_altitude = 3
 safety_distance = 3
 grid = create_grid(data, flight_altitude, safety_distance)
 
 
 # In[6]:
-
 fig = plt.figure()
 
 plt.imshow(grid, cmap='Greys', origin='lower')

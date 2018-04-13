@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644bff0-8fb0-4bee-9a45-86133b0023f4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>random_sampling\Random-Sampling.py</StartupFile>
+    <StartupFile>probabilistic_roadmap\Probabilistic-Roadmap.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,7 @@
   <ItemGroup>
     <!--<Folder Include="moving_into_3D\random_sampling\" />-->
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\moving_into_3D\probabilistic_roadmap\" />
+    <Folder Include="probabilistic_roadmap\" />
     <Folder Include="receding_horizon\" />
     <Folder Include="random_sampling\" />
     <Folder Include="voxel_map\" />

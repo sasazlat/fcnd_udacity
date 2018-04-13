@@ -32,12 +32,10 @@ import networkx as nx
 
 
 # In[2]:
-
 nx.__version__ # should be 2.1
 
 
 # In[3]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 from sampling import Sampler
@@ -48,7 +46,6 @@ from queue import PriorityQueue
 
 
 # In[4]:
-
 plt.rcParams['figure.figsize'] = 12, 12
 
 
@@ -68,7 +65,6 @@ print(data)
 # We've implemented a custom sampling class using a k-d tree.
 
 # In[25]:
-
 import numpy as np
 from sklearn.neighbors import KDTree
 from shapely.geometry import Polygon, Point
@@ -193,9 +189,8 @@ def create_grid(data, drone_altitude, safety_distance):
 
 
 # In[26]:
-
 sampler = Sampler(data)
-polygons = sampler._polygons
+polygons = sampler.polygons
 
 
 # In[27]:
@@ -218,13 +213,11 @@ print(len(nodes))
 # geometries cross paths.
 
 # In[28]:
-
 import numpy.linalg as LA
 from sklearn.neighbors import KDTree
 
 
 # In[29]:
-
 def can_connect(n1, n2):
     l = LineString([n1, n2])
     for p in polygons:
@@ -238,7 +231,7 @@ def create_graph(nodes, k):
     for n1 in nodes:
         # for each node connect try to connect to k nearest nodes
         idxs = tree.query([n1], k, return_distance=False)[0]
-        
+
         for idx in idxs:
             n2 = nodes[idx]
             if n2 == n1:
@@ -250,7 +243,6 @@ def create_graph(nodes, k):
 
 
 # In[30]:
-
 import time
 t0 = time.time()
 g = create_graph(nodes, 10)
@@ -258,7 +250,6 @@ print('graph took {0} seconds to build'.format(time.time() - t0))
 
 
 # In[31]:
-
 print("Number of edges", len(g.edges))
 
 
@@ -271,12 +262,10 @@ print("Number of edges", len(g.edges))
 
 
 # In[32]:
-
 grid = create_grid(data, sampler._zmax, 1)
 
 
 # In[33]:
-
 fig = plt.figure()
 
 plt.imshow(grid, cmap='Greys', origin='lower')
@@ -307,7 +296,6 @@ plt.show()
 # ## Step 5 - Define Heuristic
 
 # In[34]:
-
 def heuristic(n1, n2):
     # TODO: finish
     return LA.norm(np.array(n2) - np.array(n1))
@@ -316,7 +304,6 @@ def heuristic(n1, n2):
 # ## Step 6 - Complete A*
 
 # In[35]:
-
 def a_star(graph, heuristic, start, goal):
     """Modified A* to work with NetworkX graphs."""
     
@@ -367,7 +354,6 @@ def a_star(graph, heuristic, start, goal):
 
 
 # In[36]:
-
 start = list(g.nodes)[0]
 k = np.random.randint(len(g.nodes))
 print(k, len(g.nodes))
@@ -375,13 +361,11 @@ goal = list(g.nodes)[k]
 
 
 # In[37]:
-
 path, cost = a_star(g, heuristic, start, goal)
 print(len(path), path)
 
 
 # In[38]:
-
 path_pairs = zip(path[:-1], path[1:])
 for (n1, n2) in path_pairs:
     print(n1, n2)
@@ -390,7 +374,6 @@ for (n1, n2) in path_pairs:
 # ## Step 7 - Visualize Path
 
 # In[39]:
-
 fig = plt.figure()
 
 plt.imshow(grid, cmap='Greys', origin='lower')
