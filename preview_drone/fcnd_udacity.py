@@ -30,3 +30,6 @@ for sc in square:
 drone.takeoff(23)
 
 drone.cmd_position(5,0,3,0)
+drone.land()
+drone.release_control()
+drone. disarm()
