@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>flying_car_representation</Name>
     <RootNamespace>flying_car_representation</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="geodetic_to_NED.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
