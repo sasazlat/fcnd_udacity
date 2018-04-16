@@ -14,10 +14,8 @@ class EventDrivenChatBot:
         self.birth_time = datetime.now()
         
         # "registering" all callbacks
-        self.register_callback("hi", 
-                               self.respond_to_greeting)
-        self.register_callback("bye", 
-                               self.respond_to_departure)
+        self.register_callback("hi", self.respond_to_greeting)
+        self.register_callback("bye", self.respond_to_departure)
         self.register_callback("age?", self.handle_age)
         #self.register_callback("age?", self.respond_to_age_request_detailed)
     
@@ -51,7 +49,6 @@ class EventDrivenChatBot:
             self.respond_to_age_request()
         else:
             self.respond_to_age_request_detailed()
-        pass
     
     def handle_message(self, message):
         if message not in self.accepted_messages:
