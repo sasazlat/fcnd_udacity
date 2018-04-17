@@ -53,7 +53,7 @@ plt.rcParams["figure.figsize"] = [12, 12]
 
 # In[3]:
 
-filename = 'configuration_space/colliders.csv'
+filename = 'colliders.csv'
 # Read in the data skipping the first two lines.
 # Note: the first line contains the latitude and longitude of map center
 # Where is this??

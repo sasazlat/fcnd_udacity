@@ -26,6 +26,7 @@
     <Folder Include="Graph_Search\" />
     <Folder Include="medial_axis\" />
     <Folder Include="Graph_Search\" />
+    <Folder Include="bresenham\" />
     <Folder Include="voronoi\" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,8 @@
     <Compile Include="a_star_city\grid.py" />
     <Compile Include="a_star_city\planning.py" />
     <Compile Include="b.py" />
+    <Compile Include="bresenham\bresenham.py" />
+    <Compile Include="bresenham\bresenham_solution.py" />
     <Compile Include="b_solution.py" />
     <Compile Include="Graph_Search\Graph-Search-Solution.py" />
     <Compile Include="Graph_Search\Graph-Search.py" />
@@ -47,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="a_star_city\colliders.csv" />
+    <Content Include="bresenham\colliders.csv" />
     <Content Include="Graph_Search\colliders.csv" />
     <Content Include="medial_axis\colliders.csv" />
     <Content Include="voronoi\colliders.csv" />

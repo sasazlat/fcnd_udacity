@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{b357beb0-2604-486d-857a-3bc7238dc6f7}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bresenham_solution.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,8 +23,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bresenham.py" />
-    <Compile Include="bresenham_solution.py" />
     <Compile Include="configuration_space.py" />
     <Compile Include="configuration_space_solution.py" />
     <Compile Include="quaternions_solution.py" />
@@ -33,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="colliders.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

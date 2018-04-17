@@ -45,8 +45,8 @@ def local_to_global(local_position, global_home):
     (long_home, lat_home, alt_home) = global_home
     (easting_home, northing_home, zone_home, zone_home_letter) = utm.from_latlon(lat_home, long_home)
     # TODO: get (lat, lon) from local_position and converted global_home
-    n, e, D = local_position
-    g = (easting_home + e, northing_home + n, zone_home, zone_home_letter)
+    N, E, D = local_position
+    g = (easting_home + E, northing_home + N, zone_home, zone_home_letter)
     # TODO: Create global_position of (lat, lon, alt)
     (lat, long) = utm.to_latlon(g[0], g[1], zone_home, zone_home_letter)
                                

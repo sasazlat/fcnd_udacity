@@ -69,10 +69,10 @@ euler = np.array([np.deg2rad(90), np.deg2rad(30), np.deg2rad(0)])
 
 q = euler_to_quaternion(euler) # should be [ 0.683 0.683 0.183 -0.183]
 print(q)
-eulere = quaternion_to_euler(q)
+eulere = np.array(quaternion_to_euler(q))
 print (eulere)
 
-assert np.array_equal(euler,eulere)
+print (euler - eulere)
 
 
 # Here's our [solution](/notebooks/Quaternions-Solution.ipynb)!
