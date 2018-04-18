@@ -145,48 +145,62 @@ def collinearity_check(p1, p2, p3, epsilon=1e-6):
     det = np.linalg.det(m)
     return abs(det) < epsilon
 
-def bres(p1, p2):
+def bres(start, end):
+    """Bresenham's Line Algorithm
+    Produces a list of tuples from start and end
+ 
+    >>> points1 = get_line((0, 0), (3, 4))
+    >>> points2 = get_line((3, 4), (0, 0))
+    >>> assert(set(points1) == set(points2))
+    >>> print points1
+    [(0, 0), (1, 1), (1, 2), (2, 3), (3, 4)]
+    >>> print points2
+    [(3, 4), (2, 3), (1, 2), (1, 1), (0, 0)]
     """
-    Note this solution requires `x1` < `x2` and `y1` < `y2`.
-    """
-    x1, y1 = p1
-    x2, y2 = p2
-    cells = []
-    
-    # Here's a quick explanation in math terms of our approach
-    # First, set dx = x2 - x1 and dy = y2 - y1
-    dx, dy = x2 - x1, y2 - y1
-    # Then define a new quantity: d = x dy - y dx.
-    # and set d = 0 initially
-    d = 0
-    # The condition we care about is whether
-    # (x + 1) * m < y + 1 or moving things around a bit:
-    # (x + 1) dy / dx < y + 1
-    # which implies: x dy - y dx < dx - dy
-    # or in other words: d < dx - dy is our new condition
-    
-    # Initialize i, j indices
-    i = x1
-    j = y1
-    
-    while i < x2 and j < y2:
-        cells.append([i, j])
-        if d < dx - dy:
-            d += dy
-            i += 1
-        elif d == dx - dy:
-            # uncomment these two lines for conservative approach
-            #cells.append([i+1, j])
-            #cells.append([i, j+1])
-            d += dy
-            i += 1  
-            d -= dx
-            j += 1
-        else:
-            d -= dx
-            j += 1
-
-    return np.array(cells)
+    # Setup initial conditions
+    x1, y1 = start
+    x2, y2 = end
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Determine how steep the line is
+    is_steep = abs(dy) > abs(dx)
+ 
+    # Rotate line
+    if is_steep:
+        x1, y1 = y1, x1
+        x2, y2 = y2, x2
+ 
+    # Swap start and end points if necessary and store swap state
+    swapped = False
+    if x1 > x2:
+        x1, x2 = x2, x1
+        y1, y2 = y2, y1
+        swapped = True
+ 
+    # Recalculate differentials
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Calculate error
+    error = int(dx / 2.0)
+    ystep = 1 if y1 < y2 else -1
+ 
+    # Iterate over bounding box generating points between start and end
+    y = y1
+    points = []
+    for x in range(x1, x2 + 1):
+        coord = (y, x) if is_steep else (x, y)
+        points.append(coord)
+        error -= abs(dy)
+        if error < 0:
+            y += ystep
+            error += dx
+ 
+    # Reverse the list if the coordinates were swapped
+    if swapped:
+        points.reverse()
+    return points
 
 
 # Complete the `prune_path` function below.  It should return a new path much
@@ -222,7 +236,7 @@ def prune_path(path):
             i += 1
     return pruned_path
 
-def prune_path_bres(path):
+def prune_path_bresenham(path):
    """
    Use the Bresenham module to trim uneeded waypoints from path
    """
@@ -241,8 +255,40 @@ def prune_path_bres(path):
        # and the check is redone with a new third point
        # on the next iteration.
        br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+       #my_br = bres(p1, p3)
 
        if all((grid[pp] == 0) for pp in br):
+           # Something subtle here but we can mutate
+           # `pruned_path` freely because the length
+           # of the list is checked on every iteration.
+           pruned_path.remove(p2)
+       else:
+           i += 1
+
+   return pruned_path
+
+def prune_path_bres(path):
+   """
+   Use the Bresenham module to trim uneeded waypoints from path
+   """
+   from bresenham import bresenham
+   pruned_path = [p for p in path]
+
+   i = 0
+   while i < len(pruned_path) - 2:
+       p1 = pruned_path[i]
+       p2 = pruned_path[i+1]
+       p3 = pruned_path[i+2]
+       
+       # if the line between p1 and p2 doesn't hit an obstacle
+       # remove the 2nd point.
+       # The 3rd point now becomes the 2nd point
+       # and the check is redone with a new third point
+       # on the next iteration.
+       #br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+       my_br = bres(p1, p3)
+
+       if all((grid[pp] == 0) for pp in my_br):
            # Something subtle here but we can mutate
            # `pruned_path` freely because the length
            # of the list is checked on every iteration.
@@ -261,13 +307,16 @@ def prune_path_bres(path):
 pruned_path = prune_path(actual_path)
 print(len(pruned_path))
 
+pruned_path_Bresenham = prune_path_bresenham(actual_path)
+print(len(pruned_path_Bresenham))
+
 pruned_path_B = prune_path_bres(actual_path)
 print(len(pruned_path_B))
 
 
 # In[ ]:
 pruned_path
-
+pruned_path_Bresenham
 pruned_path_B
 
 
@@ -281,12 +330,16 @@ plt.plot(start_ne[1], start_ne[0], 'x')
 plt.plot(goal_ne[1], goal_ne[0], 'x')
 
 pp = np.array(pruned_path)
+ppB = np.array(pruned_path_Bresenham)
 ppb = np.array(pruned_path_B)
 
 plt.plot(pp[:, 1], pp[:, 0], 'b')
 plt.scatter(pp[:, 1], pp[:, 0])
 
-plt.plot(ppb[:, 1], ppb[:, 0], 'r')
+plt.plot(ppB[:, 1], ppB[:, 0], 'r')
+plt.scatter(ppB[:, 1], ppB[:, 0])
+
+plt.plot(ppb[:, 1], ppb[:, 0], 'g')
 plt.scatter(ppb[:, 1], ppb[:, 0])
 
 plt.xlabel('EAST')
