@@ -222,6 +222,38 @@ def prune_path(path):
             i += 1
     return pruned_path
 
+def prune_path_bres(path):
+   """
+   Use the Bresenham module to trim uneeded waypoints from path
+   """
+   from bresenham import bresenham
+   pruned_path = [p for p in path]
+
+   i = 0
+   while i < len(pruned_path) - 2:
+       p1 = pruned_path[i]
+       p2 = pruned_path[i+1]
+       p3 = pruned_path[i+2]
+       
+       # if the line between p1 and p2 doesn't hit an obstacle
+       # remove the 2nd point.
+       # The 3rd point now becomes the 2nd point
+       # and the check is redone with a new third point
+       # on the next iteration.
+       br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+
+       if all((grid[pp] == 0) for pp in br):
+           # Something subtle here but we can mutate
+           # `pruned_path` freely because the length
+           # of the list is checked on every iteration.
+           pruned_path.remove(p2)
+       else:
+           i += 1
+
+   return pruned_path
+
+    
+
 
 # Prune the path.
 
@@ -229,9 +261,14 @@ def prune_path(path):
 pruned_path = prune_path(actual_path)
 print(len(pruned_path))
 
+pruned_path_B = prune_path_bres(actual_path)
+print(len(pruned_path_B))
+
 
 # In[ ]:
 pruned_path
+
+pruned_path_B
 
 
 # Replot the path, it will be the same as before but the drone flight will be
@@ -244,8 +281,13 @@ plt.plot(start_ne[1], start_ne[0], 'x')
 plt.plot(goal_ne[1], goal_ne[0], 'x')
 
 pp = np.array(pruned_path)
-plt.plot(pp[:, 1], pp[:, 0], 'g')
+ppb = np.array(pruned_path_B)
+
+plt.plot(pp[:, 1], pp[:, 0], 'b')
 plt.scatter(pp[:, 1], pp[:, 0])
+
+plt.plot(ppb[:, 1], ppb[:, 0], 'r')
+plt.scatter(ppb[:, 1], ppb[:, 0])
 
 plt.xlabel('EAST')
 plt.ylabel('NORTH')
