@@ -27,14 +27,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="backyard_flyer_solution.py" />
+    <Compile Include="example2-to fix\motion2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="example2-to fix\planning2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="example3\motion3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="example3\planning3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="example4\motion4.py" />
+    <Compile Include="example4\planning4.py" />
+    <Compile Include="example5\motion5.py" />
+    <Compile Include="example5\planning5.py" />
+    <Compile Include="example\motion.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="motion_planning.py" />
+    <Compile Include="example\planning.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="planning_utils.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+    <Folder Include="example\" />
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example2-to fix\" />
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example3\" />
+    <Folder Include="example4\" />
+    <Folder Include="example5\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="colliders.csv" />
+    <Content Include="example2-to fix\colliders.csv" />
+    <Content Include="example3\colliders.csv" />
+    <Content Include="example4\colliders.csv" />
+    <Content Include="example5\colliders.csv" />
     <Content Include="images\double_helix.gif" />
     <Content Include="images\enroute.png" />
     <Content Include="images\high_up.png" />
