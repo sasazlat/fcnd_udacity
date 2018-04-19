@@ -5,7 +5,6 @@
 #
 
 # In[1]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 from grid import create_grid
@@ -16,7 +15,6 @@ from planning import a_star
 
 
 # In[2]:
-
 plt.rcParams['figure.figsize'] = 12, 12
 
 
@@ -32,9 +30,8 @@ print(data)
 # Starting and goal positions in *(north, east)*.
 
 # In[4]:
-
-start_ne = (25,  100)
-goal_ne = (650, 500)
+start_ne = (40,  510)
+goal_ne = (700, 790)
 
 
 # In[5]:
@@ -46,9 +43,9 @@ safety_distance = 2
 
 
 # In[6]:
-
 grid = create_grid(data, drone_altitude, safety_distance)
-skeleton = medial_axis(invert(grid))
+invert_grid = invert(grid)
+skeleton = medial_axis(invert_grid)
 
 
 # Plot the edges on top of the grid along with start and goal locations.
@@ -81,13 +78,22 @@ def find_start_goal(skel, start, goal):
         # np.transpose()
         # np.linalg.norm()
         # np.argmin()
-    non_zero = skel.nonzero()
+    non_zero = np.nonzero(skel)
     skel_cells = np.transpose(non_zero)
-    start_min_dist = np.linalg.norm(np.array(start) - np.array(skel_cells),                                    axis=1).argmin()
+    start_min_dist = np.linalg.norm(np.subtract(start, skel_cells), axis=1).argmin()
     near_start = skel_cells[start_min_dist]
-    goal_min_dist = np.linalg.norm(np.array(goal) - np.array(skel_cells),                                    axis=1).argmin()
+    goal_min_dist = np.linalg.norm(np.subtract(goal, skel_cells), axis=1).argmin()
     near_goal = skel_cells[goal_min_dist]
     
+    return near_start, near_goal
+
+def find_start_goal_slack(skel, start, goal):
+    coords = np.transpose(np.nonzero(skel))
+    dist = lambda curr, dest: np.linalg.norm(np.subtract(curr, dest))
+    starters = [dist(p, start) for p in coords]
+    enders = [dist(p, goal) for p in coords]
+    near_start = tuple(coords[np.argmin(starters)])
+    near_goal = tuple(coords[np.argmin(enders)])
     return near_start, near_goal
 
 skel_start, skel_goal = find_start_goal(skeleton, start_ne, goal_ne)
@@ -97,9 +103,8 @@ print(skel_start, skel_goal)
 
 
 # In[9]:
-
 def heuristic_func(position, goal_position):
-    return np.sqrt((position[0] - goal_position[0]) ** 2 + (position[1] - goal_position[1]) ** 2)
+    return np.linalg.norm(np.subtract(position, goal_position))
 
 
 # In[11]:
@@ -119,15 +124,19 @@ print("Path length = {0}, path cost = {1}".format(len(path2), cost2))
 
 
 # In[14]:
-
-plt.imshow(grid, cmap='Greys', origin='lower')
+plt.imshow(grid, origin='lower')
 plt.imshow(skeleton, cmap='Greys', origin='lower', alpha=0.7)
-# For the purposes of the visual the east coordinate lay along
-# the x-axis and the north coordinates long the y-axis.
-plt.plot(start_ne[1], start_ne[0], 'x')
-plt.plot(goal_ne[1], goal_ne[0], 'x')
+    
+plt.plot(start_ne[1], start_ne[0], 'rx')
+plt.plot(goal_ne[1], goal_ne[0], 'rx')
 
-curr_pos = start_ne
+plt.plot(skel_start[1], skel_start[0], 'gx')
+plt.plot(skel_goal[1], skel_goal[0], 'gx')
+
+plt.xlabel('EAST')
+plt.ylabel('NORTH')
+#plt.show()
+curr_pos = skel_start
 actual_path = []
 actual_path2 = []
 for action in path:
