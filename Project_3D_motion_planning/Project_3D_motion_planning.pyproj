@@ -69,6 +69,7 @@
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example6 - ok\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example7 - ok\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example8 - ok\" />
+    <Folder Include="misc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="colliders.csv" />
@@ -85,6 +86,11 @@
     <Content Include="images\high_up.png" />
     <Content Include="images\in_the_trees.png" />
     <Content Include="images\map.png" />
+    <Content Include="misc\double_helix.gif" />
+    <Content Include="misc\enroute.png" />
+    <Content Include="README.md">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
