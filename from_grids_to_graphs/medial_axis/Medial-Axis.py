@@ -5,7 +5,6 @@
 #
 
 # In[1]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 from grid import create_grid
@@ -16,7 +15,6 @@ from planning import a_star
 
 
 # In[2]:
-
 plt.rcParams['figure.figsize'] = 12, 12
 
 
@@ -32,8 +30,7 @@ print(data)
 # Starting and goal positions in *(north, east)*.
 
 # In[4]:
-
-start_ne = (25,  100)
+start_ne = (70,  100)
 goal_ne = (650, 500)
 
 
@@ -46,7 +43,6 @@ safety_distance = 2
 
 
 # In[6]:
-
 grid = create_grid(data, drone_altitude, safety_distance)
 skeleton = medial_axis(invert(grid))
 
@@ -83,10 +79,11 @@ def find_start_goal(skel, start, goal):
         # np.transpose()
         # np.linalg.norm()
         # np.argmin()
-    non_zero = skel.nonzero()
+    non_zero = np.nonzero(skel)
     skel_cells = np.transpose(non_zero)
-    near_start = None
-    near_goal = None
+    dista = np.linalg.norm(np.subtract(start, skel_cells), axis=1).argmin()
+    near_start = skel_cells[dista]
+    near_goal = skel_cells[np.linalg.norm(np.subtract(goal, skel_cells), axis=1).argmin()]
     return near_start, near_goal
 
 skel_start, skel_goal = find_start_goal(skeleton, start_ne, goal_ne)
@@ -96,40 +93,57 @@ print(skel_start, skel_goal)
 
 
 # In[9]:
-
 def heuristic_func(position, goal_position):
-    # TODO: define a heuristic
-    return None
-
-
-# ### TODO: Run A* on the skeleton
-# see [planning.py](/edit/planning.py) for a reminder on how to run the
-# imported A* implementation (or rewrite it!)
-
-# In[10]:
-
-
-# Compare to regular A* on the grid
-#path2, cost2 = a_star(grid, heuristic_func, start_ne, goal_ne)
+    return np.linalg.norm(np.subtract(position, goal_position))
 
 
 # In[11]:
 
-plt.imshow(grid, cmap='Greys', origin='lower')
+
+# Run A* on the skeleton
+path, cost = a_star(invert(skeleton).astype(np.int), heuristic_func, tuple(skel_start), tuple(skel_goal))
+print("Path length = {0}, path cost = {1}".format(len(path), cost))
+
+
+# In[12]:
+
+
+# Compare to regular A* on the grid
+path2, cost2 = a_star(grid, heuristic_func, start_ne, goal_ne)
+print("Path length = {0}, path cost = {1}".format(len(path2), cost2))
+
+
+# In[14]:
+plt.imshow(grid, origin='lower')
 plt.imshow(skeleton, cmap='Greys', origin='lower', alpha=0.7)
-# For the purposes of the visual the east coordinate lay along
-# the x-axis and the north coordinates long the y-axis.
-plt.plot(start_ne[1], start_ne[0], 'x')
-# Uncomment the following as needed
-#plt.plot(goal_ne[1], goal_ne[0], 'x')
+    
+plt.plot(start_ne[1], start_ne[0], 'rx')
+plt.plot(goal_ne[1], goal_ne[0], 'rx')
+
+plt.plot(skel_start[1], skel_start[0], 'gx')
+plt.plot(skel_goal[1], skel_goal[0], 'gx')
+
+plt.xlabel('EAST')
+plt.ylabel('NORTH')
+#plt.show()
+curr_pos = skel_start
+actual_path = []
+actual_path2 = []
+for action in path:
+    curr_pos = (curr_pos[0] + action.delta[0], curr_pos[1] + action.delta[1])
+    #curr_pos = (curr_pos[0] + action.delta[0], curr_pos[1] + action.delta[1])
+    actual_path.append(curr_pos)
+    actual_path2.append(curr_pos)
+
+pp = np.array(actual_path)
+pp2 = np.array(actual_path2)
 
 #pp = np.array(path)
-#plt.plot(pp[:, 1], pp[:, 0], 'g')
+plt.plot(pp[:, 1], pp[:, 0], 'g')
 #pp2 = np.array(path2)
-#plt.plot(pp2[:, 1], pp2[:, 0], 'r')
+plt.plot(pp2[:, 1], pp2[:, 0], 'r')
+
 plt.xlabel('EAST')
 plt.ylabel('NORTH')
 plt.show()
 
-
-# [solution](/notebooks/Medial-Axis-Solution.ipynb)

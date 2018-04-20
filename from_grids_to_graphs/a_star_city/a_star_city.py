@@ -246,8 +246,8 @@ def prune_path_bresenham(path):
    i = 0
    while i < len(pruned_path) - 2:
        p1 = pruned_path[i]
-       p2 = pruned_path[i+1]
-       p3 = pruned_path[i+2]
+       p2 = pruned_path[i + 1]
+       p3 = pruned_path[i + 2]
        
        # if the line between p1 and p2 doesn't hit an obstacle
        # remove the 2nd point.
@@ -277,8 +277,8 @@ def prune_path_bres(path):
    i = 0
    while i < len(pruned_path) - 2:
        p1 = pruned_path[i]
-       p2 = pruned_path[i+1]
-       p3 = pruned_path[i+2]
+       p2 = pruned_path[i + 1]
+       p3 = pruned_path[i + 2]
        
        # if the line between p1 and p2 doesn't hit an obstacle
        # remove the 2nd point.

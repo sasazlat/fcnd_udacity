@@ -43,6 +43,9 @@
     <Compile Include="medial_axis\Medial-Axis-Solution.py" />
     <Compile Include="medial_axis\Medial-Axis.py" />
     <Compile Include="medial_axis\planning.py" />
+    <Compile Include="voronoi\bres.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="voronoi\Voronoi-Solution.py" />
     <Compile Include="voronoi\Voronoi.py" />
   </ItemGroup>

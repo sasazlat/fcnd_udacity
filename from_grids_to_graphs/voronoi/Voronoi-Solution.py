@@ -90,7 +90,8 @@ def create_grid_and_edges(data, drone_altitude, safety_distance):
     # TODO: create a voronoi graph based on
     # location of obstacle centres
     graph = Voronoi(points)
-
+    voronoi_plot_2d(graph)
+    plt.show()
     # TODO: check each edge from graph.ridge_vertices for collision
     edges = []
     for v in graph.ridge_vertices:
