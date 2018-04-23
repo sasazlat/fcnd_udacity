@@ -5,8 +5,8 @@ from enum import Enum, auto
 import numpy as np
 import networkx as nx
 
-from planning_utils import calc_offset_gridsize, create_voronoi, closest_point
-from planning_utils import a_star_graph, heuristic, prune_path
+from planning_utilsi import calc_offset_gridsize, create_voronoi, closest_point
+from planning_utilsi import a_star_graph, heuristic, prune_path
 
 from udacidrone import Drone
 from udacidrone.connection import MavlinkConnection
@@ -151,22 +151,22 @@ class MotionPlanning(Drone):
         
         # # Create Voronoi Graph for a particular altitude and safety margin around obstacles
         # # Only need to run once, save the graph to a file. Next time just load graph file 
-        # t1 = time.time()
-        # edges= create_voronoi(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
-        # t_edges = time.time() - t1
-        # print("It takes {} seconds to create voronoi graph".format(np.round(t_edges,2)))
+        #t1 = time.time()
+        #edges= create_voronoi(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
+        #t_edges = time.time() - t1
+        #print("It takes {} seconds to create voronoi graph".format(np.round(t_edges,2)))
 
-        # t2 = time.time()
-        # G = nx.Graph()
-        # for e in edges:
-        #     p1 = e[0]
-        #     p2 = e[1]
-        #     dist = np.linalg.norm(np.array(p2) - np.array(p1))
-        #     G.add_edge(p1, p2, weight=dist)
-        # t_graph = time.time() - t2
-        # print("It takes {} seconds to create load edges to networkx graph".format(np.round(t_graph,2)))
+        #t2 = time.time()
+        #G = nx.Graph()
+        #for e in edges:
+        #    p1 = e[0]
+        #    p2 = e[1]
+        #    dist = np.linalg.norm(np.array(p2) - np.array(p1))
+        #    G.add_edge(p1, p2, weight=dist)
+        #t_graph = time.time() - t2
+        #print("It takes {} seconds to create load edges to networkx graph".format(np.round(t_graph,2)))
 
-        # nx.write_gpickle(G, "voronoi.gpickle")
+        #nx.write_gpickle(G, "voronoi.gpickle")
         G = nx.read_gpickle("voronoi.gpickle")
 
         # Convert start position to current position rather than map center

@@ -31,7 +31,7 @@ print(data)
 
 # In[4]:
 start_ne = (70,  100)
-goal_ne = (650, 500)
+goal_ne = (780, 504)
 
 
 # In[5]:

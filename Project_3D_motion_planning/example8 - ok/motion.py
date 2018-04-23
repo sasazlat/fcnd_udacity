@@ -5,7 +5,7 @@ from enum import Enum, auto
 
 import numpy as np
 
-from planning_utils import *
+from planning import *
 from utils import *
 from udacidrone import Drone
 from udacidrone.connection import MavlinkConnection

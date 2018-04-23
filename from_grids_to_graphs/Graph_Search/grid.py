@@ -31,13 +31,11 @@ def create_grid(data, drone_altitude, safety_distance):
     for i in range(data.shape[0]):
         north, east, alt, d_north, d_east, d_alt = data[i, :]
         if alt + d_alt + safety_distance > drone_altitude:
-            obstacle = [
-                int(np.clip(north - d_north - safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size-1)),
-                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size-1)),
-            ]
-            grid[obstacle[0]:obstacle[1]+1, obstacle[2]:obstacle[3]+1] = 1
+            obstacle = [int(np.clip(north - d_north - safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size - 1)),
+                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size - 1)),]
+            grid[obstacle[0]:obstacle[1] + 1, obstacle[2]:obstacle[3] + 1] = 1
 
     return grid
 
@@ -68,13 +66,11 @@ def create_grid_and_edges(data, drone_altitude, safety_distance):
     for i in range(data.shape[0]):
         north, east, alt, d_north, d_east, d_alt = data[i, :]
         if alt + d_alt + safety_distance > drone_altitude:
-            obstacle = [
-                int(np.clip(north - d_north - safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size-1)),
-                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size-1)),
-            ]
-            grid[obstacle[0]:obstacle[1]+1, obstacle[2]:obstacle[3]+1] = 1
+            obstacle = [int(np.clip(north - d_north - safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size - 1)),
+                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size - 1)),]
+            grid[obstacle[0]:obstacle[1] + 1, obstacle[2]:obstacle[3] + 1] = 1
 
             # add center of obstacles to points list
             points.append([north - north_min, east - east_min])

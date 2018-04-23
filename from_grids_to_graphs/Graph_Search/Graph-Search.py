@@ -3,13 +3,15 @@
 
 # ## Finding Your Way In The City (Graph Edition)
 # In this notebook your attention will shift from grids to graphs.  At least
-# for search ...
+# for search ...  the world representation is still a grid.  You likely noticed
+# in the previous notebook the generated paths flew as close to the obstacle /
+# safety space as possible.
 #
 # Using Voronoi graphs and the medial axis transform we can find paths which
 # maximize safety from obstacles.  In addition, graph representation allows
 # further optimizations and more succinct queries.
 
-# In[ ]:
+# In[1]:
 
 
 # OK this might look a little ugly but...
@@ -25,12 +27,14 @@ pkg_resources.require("networkx==2.1")
 import networkx as nx
 
 
-# In[ ]:
+# In[2]:
 
+
+# Should be 2.1
 nx.__version__
 
 
-# In[1]:
+# In[ ]:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -137,24 +141,27 @@ plt.show()
 
 # TODO: create the graph with the weight of the edges
 # set to the Euclidean distance between the points
+G = nx.Graph()
+for e in edges:
+    p1 = e[0]
+    p2 = e[1]
+    dist = LA.norm(np.array(p2) - np.array(p1))
+    G.add_edge(p1, p2, weight=dist)
 
 
-# You need a method to search the graph, and you'll adapt A* in order to do
-# this.  The notable differences being the actions are now the outgoing edges
-# and the cost of an action is that weight of that edge.
+# We need a method to search the graph, we'll adapt A* in order to do this.
+# The notable differences being the actions are now the outgoing edges and the
+# cost of an action is that weight of that edge.
 
 # In[ ]:
 
 from queue import PriorityQueue
 
 def heuristic(n1, n2):
-    #TODO: define a heuristic
-    return 0
+    return LA.norm(np.array(n2) - np.array(n1))
 
-###### THIS IS YOUR OLD GRID-BASED A* IMPLEMENTATION #######
-###### With a few minor modifications it can work with graphs!  ####
-#TODO: modify A* to work with a graph
 def a_star(graph, heuristic, start, goal):
+    """Modified A* to work with NetworkX graphs."""
     
     path = []
     queue = PriorityQueue()
@@ -173,20 +180,16 @@ def a_star(graph, heuristic, start, goal):
             print('Found a path.')
             found = True
             break
-            
         else:
-            for action in valid_actions(grid, current_node):
-                # get the tuple representation
-                da = action.delta
-                cost = action.cost
-                next_node = (current_node[0] + da[0], current_node[1] + da[1])
-                new_cost = current_cost + cost + h(next_node, goal)
+            for next_node in graph[current_node]:
+                cost = graph.edges[current_node, next_node]['weight']
+                new_cost = current_cost + cost + heuristic(next_node, goal)
                 
                 if next_node not in visited:                
                     visited.add(next_node)               
                     queue.put((new_cost, next_node))
                     
-                    branch[next_node] = (new_cost, current_node, action)
+                    branch[next_node] = (new_cost, current_node)
              
     path = []
     path_cost = 0
@@ -196,23 +199,81 @@ def a_star(graph, heuristic, start, goal):
         path = []
         n = goal
         path_cost = branch[n][0]
+        path.append(goal)
         while branch[n][1] != start:
-            path.append(branch[n][2])
+            path.append(branch[n][1])
             n = branch[n][1]
-        path.append(branch[n][2])
+        path.append(branch[n][1])
             
     return path[::-1], path_cost
 
 
 # ### Solution
-# 
+#
 # This solution consists of two parts:
-# 
-# 1. Find the closest point in the graph to our current location, same thing for the goal location.
-# 2. Compute the path from the two points in the graph using the A* algorithm.
-# 3. Feel free to use any of the path pruning techniques to make the path even smaller! 
-# 4. Plot it up to see the results!
+#
+# 1.  Find the closest point in the graph to our current location, same thing
+# for the goal location.
+# 2.  Compute the path from the two points in the graph using the A* algorithm.
+# 3.  Feel free to use any of the path pruning techniques to make the path even
+# smaller!
 
-# ### TODO: Write your solution!
+# In[ ]:
 
-# [our solution](/notebooks/Graph-Search-Solution.ipynb)
+def closest_point(graph, current_point):
+    """
+    Compute the closest point in the `graph`
+    to the `current_point`.
+    """
+    closest_point = None
+    dist = 100000
+    for p in graph.nodes:
+        d = LA.norm(np.array(p) - np.array(current_point))
+        if d < dist:
+            closest_point = p
+            dist = d
+    return closest_point
+
+
+# In[ ]:
+
+start_ne_g = closest_point(G, start_ne)
+goal_ne_g = closest_point(G, goal_ne)
+print(start_ne_g)
+print(goal_ne_g)
+
+
+# Use A* to compute the path.
+
+# In[ ]:
+
+path, cost = a_star(G, heuristic, start_ne_g, goal_ne_g)
+print(len(path))
+
+
+# In[ ]:
+
+
+# equivalent to
+# plt.imshow(np.flip(grid, 0))
+plt.imshow(grid, origin='lower', cmap='Greys') 
+
+for e in edges:
+    p1 = e[0]
+    p2 = e[1]
+    plt.plot([p1[1], p2[1]], [p1[0], p2[0]], 'b-')
+    
+plt.plot([start_ne[1], start_ne_g[1]], [start_ne[0], start_ne_g[0]], 'r-')
+for i in range(len(path) - 1):
+    p1 = path[i]
+    p2 = path[i + 1]
+    plt.plot([p1[1], p2[1]], [p1[0], p2[0]], 'r-')
+plt.plot([goal_ne[1], goal_ne_g[1]], [goal_ne[0], goal_ne_g[0]], 'r-')
+    
+plt.plot(start_ne[1], start_ne[0], 'gx')
+plt.plot(goal_ne[1], goal_ne[0], 'gx')
+
+plt.xlabel('EAST', fontsize=20)
+plt.ylabel('NORTH', fontsize=20)
+plt.show()
+

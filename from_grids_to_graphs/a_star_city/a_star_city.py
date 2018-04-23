@@ -271,7 +271,6 @@ def prune_path_bres(path):
    """
    Use the Bresenham module to trim uneeded waypoints from path
    """
-   from bresenham import bresenham
    pruned_path = [p for p in path]
 
    i = 0

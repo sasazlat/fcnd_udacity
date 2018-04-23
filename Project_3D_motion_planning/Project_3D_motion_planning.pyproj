@@ -44,10 +44,10 @@
     <Compile Include="example7 - ok\motion_planning_graph.py" />
     <Compile Include="example7 - ok\motion_planning_grid.py" />
     <Compile Include="example7 - ok\planning.py" />
-    <Compile Include="example7 - ok\planning_utils.py" />
+    <Compile Include="example7 - ok\planning_utilsi.py" />
     <Compile Include="example7 - ok\planning_utils1.py" />
-    <Compile Include="example8 - ok\motion_planning.py" />
-    <Compile Include="example8 - ok\planning_utils.py" />
+    <Compile Include="example8 - ok\motion.py" />
+    <Compile Include="example8 - ok\planning.py" />
     <Compile Include="example8 - ok\utils.py" />
     <Compile Include="example - ok\motion.py">
       <SubType>Code</SubType>
@@ -56,10 +56,16 @@
     <Compile Include="example - ok\planning.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="planning_utils.py" />
+    <Compile Include="planning_utilss.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="example - ok\" />
     <Folder Include="example2-to fix\" />
+    <Folder Include="example3\" />
+    <Folder Include="example5 - ok\" />
+    <Folder Include="example6 - ok\" />
+    <Folder Include="example7 - ok\" />
+    <Folder Include="example8 - ok\" />
     <Folder Include="images\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example - ok\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example2-to fix\" />
