@@ -183,24 +183,24 @@ def bres(start, end):
     dy = y2 - y1
  
     # Calculate error
-    error = int(dx / 2.0)
+    d = int(dx / 2.0)
     ystep = 1 if y1 < y2 else -1
  
     # Iterate over bounding box generating points between start and end
-    y = y1
-    points = []
-    for x in range(x1, x2 + 1):
-        coord = (y, x) if is_steep else (x, y)
-        points.append(coord)
-        error -= abs(dy)
-        if error < 0:
-            y += ystep
-            error += dx
+    j = y1
+    cells = []
+    for i in range(x1, x2 + 1):
+        coord = (j, i) if is_steep else (i, j)
+        cells.append(coord)
+        d -= abs(dy)
+        if d < 0:
+            j += ystep
+            d += dx
  
     # Reverse the list if the coordinates were swapped
     if swapped:
-        points.reverse()
-    return points
+        cells.reverse()
+    return cells
 
 
 # Complete the `prune_path` function below.  It should return a new path much

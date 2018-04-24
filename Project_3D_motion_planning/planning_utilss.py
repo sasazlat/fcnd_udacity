@@ -31,13 +31,11 @@ def create_grid(data, drone_altitude, safety_distance):
     for i in range(data.shape[0]):
         north, east, alt, d_north, d_east, d_alt = data[i, :]
         if alt + d_alt + safety_distance > drone_altitude:
-            obstacle = [
-                int(np.clip(north - d_north - safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size-1)),
-                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size-1)),
-                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size-1)),
-            ]
-            grid[obstacle[0]:obstacle[1]+1, obstacle[2]:obstacle[3]+1] = 1
+            obstacle = [int(np.clip(north - d_north - safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(north + d_north + safety_distance - north_min, 0, north_size - 1)),
+                int(np.clip(east - d_east - safety_distance - east_min, 0, east_size - 1)),
+                int(np.clip(east + d_east + safety_distance - east_min, 0, east_size - 1)),]
+            grid[obstacle[0]:obstacle[1] + 1, obstacle[2]:obstacle[3] + 1] = 1
 
     return grid, int(north_min), int(east_min)
 
@@ -291,10 +289,10 @@ def prune_path_bresenham(grid, path):
        # The 3rd point now becomes the 2nd point
        # and the check is redone with a new third point
        # on the next iteration.
-       br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
-       #my_br = bres(p1, p3)
+       #br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+       my_br = bresa(p1, p3)
 
-       if all((grid[pp] == 0) for pp in br):
+       if all((grid[pp] == 0) for pp in my_br):
            # Something subtle here but we can mutate
            # `pruned_path` freely because the length
            # of the list is checked on every iteration.
@@ -304,6 +302,162 @@ def prune_path_bresenham(grid, path):
 
    return pruned_path
 
-def heuristic(position, goal_position):
-    return np.linalg.norm(np.array(position) - np.array(goal_position))
+def bres(start, end):
+      # Setup initial conditions
+    x1, y1 = start
+    x2, y2 = end
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Determine how steep the line is
+    is_steep = abs(dy) > abs(dx)
+ 
+    # Rotate line
+    if is_steep:
+        x1, y1 = y1, x1
+        x2, y2 = y2, x2
+ 
+    # Swap start and end points if necessary and store swap state
+    swapped = False
+    if x1 > x2:
+        x1, x2 = x2, x1
+        y1, y2 = y2, y1
+        swapped = True
+ 
+    # Recalculate differentials
+    dx = x2 - x1
+    dy = y2 - y1
 
+ 
+    # Calculate error
+    d = dy - dx
+    ystep = 1 if y1 < y2 else -1
+ 
+    # Iterate over bounding box generating points between start and end
+    j = y1
+    i = x1
+    cells = []
+    while i < x2 and j < y2:
+        coord = (j, i) if is_steep else (i, j)
+        cells.append(coord)
+        d -= abs(dy)
+        if d < 0:
+            #j += ystep
+            d += dy
+            i += 1
+        elif d == 0:
+            #uncomment these two lines for conservative approach
+            #cells.append((i+1, j))
+            #cells.append([i, j+1])
+            d += dy
+            d -= dx
+            j += ystep
+            i += 1
+        else:
+            d -= dx
+            j += ystep
+    # Reverse the list if the coordinates were swapped
+    if swapped:
+        cells.reverse()
+    return cells
+
+def bresa(p1, p2):
+    """
+    This solution requires no condition on points p1 and p2.
+    """
+    xi, yi = p1
+    x2, y2 = p2
+    cells = [(xi, yi)]
+
+    # Slope is calculated once only if it's possible
+    if xi != x2:
+        m = (y2 - yi) / (x2 - xi)
+        delta_y = m
+        x1 = xi
+        y1 = yi + 0.5 - m * 0.5
+
+        if x1 < x2 and yi <= y2:
+            x = x1 + 1
+            y = yi
+            inc_y = y1 + delta_y
+            while x < x2 + 1 or y < y2:
+                if inc_y > y + 1:
+                    y += 1
+                elif inc_y == y + 1:
+                    y += 1
+                    x += 1
+                    delta_y += m
+                else:
+                    x += 1
+                    delta_y += m
+                cells.append((x - 1, y))
+                inc_y = y1 + delta_y
+
+        elif x1 < x2 and yi >= y2:
+            x = x1 + 1
+            y = yi
+            inc_y = y1 + delta_y
+            while x < x2 + 1 or y > y2:
+                if inc_y < y:
+                    y -= 1
+                elif inc_y == y:
+                    y -= 1
+                    x += 1
+                    delta_y += m
+                else:
+                    x += 1
+                    delta_y += m
+                cells.append((x - 1, y))
+                inc_y = y1 + delta_y
+
+        elif x1 > x2 and yi > y2:
+            x = x1
+            y = yi
+            inc_y = y1
+            delta_y = 0
+            while x > x2 or y > y2:
+                if inc_y < y:
+                    y -= 1
+                elif inc_y == y:
+                    y -= 1
+                    x -= 1
+                    delta_y -= m
+                else:
+                    x -= 1
+                    delta_y -= m
+                cells.append((x, y))
+                inc_y = y1 + delta_y
+
+        elif x1 > x2 and yi <= y2:
+            x = x1
+            y = yi
+            inc_y = y1
+            delta_y = 0
+            while x > x2 or y < y2:
+                if inc_y > y + 1:
+                    y += 1
+                elif inc_y == y + 1:
+                    y += 1
+                    x -= 1
+                    delta_y -= m
+                else:
+                    x -= 1
+                    delta_y -= m
+                cells.append((x, y))
+                inc_y = y1 + delta_y
+
+    else:
+        y = yi
+        if y2 >= yi:
+            while y < y2 + 1:
+                cells.append((xi, y))
+                y += 1
+        else:
+            while y > y2:
+                cells.append((xi, y - 1))
+                y -= 1
+
+    return np.array(cells)
+
+def heuristic(p1,p2):
+    return np.linalg.norm(np.subtract(p1,p2))

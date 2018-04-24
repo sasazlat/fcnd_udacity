@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f63e63ef-76a2-4279-9148-ae9a7bc0ca28</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Graph_Search\Graph-Search.py</StartupFile>
+    <StartupFile>bresenham\bresenham_solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

@@ -64,24 +64,24 @@ def bres(p1, p2):
     # TODO: Determine valid grid cells
     dx = x2 - x1
     dy = y2 - y1
-    D = dy - dx
+    d = dy - dx
     i = x1
     j = y1
     while i < x2 and j < y2 :
         cells.append([i,j])
-        if D < 0:
+        if d < 0:
             i += 1
-            D += dy
-        elif D == 0:
+            d += dy
+        elif d == 0:
             # uncomment these two lines for conservative approach
             #cells.append([i+1, j])
             #cells.append([i, j+1])
-            D += dy
+            d += dy
             i += 1  
-            D -= dx
+            d -= dx
             j += 1
         else:
-            D -= dx
+            d -= dx
             j += 1  
     return np.array(cells)
 

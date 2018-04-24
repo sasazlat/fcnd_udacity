@@ -157,7 +157,8 @@ class MotionPlanning(Drone):
         # Set goal as some arbitrary position on the grid
         #grid_goal = (-north_offset + 60, -east_offset + 30)
         # TODO: adapt to set goal as latitude / longitude position and convert
-        # picked location from simulator manually controlled -122.400886, 37.795174
+        # picked location from simulator manually controlled -122.400886,
+        # 37.795174
         lat_goal = 37.795174
         lon_goal = -122.400886
         goal_global = [lon_goal, lat_goal, 0.0]

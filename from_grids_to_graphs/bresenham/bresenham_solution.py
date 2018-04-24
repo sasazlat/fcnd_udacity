@@ -4,7 +4,6 @@
 # ## Bresenham
 
 # In[3]:
-
 import numpy as np
 import matplotlib.pyplot as plt
 #get_ipython().run_line_magic('matplotlib', 'inline')
@@ -55,59 +54,138 @@ plt.rcParams['figure.figsize'] = 12, 12
 #
 
 # In[7]:
-
 def bres(p1, p2):
-    """
-    Note this solution requires `x1` < `x2` and `y1` < `y2`.
-    """
+      # Setup initial conditions
     x1, y1 = p1
     x2, y2 = p2
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Determine how steep the line is
+    is_steep = abs(dy) > abs(dx)
+ 
+    # Rotate line
+    if is_steep:
+        x1, y1 = y1, x1
+        x2, y2 = y2, x2
+ 
+    # Swap start and end points if necessary and store swap state
+    swapped = False
+    if x1 > x2:
+        x1, x2 = x2, x1
+        y1, y2 = y2, y1
+        swapped = True
+ 
+    # Recalculate differentials
+    dx = x2 - x1
+    dy = y2 - y1
+
+ 
+    # Calculate error
+    d = dy - dx
+    ystep = 1 if abs(y1) < abs(y2) else -1
+ 
+    # Iterate over bounding box generating points between start and end
+    j = y1
+    i = x1
     cells = []
     
-    # Here's a quick explanation in math terms of our approach
-    # First, set dx = x2 - x1 and dy = y2 - y1
-    dx, dy = x2 - x1, y2 - y1
-    # Then define a new quantity: d = x dy - y dx.
-    # and set d = 0 initially
-    d = 0
-    # The condition we care about is whether
-    # (x + 1) * m < y + 1 or moving things around a bit:
-    # (x + 1) dy / dx < y + 1
-    # which implies: x dy - y dx < dx - dy
-    # or in other words: d < dx - dy is our new condition
-    
-    # Initialize i, j indices
-    i = x1
-    j = y1
-    
-    while i < x2 and j < y2:
-        cells.append([i, j])
-        if d < dx - dy:
-            d += dy
-            i += 1
-        elif d == dx - dy:
-            # uncomment these two lines for conservative approach
-            #cells.append([i+1, j])
-            #cells.append([i, j+1])
-            d += dy
-            i += 1  
-            d -= dx
-            j += 1
+    while i < (x2 + 1):
+        coord = (j, i) if is_steep else (i, j)
+        cells.append(coord)
+        d -= abs(dy)
+        if d < 0:
+            j += ystep
+            d += dx
         else:
-            d -= dx
-            j += 1
+            i += 1
 
-    return np.array(cells)
+    # Reverse the list if the coordinates were swapped
+        plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
+        for q in cells:
+            plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
+            plt.plot([q[0], q[0] + 1], [q[1] + 1, q[1] + 1], 'k')
+            plt.plot([q[0], q[0]], [q[1],q[1] + 1], 'k')
+            plt.plot([q[0] + 1, q[0] + 1], [q[1], q[1] + 1], 'k')
+
+        plt.grid()
+        plt.axis('equal')
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.title("Integer based Bresenham algorithm")
+        plt.show()
+    if swapped:
+        cells.reverse()
+
+    return cells
+
+def bresa(start, end):
+    """Bresenham's Line Algorithm
+    Produces a list of tuples from start and end
+ 
+    >>> points1 = get_line((0, 0), (3, 4))
+    >>> points2 = get_line((3, 4), (0, 0))
+    >>> assert(set(points1) == set(points2))
+    >>> print points1
+    [(0, 0), (1, 1), (1, 2), (2, 3), (3, 4)]
+    >>> print points2
+    [(3, 4), (2, 3), (1, 2), (1, 1), (0, 0)]
+    """
+    # Setup initial conditions
+    x1, y1 = start
+    x2, y2 = end
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Determine how steep the line is
+    is_steep = abs(dy) > abs(dx)
+ 
+    # Rotate line
+    if is_steep:
+        x1, y1 = y1, x1
+        x2, y2 = y2, x2
+ 
+    # Swap start and end points if necessary and store swap state
+    swapped = False
+    if x1 > x2:
+        x1, x2 = x2, x1
+        y1, y2 = y2, y1
+        swapped = True
+ 
+    # Recalculate differentials
+    dx = x2 - x1
+    dy = y2 - y1
+ 
+    # Calculate error
+    error = dx // 2
+    ystep = 1 if y1 < y2 else -1
+ 
+    # Iterate over bounding box generating points between start and end
+    y = y1
+    points = []
+    for x in range(x1, x2 + 1):
+        coord = (y, x) if is_steep else (x, y)
+        points.append(coord)
+        error -= abs(dy)
+        if error < 0:
+            y += ystep
+            error += dx
+ 
+    # Reverse the list if the coordinates were swapped
+    if swapped:
+        points.reverse()
+    return points
 
 
 # Plotting the line with the cells which it crosses.
 
 # In[10]:
-
-p1 = (0, 0)
-p2 = (5, 5)
+p1 = (4, 5)
+p2 = (7, 1)
 
 cells = bres(p1, p2)
+
+cells1 = bresa(p1, p2)
 # print(cells)
 plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
 
@@ -126,13 +204,27 @@ plt.title("Integer based Bresenham algorithm")
 plt.show()
 
 
+plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
+for q in cells1:
+    plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
+    plt.plot([q[0], q[0] + 1], [q[1] + 1, q[1] + 1], 'k')
+    plt.plot([q[0], q[0]], [q[1],q[1] + 1], 'k')
+    plt.plot([q[0] + 1, q[0] + 1], [q[1], q[1] + 1], 'k')
+
+plt.grid()
+plt.axis('equal')
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Integer based Bresenham 1 algorithm")
+plt.show()
+
+
 # ### Python Bresenham Package
 # For comparison let's have a look at the Python Bresenham package!
 #
 # First we need to install it:
 
 # In[ ]:
-
 from bresenham import bresenham
 
 
@@ -142,7 +234,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (0, 0, 7, 5)
+line = (4, 5, 7, 1)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)
