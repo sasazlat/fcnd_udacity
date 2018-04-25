@@ -71,23 +71,22 @@ def low_bres(p1, p2, swapped=False):
     i = x1
     j = y1
     cells = []
-    if not swapped:
-        while i <= x2:
-            cells.append([i,j])
-            if d < 0:
-                i += xstep
-                d += dy
-            elif d == 0:
-                # uncomment these two lines for conservative approach
-                #cells.append([i+1, j])
-                #cells.append([i, j+1])
-                d += dy
-                i += xstep  
-                d -= dx
-                j += ystep
-            else:
-                d -= dx
-                j += ystep  
+    while i <= x2:
+        cells.append([i,j])
+        if d < 0:
+            i += xstep
+            d += dy
+        elif d == 0:
+            # uncomment these two lines for conservative approach
+            #cells.append([i+1, j])
+            #cells.append([i, j+1])
+            d += dy
+            i += xstep  
+            d -= dx
+            j += ystep
+        else:
+            d -= dx
+            j += ystep  
 
             #plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
             #for q in cells:
@@ -105,7 +104,7 @@ def low_bres(p1, p2, swapped=False):
      
     return cells
 
-def up_bres(p1,p2, swapped=False):
+def up_bres(p1,p2):
     x1, y1 = p1
     x2, y2 = p2
     dx = x2 - x1
@@ -123,19 +122,19 @@ def up_bres(p1,p2, swapped=False):
             i = i + xstep
             d = d - 2 * dy
         d = d + 2 * dx
-        plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
-        for q in cells:
-            plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
-            plt.plot([q[0], q[0] + 1], [q[1] + 1, q[1] + 1], 'k')
-            plt.plot([q[0], q[0]], [q[1],q[1] + 1], 'k')
-            plt.plot([q[0] + 1, q[0] + 1], [q[1], q[1] + 1], 'k')
+        #plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
+        #for q in cells:
+        #    plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
+        #    plt.plot([q[0], q[0] + 1], [q[1] + 1, q[1] + 1], 'k')
+        #    plt.plot([q[0], q[0]], [q[1],q[1] + 1], 'k')
+        #    plt.plot([q[0] + 1, q[0] + 1], [q[1], q[1] + 1], 'k')
 
-        plt.grid()
-        plt.axis('equal')
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.title("Integer based Bresenham algorithm")
-        plt.show()
+        #plt.grid()
+        #plt.axis('equal')
+        #plt.xlabel("X")
+        #plt.ylabel("Y")
+        #plt.title("Integer based Bresenham algorithm")
+        #plt.show()
 
     return cells
 
@@ -157,12 +156,12 @@ def bres(p1, p2):
         if x1 < x2:
             return low_bres(p1,p2)
         else:
-            return low_bres(p2,p1, swapped=True)
+            return low_bres(p2,p1)
     else:
         if y1 < y2:
             return up_bres(p1,p2)
         else:
-            return up_bres(p2,p1, swapped=True)
+            return up_bres(p2,p1)
 
 
 def bresa(start, end):
@@ -227,7 +226,7 @@ def bresa(start, end):
 
 # In[10]:
 p1 = (5, 0)
-p2 = (7, 4)
+p2 = (7, -4)
 
 cells = bres(p1, p2)
 
@@ -280,7 +279,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (5, 0, 7, 4)
+line = (5, 0, 7, -4)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)
