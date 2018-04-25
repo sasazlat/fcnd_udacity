@@ -54,63 +54,75 @@ plt.rcParams['figure.figsize'] = 12, 12
 #
 
 # In[7]:
-def bres(p1, p2):
-      # Setup initial conditions
+def low_bres(p1, p2, swapped=False):
     x1, y1 = p1
     x2, y2 = p2
     dx = x2 - x1
     dy = y2 - y1
- 
-    # Determine how steep the line is
-    is_steep = abs(dy) > abs(dx)
- 
-    # Rotate line
-    if is_steep:
-        x1, y1 = y1, x1
-        x2, y2 = y2, x2
- 
-    # Swap start and end points if necessary and store swap state
-    swapped = False
-    if x1 > x2:
-        x1, x2 = x2, x1
-        y1, y2 = y2, y1
-        swapped = True
- 
-    # Recalculate differentials
+    ystep = 1
+    if dy < 0:
+        ystep = -1
+        dy = -dy
+    xstep = 1
+    if dx < 0:
+        xstep = -1
+        dx = -dx
+    d = dy - dx
+    i = x1
+    j = y1
+    cells = []
+    if not swapped:
+        while i <= x2:
+            cells.append([i,j])
+            if d < 0:
+                i += xstep
+                d += dy
+            elif d == 0:
+                # uncomment these two lines for conservative approach
+                #cells.append([i+1, j])
+                #cells.append([i, j+1])
+                d += dy
+                i += xstep  
+                d -= dx
+                j += ystep
+            else:
+                d -= dx
+                j += ystep  
+
+            #plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
+            #for q in cells:
+            #    plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
+            #    plt.plot([q[0], q[0] + 1], [q[1] + 1, q[1] + 1], 'k')
+            #    plt.plot([q[0], q[0]], [q[1],q[1] + 1], 'k')
+            #    plt.plot([q[0] + 1, q[0] + 1], [q[1], q[1] + 1], 'k')
+
+            #plt.grid()
+            #plt.axis('equal')
+            #plt.xlabel("X")
+            #plt.ylabel("Y")
+            #plt.title("Integer based Bresenham algorithm")
+            #plt.show()
+     
+    return cells
+
+def up_bres(p1,p2, swapped=False):
+    x1, y1 = p1
+    x2, y2 = p2
     dx = x2 - x1
     dy = y2 - y1
-
- 
-    # Calculate error
-    d = dy - dx
-    ystep = 1 if abs(y1) < abs(y2) else -1
-    xstep = 1 if abs(x1) < abs(x2) else -1
- 
-    # Iterate over bounding box generating points between start and end
-    j = y1
+    xstep = 1
+    if dx < 0:
+        xstep = -1
+        dx = -dx
+    d = 2 * dx - dy
     i = x1
     cells = []
-    
-    while i < x2:
-        coord = (j, i) if is_steep else (i, j)
-        cells.append(coord)
-        #d -= abs(dy)
-        if d < 0:
-            i += xstep
-            d += dy
-        elif d == 0:
-            # uncomment these two lines for conservative approach
-            #cells.append([i+1, j])
-            #cells.append([i, j+1])
-            d += dy
-            i += xstep  
-            d -= dx
-            j += ystep
-        else:
-            d -= dx
-            j += ystep
-
-    # Reverse the list if the coordinates were swapped
+    for j in range(y1, y2 + 1):
+        cells.append([i,j])
+        if d > 0:
+            i = i + xstep
+            d = d - 2 * dy
+        d = d + 2 * dx
         plt.plot([p1[0], p2[0]], [p1[1], p2[1]])
         for q in cells:
             plt.plot([q[0], q[0] + 1], [q[1], q[1]], 'k')
@@ -124,10 +136,34 @@ def bres(p1, p2):
         plt.ylabel("Y")
         plt.title("Integer based Bresenham algorithm")
         plt.show()
-    if swapped:
-        cells.reverse()
 
     return cells
+
+def bres(p1, p2):
+
+    # Setup initial conditions
+    x1, y1 = p1
+    x2, y2 = p2
+    dx = x2 - x1
+    dy = y2 - y1
+
+    # Determine how steep the line is
+    is_not_steep = abs(dy) < abs(dx)
+
+    # Swap start and end points if necessary and store swap state
+    swapped = False
+
+    if is_not_steep:
+        if x1 < x2:
+            return low_bres(p1,p2)
+        else:
+            return low_bres(p2,p1, swapped=True)
+    else:
+        if y1 < y2:
+            return up_bres(p1,p2)
+        else:
+            return up_bres(p2,p1, swapped=True)
+
 
 def bresa(start, end):
     """Bresenham's Line Algorithm
@@ -190,8 +226,8 @@ def bresa(start, end):
 # Plotting the line with the cells which it crosses.
 
 # In[10]:
-p1 = (6, 5)
-p2 = (7, 1)
+p1 = (5, 0)
+p2 = (7, 4)
 
 cells = bres(p1, p2)
 
@@ -244,7 +280,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (4, 5, 7, 1)
+line = (5, 0, 7, 4)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)

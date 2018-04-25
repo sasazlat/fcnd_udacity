@@ -53,36 +53,102 @@ plt.rcParams['figure.figsize'] = 12, 12
 #
 
 # In[4]:
-def bres(p1, p2): 
+def bres(p1, p2):
     """
-    Note this solution requires `x1` < `x2` and `y1` < `y2`.
+    This solution requires no condition on points p1 and p2.
     """
-    x1, y1 = p1
+    xi, yi = p1
     x2, y2 = p2
-    cells = []
-    
-    # TODO: Determine valid grid cells
-    dx = x2 - x1
-    dy = y2 - y1
-    d = dy - dx
-    i = x1
-    j = y1
-    while i < x2 and j < y2 :
-        cells.append([i,j])
-        if d < 0:
-            i += 1
-            d += dy
-        elif d == 0:
-            # uncomment these two lines for conservative approach
-            #cells.append([i+1, j])
-            #cells.append([i, j+1])
-            d += dy
-            i += 1  
-            d -= dx
-            j += 1
+    cells = [(xi, yi)]
+
+    # Slope is calculated once only if it's possible
+    if xi != x2:
+        m = (y2 - yi) / (x2 - xi)
+        delta_y = m
+        x1 = xi
+        y1 = yi + 0.5 - m * 0.5
+
+        if x1 < x2 and yi <= y2:
+            x = x1 + 1
+            y = yi
+            inc_y = y1 + delta_y
+            while x < x2 + 1 or y < y2:
+                if inc_y > y + 1:
+                    y += 1
+                elif inc_y == y + 1:
+                    y += 1
+                    x += 1
+                    delta_y += m
+                else:
+                    x += 1
+                    delta_y += m
+                cells.append((x - 1, y))
+                inc_y = y1 + delta_y
+
+        elif x1 < x2 and yi >= y2:
+            x = x1 + 1
+            y = yi
+            inc_y = y1 + delta_y
+            while x < x2 + 1 or y > y2:
+                if inc_y < y:
+                    y -= 1
+                elif inc_y == y:
+                    y -= 1
+                    x += 1
+                    delta_y += m
+                else:
+                    x += 1
+                    delta_y += m
+                cells.append((x - 1, y))
+                inc_y = y1 + delta_y
+
+        elif x1 > x2 and yi > y2:
+            x = x1
+            y = yi
+            inc_y = y1
+            delta_y = 0
+            while x > x2 or y > y2:
+                if inc_y < y:
+                    y -= 1
+                elif inc_y == y:
+                    y -= 1
+                    x -= 1
+                    delta_y -= m
+                else:
+                    x -= 1
+                    delta_y -= m
+                cells.append((x, y))
+                inc_y = y1 + delta_y
+
+        elif x1 > x2 and yi <= y2:
+            x = x1
+            y = yi
+            inc_y = y1
+            delta_y = 0
+            while x > x2 or y < y2:
+                if inc_y > y + 1:
+                    y += 1
+                elif inc_y == y + 1:
+                    y += 1
+                    x -= 1
+                    delta_y -= m
+                else:
+                    x -= 1
+                    delta_y -= m
+                cells.append((x, y))
+                inc_y = y1 + delta_y
+
+    else:
+        y = yi
+        if y2 >= yi:
+            while y < y2 + 1:
+                cells.append((xi, y))
+                y += 1
         else:
-            d -= dx
-            j += 1  
+            while y > y2:
+                cells.append((xi, y - 1))
+                y -= 1
+
     return np.array(cells)
 
 
@@ -90,7 +156,7 @@ def bres(p1, p2):
 
 # In[5]:
 p1 = (0, 0)
-p2 = (7, 7)
+p2 = (-7, 4)
 
 cells = bres(p1, p2)
 # print(cells)
@@ -131,7 +197,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (0, 0, 4, 7)
+line = (0, 0, -7, 4)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)

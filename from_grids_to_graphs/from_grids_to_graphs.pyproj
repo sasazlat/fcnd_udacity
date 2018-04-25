@@ -36,6 +36,9 @@
     <Compile Include="a_star_city\planning.py" />
     <Compile Include="bresenham\bresen_ham.py" />
     <Compile Include="bresenham\bresenham_solution.py" />
+    <Compile Include="bresenham\new_bres.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Graph_Search\Graph-Search-Solution.py" />
     <Compile Include="Graph_Search\Graph-Search.py" />
     <Compile Include="Graph_Search\grid.py" />
