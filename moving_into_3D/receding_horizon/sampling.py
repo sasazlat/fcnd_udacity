@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.neighbors import KDTree
-from shapely.geometry import Polygon, Point
+from shapely.geometry import Polygon, Point, LineString
+import networkx as nx
 
 class Poly:
 
@@ -11,6 +12,10 @@ class Poly:
     @property
     def height(self):
         return self._height
+
+    @property
+    def polygon(self):
+        return self._polygon
 
     @property
     def coords(self):
@@ -64,7 +69,7 @@ class Sampler:
         self._zmax = 20
         # Record maximum polygon dimension in the xy plane
         # multiply by 2 since given sizes are half widths
-        # This is still rather clunky but will allow us to 
+        # This is still rather clunky but will allow us to
         # cut down the number of polygons we compare with by a lot.
         self._max_poly_xy = 2 * np.max((data[:, 3], data[:, 4]))
         centers = np.array([p.center for p in self._polygons])
@@ -94,3 +99,29 @@ class Sampler:
     @property
     def polygons(self):
         return self._polygons
+
+
+
+# In[29]:
+def can_connect(n1, n2, polygons):
+    l = LineString([n1, n2])
+    for p in polygons:
+        if p.crosses(l) and p.height >= min(n1[2], n2[2]):
+            return False
+    return True
+
+def create_graph(nodes, k, polygons):
+    g = nx.Graph()
+    tree = KDTree(nodes)
+    for n1 in nodes:
+        # for each node connect try to connect to k nearest nodes
+        idxs = tree.query([n1], k, return_distance=False)[0]
+
+        for idx in idxs:
+            n2 = nodes[idx]
+            if n2 == n1:
+                continue
+                
+            if can_connect(n1, n2, polygons):
+                g.add_edge(n1, n2, weight=1)
+    return g

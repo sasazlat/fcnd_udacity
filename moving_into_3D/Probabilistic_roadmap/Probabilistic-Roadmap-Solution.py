@@ -116,6 +116,8 @@ def extract_polygons(data):
         polygons.append(p)
 
     return polygons
+
+
 class Sampler:
 
     def __init__(self, data):
@@ -262,13 +264,13 @@ print("Number of edges", len(g.edges))
 
 
 # In[32]:
-grid = create_grid(data, sampler._zmax, 1)
+grid2 = create_grid(data, sampler._zmax, 1)
 
 
 # In[33]:
 fig = plt.figure()
 
-plt.imshow(grid, cmap='Greys', origin='lower')
+plt.imshow(grid2, cmap='Greys', origin='lower')
 
 nmin = np.min(data[:, 0])
 emin = np.min(data[:, 1])

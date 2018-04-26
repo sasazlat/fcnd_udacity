@@ -226,7 +226,7 @@ def bresa(start, end):
 
 # In[10]:
 p1 = (5, 0)
-p2 = (7, -4)
+p2 = (7, -14)
 
 cells = bres(p1, p2)
 
