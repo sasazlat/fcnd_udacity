@@ -289,10 +289,10 @@ def prune_path_bresenham(grid, path):
        # The 3rd point now becomes the 2nd point
        # and the check is redone with a new third point
        # on the next iteration.
-       #br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
-       my_br = bresa(p1, p3)
+       br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+       #br = bresa(p1, p3)
 
-       if all((grid[pp] == 0) for pp in my_br):
+       if all((grid[pp] == 0) for pp in br):
            # Something subtle here but we can mutate
            # `pruned_path` freely because the length
            # of the list is checked on every iteration.

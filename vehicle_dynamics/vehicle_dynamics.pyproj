@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>56379ef5-104c-47b2-83a3-19d76e800b08</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>vehicle_dynamics.py</StartupFile>
+    <StartupFile>11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="vehicle_dynamics.py" />
+    <Compile Include="11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics.py" />
+    <Compile Include="11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics_SOLUTION.py" />
+    <Compile Include="11.coaxial_drone_dynamics_exercize\ExerciseAnswers.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="11.coaxial_drone_dynamics_exercize\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

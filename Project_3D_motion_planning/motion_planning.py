@@ -159,8 +159,8 @@ class MotionPlanning(Drone):
         # TODO: adapt to set goal as latitude / longitude position and convert
         # picked location from simulator manually controlled -122.400886,
         # 37.795174
-        lat_goal = 37.795174
-        lon_goal = -122.400886
+        lat_goal = 37.797385
+        lon_goal = -122.394602
         goal_global = [lon_goal, lat_goal, 0.0]
         goal_local = global_to_local(goal_global, self.global_home)
         #grid_goal = (goal_local[0], goal_global[1])
