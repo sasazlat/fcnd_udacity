@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>56379ef5-104c-47b2-83a3-19d76e800b08</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics.py</StartupFile>
+    <StartupFile>14_tracking_changes_to_state_exercize\2. Advance_State_for_Controlled_Drone.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,12 +21,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics.py" />
-    <Compile Include="11.coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics_SOLUTION.py" />
-    <Compile Include="11.coaxial_drone_dynamics_exercize\ExerciseAnswers.py" />
+    <Compile Include="11_coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics.py" />
+    <Compile Include="11_coaxial_drone_dynamics_exercize\1. Coaxial_Drone_Dynamics_SOLUTION.py" />
+    <Compile Include="11_coaxial_drone_dynamics_exercize\ExerciseAnswers.py" />
+    <Compile Include="14_tracking_changes_to_state_exercize\2. Advance_State_for_Controlled_Drone_SOLUTION.py" />
+    <Compile Include="14_tracking_changes_to_state_exercize\2. Advance_State_for_Controlled_Drone.py" />
+    <Compile Include="14_tracking_changes_to_state_exercize\ExerciseAnswers.py" />
+    <Compile Include="17_uncontrolled_drone_Exercize\3. Uncontrolled_2D_Drone_SOLUTION.py" />
+    <Compile Include="17_uncontrolled_drone_Exercize\3. Uncontrolled_2D_Drone.py" />
+    <Compile Include="17_uncontrolled_drone_Exercize\ExerciseAnswers.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="11.coaxial_drone_dynamics_exercize\" />
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\11_coaxial_drone_dynamics_exercize\" />
+    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\14_tracking_changes_to_state_exercize\" />
+    <Folder Include="17_uncontrolled_drone_Exercize\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
