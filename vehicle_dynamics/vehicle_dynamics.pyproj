@@ -30,6 +30,9 @@
     <Compile Include="17_uncontrolled_drone_Exercize\3. Uncontrolled_2D_Drone_SOLUTION.py" />
     <Compile Include="17_uncontrolled_drone_Exercize\3. Uncontrolled_2D_Drone.py" />
     <Compile Include="17_uncontrolled_drone_Exercize\ExerciseAnswers.py" />
+    <Compile Include="22_calculating_acceleration_in_2D\4. Calculating_Accelerations_in_2D_SOLUTION.py" />
+    <Compile Include="22_calculating_acceleration_in_2D\4. Calculating_Accelerations_in_2D.py" />
+    <Compile Include="22_calculating_acceleration_in_2D\ExerciseAnswers.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="11_coaxial_drone_dynamics_exercize\" />
@@ -37,6 +40,7 @@
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\11_coaxial_drone_dynamics_exercize\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\14_tracking_changes_to_state_exercize\" />
     <Folder Include="17_uncontrolled_drone_Exercize\" />
+    <Folder Include="22_calculating_acceleration_in_2D\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
