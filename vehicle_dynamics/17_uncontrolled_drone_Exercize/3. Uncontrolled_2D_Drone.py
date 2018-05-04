@@ -34,7 +34,6 @@ pylab.rcParams['figure.figsize'] = 10, 10
 
 
 # In[ ]:
-
 class Drone2D:
     
     def __init__(self,
@@ -66,6 +65,13 @@ class Drone2D:
         #  (self.X) of the vehicle all at once using
         #  a technique similar to what you saw in the
         #  previous example for the 1D drone.
+        X_dot = np.array([self.X[3],
+                           self.X[4],
+                           self.X[5],
+                           self.g,
+                           0.0,
+                           0.0])
+        self.X = self.X + X_dot * dt
         
         return self.X
 
@@ -78,7 +84,6 @@ class Drone2D:
 # ![](https://s3.amazonaws.com/video.udacity-data.com/topher/2018/March/5a9dbf94_yz-graph/yz-graph.png)
 
 # In[ ]:
-
 drone = Drone2D()
 Z_history = []
 Y_history = []

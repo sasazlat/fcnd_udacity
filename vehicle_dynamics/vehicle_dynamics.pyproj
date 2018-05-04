@@ -32,6 +32,8 @@
     <Compile Include="17_uncontrolled_drone_Exercize\ExerciseAnswers.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="11_coaxial_drone_dynamics_exercize\" />
+    <Folder Include="14_tracking_changes_to_state_exercize\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\11_coaxial_drone_dynamics_exercize\" />
     <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\vehicle_dynamics\14_tracking_changes_to_state_exercize\" />
     <Folder Include="17_uncontrolled_drone_Exercize\" />

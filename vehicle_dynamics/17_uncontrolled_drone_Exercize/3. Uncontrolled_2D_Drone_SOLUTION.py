@@ -2,23 +2,27 @@
 # coding: utf-8
 
 # <img src="Drone2.png" width="400" height="400">
-# 
-# For the rest of the lesson you will be working with a drone that is able to move in two dimensions. 
-# 
-# This drone has two propellers each located a distance $l$ from the center of mass. In this exercise, we will ignore the yaw-inducing reactive moment from each propeller.
-# 
-# The state can be described by the vector: 
-# 
+#
+# For the rest of the lesson you will be working with a drone that is able to
+# move in two dimensions.
+#
+# This drone has two propellers each located a distance $l$ from the center of
+# mass.  In this exercise, we will ignore the yaw-inducing reactive moment from
+# each propeller.
+#
+# The state can be described by the vector:
+#
 # $$X = [z , y, \phi, \dot{z}, \dot{y},\dot{\phi}]$$
-# 
-# We will have to track the drone's position in 2 dimensions and its rotation about the $x$ axis, which is directed into the plane. 
+#
+# We will have to track the drone's position in 2 dimensions and its rotation
+# about the $x$ axis, which is directed into the plane.
 
 # In[1]:
 
 
 #get_ipython().run_line_magic('matplotlib', 'inline')
-#get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
-
+#get_ipython().run_line_magic('config', "InlineBackend.figure_format =
+#'retina'")
 import numpy as np 
 import math
 import matplotlib.pyplot as plt
@@ -31,14 +35,13 @@ pylab.rcParams['figure.figsize'] = 10, 10
 
 # In[2]:
 
-
 class Drone2D:
     
     def __init__(self,
-                 k_f = 0.1, # value of the thrust coefficient
-                 i = 0.1,   # moment of inertia around the x-axis
-                 m = 1.0,   # mass of the vehicle 
-                 l = 0.15,  # distance between the center of 
+                 k_f=0.1, # value of the thrust coefficient
+                 i=0.1,   # moment of inertia around the x-axis
+                 m=1.0,   # mass of the vehicle
+                 l=0.15,  # distance between the center of
                             #   mass and the propeller axis
                 ):
         
@@ -59,26 +62,25 @@ class Drone2D:
         Note that this method assumes zero rotational speed 
         for both propellers."""
         
-        X_dot = np.array([
-            self.X[3], 
+        X_dot = np.array([self.X[3], 
             self.X[4], 
             self.X[5], 
             self.g, 
             0.0, 
             0.0])
-        # Change in state will be 
+        # Change in state will be
         self.X = self.X + X_dot * dt
         return self.X
 
 
 # ### Visual Code Check
-# 
-# If your code is working correctly then running the cell below should produce a graph that looks like this
-# 
+#
+# If your code is working correctly then running the cell below should produce
+# a graph that looks like this
+#
 # ![](https://s3.amazonaws.com/video.udacity-data.com/topher/2018/March/5a9dbf94_yz-graph/yz-graph.png)
 
 # In[3]:
-
 
 drone = Drone2D()
 Z_history = []
@@ -95,9 +97,9 @@ for _ in range(100):
     # call the uncontrolled (free fall) advance state function
     drone.advance_state_uncontrolled(dt)
     
-plt.plot(Y_history, Z_history )
+plt.plot(Y_history, Z_history)
 
-# invert the vertical axis so down is positive 
+# invert the vertical axis so down is positive
 plt.gca().invert_yaxis()
 plt.xlabel("Horizontal Position (y)")
 plt.ylabel("Vertical Position (z)")
