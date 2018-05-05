@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>56379ef5-104c-47b2-83a3-19d76e800b08</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>14_tracking_changes_to_state_exercize\2. Advance_State_for_Controlled_Drone.py</StartupFile>
+    <StartupFile>22_calculating_acceleration_in_2D\4. Calculating_Accelerations_in_2D.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

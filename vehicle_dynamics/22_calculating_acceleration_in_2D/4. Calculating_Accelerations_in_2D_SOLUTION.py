@@ -81,6 +81,7 @@ class Drone2D:
         
         phi = self.X[2]
         a_z = self.g - c * math.cos(phi) / self.m
+        print (a_z)
         return a_z
 
     @property    
@@ -93,6 +94,7 @@ class Drone2D:
         
         phi = self.X[2]
         a_y = c * math.sin(phi) / self.m
+        print (a_y)
         return a_y
     
     @property
@@ -102,6 +104,7 @@ class Drone2D:
         
         c, M_x = self.get_thrust_and_moment()
         angular_acc = M_x / self.I_x
+        print (angular_acc)
         return angular_acc
 
 
