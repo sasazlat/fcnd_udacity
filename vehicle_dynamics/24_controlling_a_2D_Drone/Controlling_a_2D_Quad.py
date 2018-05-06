@@ -22,7 +22,6 @@ pylab.rcParams['figure.figsize'] = 10, 10
 # vertical trajectory.
 
 # In[ ]:
-
 class Drone2D:
     
     def __init__(self,
@@ -101,7 +100,14 @@ class Drone2D:
         """
         
         # TODO
-        
+        X_dot = np.array([self.X[3], 
+            self.X[4], 
+            self.X[5], 
+            self.z_dot_dot, 
+            self.y_dot_dot, 
+            self.phi_dot_dot])
+        x = self.X + X_dot * dt
+        self.X = x
         return self.X
     
     def set_rotors_angular_velocities(self,linear_acc):
@@ -112,7 +118,9 @@ class Drone2D:
         """
         
         # TODO
-
+        omega = np.sqrt((self.m * (self.g - linear_acc)) / (2 *self.k_f))
+        self.omega_1 = omega
+        self.omega_2 = omega
         return self.omega_1, self.omega_2
 
 
@@ -155,7 +163,6 @@ for i in range(t.shape[0] - 1):
 # Compare the planned path to the one that has been executed!
 
 # In[ ]:
-
 plt.plot(t,z_path,linestyle='-',marker='o',color='red')
 plt.plot(t,drone_state_history[:,0],linestyle='-',color='blue')
 plt.grid()
