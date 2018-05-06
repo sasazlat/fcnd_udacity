@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>A_STAR\A_Star.py</StartupFile>
+    <ProjectGuid>bb1af7e5-76a1-4b83-91ce-4c58ffca1327</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>geodetic_to_NED.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>planning_as_search</Name>
-    <RootNamespace>planning_as_search</RootNamespace>
+    <Name>6_flying_car_representation</Name>
+    <RootNamespace>flying_car_representation</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -22,32 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ALL_S\all_searcehes.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="A_STAR\A_Star_Solution.py" />
-    <Compile Include="A_STAR\A_Star.py" />
-    <Compile Include="BFS\BFS-Solution.py" />
-    <Compile Include="BFS\BFS.py" />
-    <Compile Include="BFS\DFS.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DFS\dfs.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UCS\UCS.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UCS\UCS_solution.py">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BFS\" />
-    <Folder Include="DFS\" />
-    <Folder Include="ALL_S\" />
-    <Folder Include="A_STAR\" />
-    <Folder Include="UCS\" />
+    <Compile Include="geodetic_to_NED.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />

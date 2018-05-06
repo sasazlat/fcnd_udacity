@@ -118,7 +118,7 @@ class Drone2D:
         """
         
         # TODO
-        omega = np.sqrt((self.m * (self.g - linear_acc)) / (2 *self.k_f))
+        omega = np.sqrt((self.m * (self.g - linear_acc)) / (2 * self.k_f))
         self.omega_1 = omega
         self.omega_2 = omega
         return self.omega_1, self.omega_2

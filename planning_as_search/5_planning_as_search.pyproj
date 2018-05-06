@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>89adf156-23f0-478d-b9cb-27ff3753f143</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>real_world_planning_problem.py</StartupFile>
+    <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>A_STAR\A_Star.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>real_world_planning_problem</Name>
-    <RootNamespace>real_world_planning_problem</RootNamespace>
+    <Name>5_planning_as_search</Name>
+    <RootNamespace>planning_as_search</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -22,7 +23,32 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="real_world_planning_problem.py" />
+    <Compile Include="ALL_S\all_searcehes.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="A_STAR\A_Star_Solution.py" />
+    <Compile Include="A_STAR\A_Star.py" />
+    <Compile Include="BFS\BFS-Solution.py" />
+    <Compile Include="BFS\BFS.py" />
+    <Compile Include="BFS\DFS.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DFS\dfs.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UCS\UCS.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UCS\UCS_solution.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BFS\" />
+    <Folder Include="DFS\" />
+    <Folder Include="ALL_S\" />
+    <Folder Include="A_STAR\" />
+    <Folder Include="UCS\" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />

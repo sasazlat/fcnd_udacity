@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "preview_drone", "preview_drone\preview_drone.pyproj", "{4A907668-2D72-4A0C-8594-94DF6AC93D95}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "2_preview_drone", "preview_drone\2_preview_drone.pyproj", "{4A907668-2D72-4A0C-8594-94DF6AC93D95}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "planning_as_search", "planning_as_search\planning_as_search.pyproj", "{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "5_planning_as_search", "planning_as_search\5_planning_as_search.pyproj", "{486AE560-1CD3-4D2C-812F-E2A70BA20CA0}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "flying_car_representation", "flying_car_representation\flying_car_representation.pyproj", "{BB1AF7E5-76A1-4B83-91CE-4C58FFCA1327}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "6_flying_car_representation", "flying_car_representation\6_flying_car_representation.pyproj", "{BB1AF7E5-76A1-4B83-91CE-4C58FFCA1327}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "euler_rotations", "euler_rotations\euler_rotations.pyproj", "{B357BEB0-2604-486D-857A-3BC7238DC6F7}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "from_grids_to_graphs", "from_grids_to_graphs\from_grids_to_graphs.pyproj", "{F63E63EF-76A2-4279-9148-AE9A7BC0CA28}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "7_from_grids_to_graphs", "from_grids_to_graphs\7_from_grids_to_graphs.pyproj", "{F63E63EF-76A2-4279-9148-AE9A7BC0CA28}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "moving_into_3D", "moving_into_3D\moving_into_3D.pyproj", "{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "8_moving_into_3D", "moving_into_3D\8_moving_into_3D.pyproj", "{1644BFF0-8FB0-4BEE-9A45-86133B0023F4}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "real_world_planning_problem", "real_world_planning_problem\real_world_planning_problem.pyproj", "{89ADF156-23F0-478D-B9CB-27FF3753F143}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "9_real_world_planning_problem", "real_world_planning_problem\9_real_world_planning_problem.pyproj", "{89ADF156-23F0-478D-B9CB-27FF3753F143}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PROJECT_3D_motion_planning", "Project_3D_motion_planning\PROJECT_3D_motion_planning.pyproj", "{77075FDC-7B29-4FB2-8160-8B59CE79D265}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "vehicle_dynamics", "vehicle_dynamics\vehicle_dynamics.pyproj", "{56379EF5-104C-47B2-83A3-19D76E800B08}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "11_vehicle_dynamics", "vehicle_dynamics\11_vehicle_dynamics.pyproj", "{56379EF5-104C-47B2-83A3-19D76E800B08}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "12_Introduction_to_vehicle_control", "12_Introduction_to_vehicle_control\12_Introduction_to_vehicle_control.pyproj", "{AB4367EA-9A54-4B92-9A98-F3E548381C0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,8 @@ Global
 		{77075FDC-7B29-4FB2-8160-8B59CE79D265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56379EF5-104C-47B2-83A3-19D76E800B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56379EF5-104C-47B2-83A3-19D76E800B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4367EA-9A54-4B92-9A98-F3E548381C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4367EA-9A54-4B92-9A98-F3E548381C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
