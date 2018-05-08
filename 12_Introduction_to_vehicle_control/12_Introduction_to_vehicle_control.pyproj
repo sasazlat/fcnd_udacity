@@ -22,12 +22,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="controllers.py" />
-    <Compile Include="open_loop.py" />
-    <Compile Include="plotting.py" />
-    <Compile Include="simplified_monorotor.py" />
-    <Compile Include="testing.py" />
-    <Compile Include="trajectories.py" />
+    <Compile Include="Implement_P_Controller_Exercise\controllers.py" />
+    <Compile Include="Implement_P_Controller_Exercise\open_loop.py" />
+    <Compile Include="Implement_P_Controller_Exercise\plotting.py" />
+    <Compile Include="Implement_P_Controller_Exercise\simplified_monorotor.py" />
+    <Compile Include="Implement_P_Controller_Exercise\testing.py" />
+    <Compile Include="Implement_P_Controller_Exercise\trajectories.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implement_P_Controller_Exercise\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
