@@ -2,16 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>bb1af7e5-76a1-4b83-91ce-4c58ffca1327</ProjectGuid>
+    <ProjectGuid>4a907668-2d72-4a0c-8594-94df6ac93d95</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>geodetic_to_NED.py</StartupFile>
+    <StartupFile>up_and_down.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>6_flying_car_representation</Name>
-    <RootNamespace>flying_car_representation</RootNamespace>
+    <Name>l_2_preview_drone</Name>
+    <RootNamespace>fcnd_udacity</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -23,7 +23,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="geodetic_to_NED.py" />
+    <Compile Include="ProjectBackyardFlyer\backyard_flyer.py" />
+    <Compile Include="ProjectBackyardFlyer\backyard_flyer_solution.py" />
+    <Compile Include="event_driven.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="event_driven_solution.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fcnd_udacity.py" />
+    <Compile Include="up_and_down.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProjectBackyardFlyer\" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />

@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>11_vehicle_dynamics</Name>
+    <Name>l_11_vehicle_dynamics</Name>
     <RootNamespace>vehicle_dynamics</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

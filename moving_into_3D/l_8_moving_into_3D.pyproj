@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>8_moving_into_3D</Name>
+    <Name>l_8_moving_into_3D</Name>
     <RootNamespace>moving_into_3D</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>

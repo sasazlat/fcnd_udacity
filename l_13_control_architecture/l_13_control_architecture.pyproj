@@ -2,17 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>486ae560-1cd3-4d2c-812f-e2a70ba20ca0</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>A_STAR\A_Star.py</StartupFile>
+    <ProjectGuid>cf3d8ead-62a2-4b9f-a475-5adef03ecb0a</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>l_13_control_architecture.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>5_planning_as_search</Name>
-    <RootNamespace>planning_as_search</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
+    <Name>l_13_control_architecture</Name>
+    <RootNamespace>l_13_control_architecture</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,35 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ALL_S\all_searcehes.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="A_STAR\A_Star_Solution.py" />
-    <Compile Include="A_STAR\A_Star.py" />
-    <Compile Include="BFS\BFS-Solution.py" />
-    <Compile Include="BFS\BFS.py" />
-    <Compile Include="BFS\DFS.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DFS\dfs.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UCS\UCS.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UCS\UCS_solution.py">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BFS\" />
-    <Folder Include="DFS\" />
-    <Folder Include="ALL_S\" />
-    <Folder Include="A_STAR\" />
-    <Folder Include="UCS\" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="CondaEnv|CondaEnv|fcndenv" />
+    <Compile Include="l_13_control_architecture.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

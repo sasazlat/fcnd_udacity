@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>7_from_grids_to_graphs</Name>
+    <Name>l_7_from_grids_to_graphs</Name>
     <RootNamespace>from_grids_to_graphs</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|fcndenv</InterpreterId>
   </PropertyGroup>
