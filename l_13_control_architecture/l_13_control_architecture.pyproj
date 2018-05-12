@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cf3d8ead-62a2-4b9f-a475-5adef03ecb0a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>l_13_control_architecture.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="l_13_control_architecture.py" />
+    <Compile Include="Linearization_Exploration_Exercise\Linearization.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Linearization_Exploration_Exercise\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
