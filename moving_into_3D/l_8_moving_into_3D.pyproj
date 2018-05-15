@@ -24,7 +24,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!--<Folder Include="moving_into_3D\random_sampling\" />-->
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\moving_into_3D\probabilistic_roadmap\" />
     <Folder Include="probabilistic_roadmap\" />
     <Folder Include="receding_horizon\" />
     <Folder Include="random_sampling\" />

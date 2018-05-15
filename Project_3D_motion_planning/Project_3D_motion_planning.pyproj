@@ -67,14 +67,7 @@
     <Folder Include="example7 - ok\" />
     <Folder Include="example8 - ok\" />
     <Folder Include="images\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example - ok\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example2-to fix\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example3\" />
     <Folder Include="example4\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example5 - ok\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example6 - ok\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example7 - ok\" />
-    <Folder Include="D:\Documents\VisualStudioProjects\fcnd_udacity\Project_3D_motion_planning\example8 - ok\" />
     <Folder Include="misc\" />
   </ItemGroup>
   <ItemGroup>
