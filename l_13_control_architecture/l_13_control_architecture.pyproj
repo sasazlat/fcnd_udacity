@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cf3d8ead-62a2-4b9f-a475-5adef03ecb0a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Linearization_Exploration_Exercise\Linearization.py</StartupFile>
+    <StartupFile>Implement_Linear_Controller_Exercise\Linear_Controller.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,10 +21,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="controllers.py" />
+    <Compile Include="drone.py" />
+    <Compile Include="Implement_Linear_Controller_Exercise\Linear_Controller_Solution.py" />
+    <Compile Include="Implement_Linear_Controller_Exercise\Linear_Controller.py" />
     <Compile Include="Linearization_Exploration_Exercise\Linearization.py" />
+    <Compile Include="plotting.py" />
+    <Compile Include="simulate.py" />
+    <Compile Include="trajectories.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Linearization_Exploration_Exercise\" />
+    <Folder Include="Implement_Linear_Controller_Exercise\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
