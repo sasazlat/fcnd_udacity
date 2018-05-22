@@ -23,6 +23,8 @@
   <ItemGroup>
     <Compile Include="controllers.py" />
     <Compile Include="drone.py" />
+    <Compile Include="Implement Non-Linear Controller Exercise\Non-Linear Controller Solution.py" />
+    <Compile Include="Implement Non-Linear Controller Exercise\Non-Linear Controller.py" />
     <Compile Include="Implement_Linear_Controller_Exercise\Linear_Controller_Solution.py" />
     <Compile Include="Implement_Linear_Controller_Exercise\Linear_Controller.py" />
     <Compile Include="Linearization_Exploration_Exercise\Linearization.py" />
@@ -33,6 +35,7 @@
   <ItemGroup>
     <Folder Include="Linearization_Exploration_Exercise\" />
     <Folder Include="Implement_Linear_Controller_Exercise\" />
+    <Folder Include="Implement Non-Linear Controller Exercise\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

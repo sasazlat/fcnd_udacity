@@ -189,6 +189,17 @@ class LinearCascadingController:
         #   to transform u_1_bar into u_1 and then return u_1
         
         u_1 = 0.0
+
+        z_error = z_target - z_actual
+        z_dot_error = z_dot_target - z_dot_actual
+
+        p_term = self.z_k_p * z_error
+        d_term = self.z_k_d * z_dot_error
+
+        u_1_bar = p_term + d_term + z_dot_dot_target
+
+        u_1 = self.m * (self.g - u_1_bar)
+
         return u_1
 
     
@@ -210,6 +221,17 @@ class LinearCascadingController:
         #   to transform y_dot_dot_target into phi_commanded
         #   and then return phi_commanded
         phi_commanded = 0.0
+        
+        y_error = y_target - y_actual
+        y_dot_error = y_dot_target - y_dot_actual
+
+        p_term = self.y_k_p * y_error
+        d_term = self.y_k_d * y_dot_error
+
+        y_dot_dot_target = p_term + d_term + y_dot_dot_ff
+
+        phi_commanded = y_dot_dot_target / self.g
+
         return phi_commanded 
 
 
@@ -229,6 +251,16 @@ class LinearCascadingController:
         #   and then use the linear math from above to
         #   transform u_2_bar into u_2 and then return u_2
         u_2 = 0.0
+        phi_error = phi_target - phi_actual
+        phi_dot_error = phi_dot_target - phi_dot_actual
+
+        p_term = self.phi_k_p * phi_error
+        d_term = self.phi_k_d * phi_dot_error
+
+        u_2_bar = p_term + d_term
+
+        u_2 = self.I_x * u_2_bar
+
         return u_2
 
 
@@ -263,12 +295,12 @@ class LinearCascadingController:
 # You'll have to tune the controller gains to get good results.
 
 #### CONTROLLER GAINS (TUNE THESE) ######
-z_k_p = 0.0  
-z_k_d = 0.0  
-y_k_p = 0.0
-y_k_d = 0.0
-phi_k_p = 0.0
-phi_k_d = 0.0
+z_k_p = 0.1   
+z_k_d = 10.0   
+y_k_p = 0.3
+y_k_d = 10.0
+phi_k_p = 150.0
+phi_k_d = 50.0
 
 #########################################
 drone = Drone2D()
@@ -284,7 +316,7 @@ linear_controller = LinearCascadingController(drone.m,
     phi_k_d=phi_k_d)
 
 # TRAJECTORY PARAMETERS (you don't need to change these)
-total_time = 100.0  
+total_time = 30.0  
 omega_z = 1.0       # angular frequency of figure 8
 
 # GENERATE FIGURE 8
