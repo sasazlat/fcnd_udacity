@@ -25,6 +25,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "l_11_vehicle_dynamics", "ve
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "l_13_control_architecture", "l_13_control_architecture\l_13_control_architecture.pyproj", "{CF3D8EAD-62A2-4B9F-A475-5ADEF03ECB0A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "L_14_Full_3D_Control", "L_14_Full_3D_Control\L_14_Full_3D_Control.pyproj", "{2DFD6414-259F-4D08-A6FD-4C23FBA7295C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,8 @@ Global
 		{56379EF5-104C-47B2-83A3-19D76E800B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3D8EAD-62A2-4B9F-A475-5ADEF03ECB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF3D8EAD-62A2-4B9F-A475-5ADEF03ECB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFD6414-259F-4D08-A6FD-4C23FBA7295C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFD6414-259F-4D08-A6FD-4C23FBA7295C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

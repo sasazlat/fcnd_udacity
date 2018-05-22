@@ -126,13 +126,15 @@ class NonLinearCascadingController:
                         phi_actual, 
                         phi_dot_actual,
                         phi_dot_target=0.0):
-        phi_err = phi_target - phi_actual
-        phi_err_dot = phi_dot_target - phi_dot_actual
+        phi_error = phi_target - phi_actual
+        phi_dot_error = phi_dot_target - phi_dot_actual
 
-        p_term = self.phi_k_p * phi_err
-        d_term = self.phi_k_d * phi_err_dot
+        p_term = self.phi_k_p * phi_error
+        d_term = self.phi_k_d * phi_dot_error
 
-        u_2 = (p_term + d_term) * self.I_x
+        u_2_bar = p_term + d_term
+        
+        u_2 = self.I_x * u_2_bar
 
         return u_2
 

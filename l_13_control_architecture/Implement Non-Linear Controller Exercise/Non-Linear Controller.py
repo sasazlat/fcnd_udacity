@@ -7,7 +7,7 @@
 
 import numpy as np 
 import math
-from math import sin, cos
+from math import sin, cos, asin, acos
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 
@@ -92,6 +92,17 @@ class NonLinearCascadingController:
         #   u_1_bar and then use the non-linear math from above
         #   to transform u_1_bar into u_1 and then return u_1
         u_1 = 0.0
+
+        z_error = z_target - z_actual
+        z_dot_error = z_dot_target - z_dot_actual
+
+        p_term = self.z_k_p * z_error
+        d_term = self.z_k_d * z_dot_error
+
+        u_1_bar = p_term + d_term + z_dot_dot_target
+
+        u_1 = self.m * (self.g - u_1_bar) / cos(phi_actual)
+
         return u_1
     
     
@@ -109,6 +120,19 @@ class NonLinearCascadingController:
         #   to transform y_dot_dot_target into phi_commanded
         #   and then return phi_commanded
         phi_commanded = 0.0
+
+        y_error = y_target - y_actual
+        y_dot_error = y_dot_target - y_dot_actual
+
+        p_term = self.y_k_p * y_error
+        d_term = self.y_k_d * y_dot_error
+
+        y_dot_dot_target = p_term + d_term + y_dot_dot_ff
+
+        x = self.m * y_dot_dot_target / u_1
+        x = min(0.99,max(x,-0.99))
+        phi_commanded = math.asin(x)
+
         return phi_commanded 
     
     
@@ -122,6 +146,16 @@ class NonLinearCascadingController:
         #   and then use the linear math from above to
         #   transform u_2_bar into u_2 and then return u_2
         u_2 = 0.0
+        phi_error = phi_target - phi_actual
+        phi_dot_error = phi_dot_target - phi_dot_actual
+
+        p_term = self.phi_k_p * phi_error
+        d_term = self.phi_k_d * phi_dot_error
+
+        u_2_bar = p_term + d_term
+        
+        u_2 = self.I_x * u_2_bar
+
         return u_2
 
 
@@ -152,12 +186,12 @@ class NonLinearCascadingController:
 # You'll have to tune the controller gains to get good results.
 
 #### CONTROLLER GAINS (TUNE THESE) ######
-z_k_p = 1.0   
-z_k_d = 1.0   
-y_k_p = 1.0
-y_k_d = 1.0
-phi_k_p = 1.0
-phi_k_d = 1.0
+z_k_p = 0.1   
+z_k_d = 10.0   
+y_k_p = 0.3
+y_k_d = 10.0
+phi_k_p = 150.0
+phi_k_d = 50.0
 
 #########################################
 drone = Drone2D()
