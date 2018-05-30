@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2dfd6414-259f-4d08-a6fd-4c23fba7295c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>L_14_Full_3D_Control.py</StartupFile>
+    <StartupFile>3D_Drone_Part_1\L_7_3_Drone_Part_1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="L_14_Full_3D_Control.py" />
+    <Compile Include="3D_Drone_Part_1\L_7_3_Drone_Part_1.py" />
+    <Compile Include="solution.py" />
+    <Compile Include="testing.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="3D_Drone_Part_1\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
