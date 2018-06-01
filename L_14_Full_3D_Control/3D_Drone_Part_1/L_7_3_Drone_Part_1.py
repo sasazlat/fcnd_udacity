@@ -132,22 +132,22 @@ class DroneIn3D(UDACITYDroneIn3D):
     # forces from the four propellers [N]
     @property
     def f_1(self):
-        f = self.k_f*self.omega[0]**2
+        f = self.k_f * self.omega[0] ** 2
         return f
 
     @property 
     def f_2(self):
-        f = self.k_f*self.omega[1]**2
+        f = self.k_f * self.omega[1] ** 2
         return f
 
     @property 
     def f_3(self):
-        f = self.k_f*self.omega[2]**2
+        f = self.k_f * self.omega[2] ** 2
         return f
 
     @property 
     def f_4(self):
-        f = self.k_f*self.omega[3]**2
+        f = self.k_f * self.omega[3] ** 2
         return f
 
     # collective force
@@ -190,33 +190,33 @@ class DroneIn3D(UDACITYDroneIn3D):
     # reactive moments [N * m]
     @property
     def tau_1(self):
-        tau = self.k_m * self.omega[0]**2
+        tau = self.k_m * self.omega[0] ** 2
         return tau
     
     @property
     def tau_2(self):
-        tau = -self.k_m * self.omega[1]**2
+        tau = -self.k_m * self.omega[1] ** 2
         return tau
 
     @property
     def tau_3(self):
-        tau = self.k_m * self.omega[2]**2
+        tau = self.k_m * self.omega[2] ** 2
         return tau
 
     @property
     def tau_4(self):
-        tau = -self.k_m * self.omega[3]**2
+        tau = -self.k_m * self.omega[3] ** 2
         return tau
 
     # moments about axes [N * m]
     @property
     def tau_x(self):
-        tau = self.l*(self.f_1 + self.f_4 - self.f_2 - self.f_3)
+        tau = self.l * (self.f_1 + self.f_4 - self.f_2 - self.f_3)
         return tau
 
     @property
     def tau_y(self):
-        tau = self.l*(self.f_1 + self.f_2 - self.f_3 - self.f_4)
+        tau = self.l * (self.f_1 + self.f_2 - self.f_3 - self.f_4)
         return tau
 
     @property
@@ -270,16 +270,34 @@ class DroneIn3D(UDACITYDroneIn3D):
                                         u_bar_q,
                                         u_bar_r):
     
-        # TODO 
+        # TODO
         #   replace with your own implementation.
         #   note that this function doesn't return anything
         #   it just sets self.omega
-        # 
-        self.omega[0] = 0
-        self.omega[1] = 0
-        self.omega[2] = 0
-        self.omega[3] = 0
+        #
+        #self.omega[0] = 0
+        #self.omega[1] = 0
+        #self.omega[2] = 0
+        #self.omega[3] = 0
     
+        c_bar = -c * self.m / self.k_f
+        p_bar = self.i_x * u_bar_p / (self.k_f * self.l)
+        q_bar = self.i_y * u_bar_q / (self.k_f * self.l)
+        r_bar = self.i_z * u_bar_r / self.k_m
+
+        a = np.array([[1,1,1,1],
+                     [1,-1,-1,1],
+                     [1,1,-1,-1],
+                     [1,-1,1,-1]])
+        b = np.array([c_bar,p_bar, q_bar, r_bar])
+
+        x = np.linalg.solve(a,b)
+
+        self.omega[0] = -np.sqrt(x[0])
+        self.omega[1] = np.sqrt(x[1])
+        self.omega[2] = -np.sqrt(x[2])
+        self.omega[3] = np.sqrt(x[3])
+        #return xx
         #return super(DroneIn3D, self).set_propeller_angular_velocities(c,
         #                                                               u_bar_p,
         #                                                               u_bar_q,
@@ -308,9 +326,9 @@ class DroneIn3D(UDACITYDroneIn3D):
 
     def R(self):
     
-        # TODO replace with your own implementation 
+        # TODO replace with your own implementation
         #   according to the math above
-        # 
+        #
         # return rotation_matrix
     
         return super(DroneIn3D, self).R()
@@ -405,10 +423,10 @@ class DroneIn3D(UDACITYDroneIn3D):
     def advance_state(self, dt):
     
     # TODO replace this with your own implementation
-    # 
-    #   make sure this function returns the new state! 
+    #
+    #   make sure this function returns the new state!
     #   Some of the code that calls this function will expect
-    #   it to return the state, so simply updating self.X 
+    #   it to return the state, so simply updating self.X
     #   is not enough (though you should do that in this
     #   method too.)
     
@@ -563,8 +581,7 @@ class Controller(UDACITYController):
         # TODO replace with your own implementation
         # return b_x_c, b_y_c
     
-        return super(Controller, self).lateral_controller(
-            x_target,
+        return super(Controller, self).lateral_controller(x_target,
             x_dot_target,
             x_dot_dot_target,
             x_actual,
@@ -589,7 +606,7 @@ class Controller(UDACITYController):
                                                               b_y_c_target,
                                                               rot_mat)
 
-    # Exercise 5.1 
+    # Exercise 5.1
 
     def body_rate_controller(self,
                              p_c,
@@ -661,8 +678,7 @@ class Controller(UDACITYController):
         r_c = self.yaw_controller(psi_target, 
                                   psi_actual)
     
-        u_bar_p, u_bar_q, u_bar_r = self.body_rate_controller(
-            p_c,
+        u_bar_p, u_bar_q, u_bar_r = self.body_rate_controller(p_c,
             q_c,
             r_c,
             p_actual,
