@@ -285,18 +285,31 @@ class DroneIn3D(UDACITYDroneIn3D):
         q_bar = self.i_y * u_bar_q / (self.k_f * self.l)
         r_bar = self.i_z * u_bar_r / self.k_m
 
-        a = np.array([[1,1,1,1],
-                     [1,-1,-1,1],
-                     [1,1,-1,-1],
-                     [1,-1,1,-1]])
-        b = np.array([c_bar,p_bar, q_bar, r_bar])
+        #a = np.array([[1,1,1,1],
+        #             [1,-1,-1,1],
+        #             [1,1,-1,-1],
+        #             [1,-1,1,-1]])
+        #b = np.array([c_bar,p_bar, q_bar, r_bar])
 
-        x = np.linalg.solve(a,b)
+        #x = np.linalg.solve(a,b)
 
-        self.omega[0] = -np.sqrt(x[0])
-        self.omega[1] = np.sqrt(x[1])
-        self.omega[2] = -np.sqrt(x[2])
-        self.omega[3] = np.sqrt(x[3])
+        #self.omega[0] = -np.sqrt(x[0])
+        #self.omega[1] = np.sqrt(x[1])
+        #self.omega[2] = -np.sqrt(x[2])
+        #self.omega[3] = np.sqrt(x[3])
+
+        #omega_4 = (c_bar + p_bar -q_bar - r_bar) / 4 
+        #omega_3 = (c_bar - q_bar)/2 - omega_4
+        #omega_2 = (q_bar - p_bar)/2 + omega_4
+        #omega_1 = (c_bar + p_bar)/2 - omega_4
+
+        omega_4 = (c_bar + p_bar - q_bar - r_bar) / 4
+        omega_3 = (c_bar - p_bar - q_bar + r_bar) / 4
+        omega_2 = (c_bar - p_bar + q_bar - r_bar) / 4
+        omega_1 = (c_bar + p_bar + q_bar + r_bar) / 4
+
+        self.omega = -np.sqrt(omega_1), np.sqrt(omega_2), -np.sqrt(omega_3), np.sqrt(omega_4)
+
         #return xx
         #return super(DroneIn3D, self).set_propeller_angular_velocities(c,
         #                                                               u_bar_p,
@@ -330,8 +343,22 @@ class DroneIn3D(UDACITYDroneIn3D):
         #   according to the math above
         #
         # return rotation_matrix
-    
-        return super(DroneIn3D, self).R()
+        fi = self.phi
+        teta = self.theta
+        psii = self.psi
+        Rx = np.array([[1., 0, 0],
+                         [0, np.cos(fi), -np.sin(fi)],
+                         [0, np.sin(fi), np.cos(fi)]])
+        Ry = np.array([[np.cos(teta), 0, np.sin(teta)],
+                         [0., 1, 0],
+                         [-np.sin(teta), 0, np.cos(teta)]])
+        Rz = np.array([[np.cos(psii), -np.sin(psii), 0],
+                         [np.sin(psii), np.cos(psii), 0],
+                         [0., 0, 1]])
+
+        Rr = np.matmul(Rz,np.matmul(Ry,Rx))
+        return Rr
+        #return super(DroneIn3D, self).R()
 
 
 
@@ -342,8 +369,10 @@ class DroneIn3D(UDACITYDroneIn3D):
         # TODO replace with your own implementation
         #   This function should return a length 3 np.array
         #   with a_x, a_y, and a_z
-    
-        return super(DroneIn3D, self).linear_acceleration()
+        ftotal = self.f_total
+        a_x, a_y, a_z = np.array([0,0, self.g]) + 1/self.m * np.matmul(self.R(), np.array([0,0, - ftotal]))
+        return a_x, a_y, a_z
+        #return super(DroneIn3D, self).linear_acceleration()
 
 # In[ ]:
 
