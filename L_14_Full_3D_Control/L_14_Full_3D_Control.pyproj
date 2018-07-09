@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2dfd6414-259f-4d08-a6fd-4c23fba7295c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>3D_Drone_Part_1\L_7_3_Drone_Part_1.py</StartupFile>
+    <StartupFile>kalman_filter_example.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="3D_Drone_Part_1\L_7_3_Drone_Part_1.py" />
+    <Compile Include="kalman_edx.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="kalman_filter_example.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="solution.py" />
     <Compile Include="testing.py" />
   </ItemGroup>

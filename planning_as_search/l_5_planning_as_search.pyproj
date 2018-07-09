@@ -33,6 +33,9 @@
     <Compile Include="BFS\DFS.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DFS\bfs_dfs.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DFS\dfs.py">
       <SubType>Code</SubType>
     </Compile>
