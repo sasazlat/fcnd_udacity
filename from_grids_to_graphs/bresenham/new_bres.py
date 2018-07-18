@@ -67,13 +67,13 @@ def low_bres(p1, p2, swapped=False):
     if dx < 0:
         xstep = -1
         dx = -dx
-    d = dy - dx
+    d = 0
     i = x1
     j = y1
     cells = []
     while i <= x2:
         cells.append([i,j])
-        if d < 0:
+        if d < dx - dy:
             i += xstep
             d += dy
         elif d == 0:
@@ -113,12 +113,12 @@ def up_bres(p1,p2):
     if dx < 0:
         xstep = -1
         dx = -dx
-    d = 2 * dx - dy
+    d = 0
     i = x1
     cells = []
     for j in range(y1, y2 + 1):
         cells.append([i,j])
-        if d > 0:
+        if d > 2 * dx - dy:
             i = i + xstep
             d = d - 2 * dy
         d = d + 2 * dx
@@ -225,8 +225,8 @@ def bresa(start, end):
 # Plotting the line with the cells which it crosses.
 
 # In[10]:
-p1 = (5, 0)
-p2 = (7, -14)
+p1 = (6, 5)
+p2 = (3, -1)
 
 cells = bres(p1, p2)
 
@@ -279,7 +279,7 @@ from bresenham import bresenham
 
 
 # Note: you can run this for any (x1, y1, x2, y2)
-line = (5, 0, 7, -4)
+line = (6, 5, 3, -1)
 
 cells = list(bresenham(line[0], line[1], line[2], line[3]))
 print(cells)
@@ -299,4 +299,3 @@ plt.xlabel("X")
 plt.ylabel("Y")
 plt.title("Python package Bresenham algorithm")
 plt.show()
-

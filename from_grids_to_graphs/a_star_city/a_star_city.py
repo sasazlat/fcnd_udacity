@@ -95,7 +95,7 @@ goal_ne = (750., 370.)
 
 # In[9]:
 def heuristic_func(position, goal_position):
-    return np.abs(position[0] - goal_position[0]) + np.abs(position[1] - goal_position[1])
+    return np.linalg.norm(np.subtract(position, goal_position))
 
 
 # Compute the lowest cost path with `a_star`.

@@ -37,7 +37,6 @@
 # ![title](grid_map.png)
 
 # In[1]:
-
 import numpy as np 
 import matplotlib.pyplot as plt
 
@@ -45,14 +44,12 @@ import matplotlib.pyplot as plt
 
 
 # In[2]:
-
 plt.rcParams["figure.figsize"] = [12, 12]
 
 
 # Read the csv file which contains the coordinates of the obstacles.
 
 # In[3]:
-
 filename = 'colliders.csv'
 # Read in the data skipping the first two lines.
 # Note: the first line contains the latitude and longitude of map center
@@ -66,7 +63,7 @@ print(data)
 
 
 # Static drone altitude (metres)
-drone_altitude = 5
+drone_altitude = 10
 
 # Minimum distance required to stay away from an obstacle (metres)
 # Think of this as padding around the obstacles.
@@ -77,7 +74,6 @@ safe_distance = 3
 # city and will return a 2D grid representation showing open and closed spaces.
 
 # In[ ]:
-
 def create_grid(data, drone_altitude, safety_distance):
     """
     Returns a grid representation of a 2D configuration space
@@ -95,16 +91,16 @@ def create_grid(data, drone_altitude, safety_distance):
 
     # given the minimum and maximum coordinates we can
     # calculate the size of the grid.
-    north_size = int(np.ceil((north_max - north_min)))
-    east_size = int(np.ceil((east_max - east_min)))
+    north_size = int(np.ceil((north_max - north_min + 1)))
+    east_size = int(np.ceil((east_max - east_min + 1)))
     # Initialize an empty grid
     grid = np.zeros((north_size, east_size))
     # Center offset for grid
     north_min_center = np.min(data[:, 0])
     east_min_center = np.min(data[:, 1])
     # Populate the grid with obstacles
-    print (data.shape[0])
-    print (grid.shape)
+    print(data.shape[0])
+    print(grid.shape)
     obstacles = []
     for i in range(data.shape[0]):
         #center of the obstacle
@@ -116,17 +112,16 @@ def create_grid(data, drone_altitude, safety_distance):
         # Example:
         #
         #    grid[north_coordinate, east_coordinate] = 1
-        down_N = int(np.floor(north-d_north-safe_distance))
-        up_N = int(np.ceil(north+d_north+safe_distance))
-        down_E = int(np.floor(east-d_east-safe_distance))
-        up_E = int(np.ceil(east+d_east+safe_distance))
+        down_N = int(np.floor(north - d_north - safety_distance - north_min))
+        up_N = int(np.ceil(north + d_north + safety_distance - north_min))
+        down_E = int(np.floor(east - d_east - safety_distance - east_min))
+        up_E = int(np.ceil(east + d_east + safety_distance - east_min))
         grid[down_N : up_N , down_E : up_E] = 1
 
     return grid
 
 
 # In[ ]:
-
 grid = create_grid(data, drone_altitude, safe_distance)
 
 

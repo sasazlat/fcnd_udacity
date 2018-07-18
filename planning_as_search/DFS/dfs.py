@@ -170,7 +170,7 @@ def bfs(grid, start, goal):
 
 def dfs(grid, start, goal):
     # Below:
-        # "queue" is meant to contain your partial paths
+        # "stack" is meant to contain your partial paths
         # "visited" is meant to contain your visited cells
     # TODO: Replace the None values for "queue" and "visited" with data
     # structure types

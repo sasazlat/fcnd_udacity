@@ -11,6 +11,7 @@ from grid import create_grid
 from skimage.morphology import medial_axis
 from skimage.util import invert
 from planning import a_star
+from bresenham import bresenham
 #get_ipython().run_line_magic('matplotlib', 'inline')
 
 
@@ -30,8 +31,8 @@ print(data)
 # Starting and goal positions in *(north, east)*.
 
 # In[4]:
-start_ne = (70,  100)
-goal_ne = (780, 504)
+start_ne = (25,  100)
+goal_ne = (730, 760)
 
 
 # In[5]:
@@ -135,7 +136,19 @@ for action in path:
     actual_path.append(curr_pos)
     actual_path2.append(curr_pos)
 
-pp = np.array(actual_path)
+def prune_path(path):
+    pruned_path = [p for p in path]
+    i = 0
+    while i < len(pruned_path) - 2:
+        p1,p3 = pruned_path[i], pruned_path[i + 2]
+        br = list(bresenham(p1[0], p1[1], p3[0], p3[1]))
+        if all((grid[p] == 0) for p in br):
+            pruned_path.remove(pruned_path[i + 1])
+        else:
+            i += 1
+    return pruned_path
+pruned_path = prune_path(actual_path)
+pp = np.array(pruned_path)
 pp2 = np.array(actual_path2)
 
 #pp = np.array(path)

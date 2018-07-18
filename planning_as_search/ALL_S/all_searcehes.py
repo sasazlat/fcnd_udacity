@@ -158,7 +158,7 @@ def bfs(grid, start, goal):
     # TODO: Replace the None values for "queue" and "visited" with data
     # structure types
     path = []
-    q = queue.Queue() # TODO: Choose a data structure type for your partial paths
+    q = Queue() # TODO: Choose a data structure type for your partial paths
     q.put(start)
     visited = set() # TODO: Choose a data structure type for your visited list
     
