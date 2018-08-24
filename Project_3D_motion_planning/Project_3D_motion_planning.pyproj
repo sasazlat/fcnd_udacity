@@ -27,59 +27,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="backyard_flyer_solution.py" />
-    <Compile Include="example2-to fix\motion2.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="example2-to fix\planning2.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="example4\motion4.py" />
-    <Compile Include="example4\planning4.py" />
-    <Compile Include="example5 - ok\motion5.py" />
-    <Compile Include="example5 - ok\planning5.py" />
-    <Compile Include="example6 - ok\motion6.py" />
-    <Compile Include="example6 - ok\planning6.py" />
-    <Compile Include="example7 - ok\grid.py" />
-    <Compile Include="example7 - ok\helix_motion.py" />
-    <Compile Include="example7 - ok\motion_planning_graph.py" />
-    <Compile Include="example7 - ok\motion_planning_grid.py" />
-    <Compile Include="example7 - ok\planning.py" />
-    <Compile Include="example7 - ok\planning_utilsi.py" />
-    <Compile Include="example7 - ok\planning_utils1.py" />
-    <Compile Include="example8 - ok\motion.py" />
-    <Compile Include="example8 - ok\planning.py" />
-    <Compile Include="example8 - ok\utils.py" />
-    <Compile Include="example - ok\motion.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="motion_planning.py" />
-    <Compile Include="example - ok\planning.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="planning_utilss.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="example - ok\" />
-    <Folder Include="example2-to fix\" />
-    <Folder Include="example3\" />
-    <Folder Include="example5 - ok\" />
-    <Folder Include="example6 - ok\" />
-    <Folder Include="example7 - ok\" />
-    <Folder Include="example8 - ok\" />
     <Folder Include="images\" />
-    <Folder Include="example4\" />
     <Folder Include="misc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="colliders.csv" />
-    <Content Include="example2-to fix\colliders.csv" />
-    <Content Include="example4\colliders.csv" />
-    <Content Include="example5 - ok\colliders.csv" />
-    <Content Include="example6 - ok\colliders.csv" />
-    <Content Include="example7 - ok\colliders.csv" />
-    <Content Include="example7 - ok\voronoi.gpickle" />
-    <Content Include="example8 - ok\colliders.csv" />
-    <Content Include="example - ok\colliders.csv" />
     <Content Include="images\double_helix.gif" />
     <Content Include="images\enroute.png" />
     <Content Include="images\high_up.png" />
