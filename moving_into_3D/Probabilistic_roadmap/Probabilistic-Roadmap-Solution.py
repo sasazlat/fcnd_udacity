@@ -264,13 +264,13 @@ print("Number of edges", len(g.edges))
 
 
 # In[32]:
-grid2 = create_grid(data, sampler._zmax, 1)
+grid = create_grid(data, sampler._zmax, 1)
 
 
 # In[33]:
 fig = plt.figure()
 
-plt.imshow(grid2, cmap='Greys', origin='lower')
+plt.imshow(grid, cmap='Greys', origin='lower')
 
 nmin = np.min(data[:, 0])
 emin = np.min(data[:, 1])
