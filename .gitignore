@@ -263,3 +263,13 @@ paket-files/
 __pycache__/
 *.pyc
 /preview_drone/ProjectBackyardFlyer/backyard_flyer.zip
+
+# ignore practice folders
+/example - ok/
+# /Project_3D_motion_planning/example2-to fix
+# /Project_3D_motion_planning/example3
+# /Project_3D_motion_planning/example4
+# /Project_3D_motion_planning/example5 - ok
+# /Project_3D_motion_planning/example6 - ok
+# /Project_3D_motion_planning/example7 - ok
+# /Project_3D_motion_planning/example8 - ok
