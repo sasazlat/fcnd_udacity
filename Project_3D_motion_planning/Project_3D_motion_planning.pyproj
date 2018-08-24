@@ -27,7 +27,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="backyard_flyer_solution.py" />
+    <Compile Include="motion.py" />
     <Compile Include="motion_planning.py" />
+    <Compile Include="planning.py" />
     <Compile Include="planning_utilss.py" />
   </ItemGroup>
   <ItemGroup>
